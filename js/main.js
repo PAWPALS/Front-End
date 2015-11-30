@@ -10,6 +10,7 @@ import './app-map/index';
 
 angular
   .module('app', ['app.core', 'app.layout', 'app.user', 'app.map'])
+  
 ;
 
 

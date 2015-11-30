@@ -2,15 +2,21 @@
   <h5>PawPals</h5>
 
   <div>
-    <form>
-      <input placeholder="email" ng-model="user.email">
-      <input placeholder="password" ng-model="user.password" type="password">
+    <form ng-submit="login">
+      <input placeholder="email" ng-model="user.email" type="email" "required">
+      <input placeholder="password" ng-model="user.password" type="password" "required">
     </form>
   </div>
 
   <div>
     <button>Login</button>
     <button>Join</button>
+
+    <button ng-click="logmeout()">LogOut</button>
   </div>
 
 </div>
+
+
+
+
