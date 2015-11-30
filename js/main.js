@@ -1,5 +1,15 @@
-import $ from 'jquery';
-import _ from 'underscore';
-import moment from 'moment';
+// Core files
+import angular from 'angular';
+import 'angular-ui-router';
 
-console.log('Hello, World');
+// Sub modules
+import './app-core/index';
+import './app-layout/index';
+import './app-user/index';
+import './app-map/index';
+
+angular
+  .module('app', ['app.core', 'app.layout', 'app.user', 'app.map'])
+;
+
+
