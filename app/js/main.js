@@ -15,14 +15,6 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/',
     controller: 'HomeController as vm',
     templateUrl: 'templates/app-layout/home.tpl.html'
-  }).state('root.user-reg', {
-    url: '/user-reg',
-    controller: 'UserRegController as vm',
-    templateUrl: 'templates/app-user/user-reg.tpl.html'
-  }).state('root.user-login', {
-    url: '/user-login',
-    controller: 'UserLoginController as vm',
-    templateUrl: 'templates/app-user/user-login.tpl.html'
   }).state('root.pet-reg', {
     url: '/pet-reg',
     controller: 'PetRegController as vm',
@@ -31,10 +23,6 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/profile',
     controller: 'ProfileController as vm',
     templateUrl: 'templates/app-user/profile.tpl.html'
-  }).state('root.community', {
-    url: '/community',
-    controller: 'CommunityController as vm',
-    templateUrl: 'templates/app-user/community.tpl.html'
   }).state('root.map', {
     url: '/map',
     controller: 'MapController as vm',
@@ -64,7 +52,7 @@ var _config2 = _interopRequireDefault(_config);
 
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']);
 
-},{"./config":1,"angular":16,"angular-ui-router":14}],3:[function(require,module,exports){
+},{"./config":1,"angular":13,"angular-ui-router":11}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -96,7 +84,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']);
 
-},{"../app-core/index":2,"./controllers/home.controller":3,"angular":16,"angular-ui-router":14}],5:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/home.controller":3,"angular":13,"angular-ui-router":11}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -126,20 +114,7 @@ var _controllersMapController2 = _interopRequireDefault(_controllersMapControlle
 
 _angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']);
 
-},{"../app-core/index":2,"./controllers/map.controller":5,"angular":16}],7:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var CommunityController = function CommunityController() {};
-
-CommunityController.$inject = [];
-
-exports["default"] = CommunityController;
-module.exports = exports["default"];
-
-},{}],8:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/map.controller":5,"angular":13}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -152,7 +127,7 @@ PetRegController.$inject = [];
 exports["default"] = PetRegController;
 module.exports = exports["default"];
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -165,33 +140,7 @@ ProfileController.$inject = [];
 exports["default"] = ProfileController;
 module.exports = exports["default"];
 
-},{}],10:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var UserLoginController = function UserLoginController() {};
-
-UserLoginController.$inject = [];
-
-exports["default"] = UserLoginController;
-module.exports = exports["default"];
-
-},{}],11:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var UserRegController = function UserRegController() {};
-
-UserRegController.$inject = [];
-
-exports["default"] = UserRegController;
-module.exports = exports["default"];
-
-},{}],12:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -202,14 +151,6 @@ var _angular2 = _interopRequireDefault(_angular);
 
 require('../app-core/index');
 
-var _controllersUserRegController = require('./controllers/user-reg.controller');
-
-var _controllersUserRegController2 = _interopRequireDefault(_controllersUserRegController);
-
-var _controllersUserLoginController = require('./controllers/user-login.controller');
-
-var _controllersUserLoginController2 = _interopRequireDefault(_controllersUserLoginController);
-
 var _controllersPetRegController = require('./controllers/pet-reg.controller');
 
 var _controllersPetRegController2 = _interopRequireDefault(_controllersPetRegController);
@@ -218,13 +159,9 @@ var _controllersProfileController = require('./controllers/profile.controller');
 
 var _controllersProfileController2 = _interopRequireDefault(_controllersProfileController);
 
-var _controllersCommunityController = require('./controllers/community.controller');
+_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']);
 
-var _controllersCommunityController2 = _interopRequireDefault(_controllersCommunityController);
-
-_angular2['default'].module('app.user', ['app.core']).controller('UserRegController', _controllersUserRegController2['default']).controller('UserLoginController', _controllersUserLoginController2['default']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).controller('CommunityController', _controllersCommunityController2['default']);
-
-},{"../app-core/index":2,"./controllers/community.controller":7,"./controllers/pet-reg.controller":8,"./controllers/profile.controller":9,"./controllers/user-login.controller":10,"./controllers/user-reg.controller":11,"angular":16}],13:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/pet-reg.controller":7,"./controllers/profile.controller":8,"angular":13}],10:[function(require,module,exports){
 // Core files
 'use strict';
 
@@ -248,7 +185,7 @@ require('./app-map/index');
 
 _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.map']);
 
-},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":6,"./app-user/index":12,"angular":16,"angular-ui-router":14}],14:[function(require,module,exports){
+},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":6,"./app-user/index":9,"angular":13,"angular-ui-router":11}],11:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4619,7 +4556,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],15:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33638,11 +33575,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],16:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":15}]},{},[13])
+},{"./angular":12}]},{},[10])
 
 
 //# sourceMappingURL=main.js.map

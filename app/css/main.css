@@ -8470,4 +8470,8 @@ th.hide-for-touch {
 body {
   background: #e2ebf3; }
 
+.home {
+  width: 30%;
+  margin: auto; }
+
 /*# sourceMappingURL=main.css.map */
