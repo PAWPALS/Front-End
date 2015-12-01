@@ -2,8 +2,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
   console.log(SERVER);
 
-  // Authentication
-  
+  // Auth
   this.checkAuth = function () {
 
     let token = $cookies.get('authToken');
@@ -17,20 +16,29 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     }
 
   };
+  
+  // Signup
+  let User = function(userObj) {
+    this.email = userObj.email;
+    this.password = userObj.password;
+  };
+  
+  // New instance of user
+  this.createUser = function(userObj) {
+    console.log(userObj);
 
-  // Join
-  this.join = function (userObj) {
-    // let u = new user (userObj);
-    return $http.post(SERVER.URL + 'signup', userObj).then((res) => {
+    let u = new User(userObj);
+
+    return $http.post(SERVER.URL + 'signup', u).then((res) => {
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
       SERVER.CONFIG.headers['X-AUTH-TOKEN'] =  res.data.user.auth_token;
       $state.go('root.profile');
-    }) ;
+    });
   };
 
-
+  
   // Login
   this.sendLogin = function (userObj) {
     return $http.post(SERVER.URL + 'login', userObj, SERVER.CONFIG);
@@ -39,14 +47,14 @@ let HomeService = function($http, SERVER, $cookies, $state) {
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.auth_token);
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.auth_token;
-    $state.go('root.home');
+    $state.go('root.profile');
   };
 
   // Logout
   this.logout = function () {
     $cookies.remove('authToken');
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
-    $state.go('root.login');
+    $state.go('root.home');
   };
 
 };
