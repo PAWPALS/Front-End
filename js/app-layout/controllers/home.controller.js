@@ -1,5 +1,5 @@
 let HomeController = function($scope, HomeService, $cookies, $state) {
-  
+
   // Authentication
 
   let promise = HomeService.checkAuth();
@@ -8,16 +8,18 @@ let HomeController = function($scope, HomeService, $cookies, $state) {
     promise.then( (res) => {
       console.log(res);
       if (res.data.status === 'Authentication failed.') {
-        $state.go('root.login');
+        $state.go('root.home');
       } else {
         $scope.message = 'I am logged in';
       }
     });
   }
 
-  // Join
-  $scope.login = function(user) {
-    HomeService.login(user);
+  // Signup
+  $scope.createUser = function(user) {
+    console.log(user);
+
+    HomeService.createUser(user);
   };
 
   // Login

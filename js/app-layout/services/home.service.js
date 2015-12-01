@@ -2,8 +2,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
   console.log(SERVER);
 
-  // Authentication
-  
+  // Auth
   this.checkAuth = function () {
 
     let token = $cookies.get('authToken');
@@ -17,17 +16,28 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     }
 
   };
+  
+  // Signup
+  let User = function(userObj) {
+    this.email = userObj.email;
+    this.password = userObj.password;
+  };
+  
+  // New instance of user
+  this.createUser = function(userObj) {
+    console.log(userObj);
 
-  // Join
-  this.login = function (userObj) {
-    // let u = new user (userObj);
-    return $http.post(SERVER.URL + 'signup', userObj).then((res) => {
+    let u = new User(userObj);
+
+
+    return $http.post(SERVER.URL + 'signup', u).then((res) => {
+
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
       SERVER.CONFIG.headers['X-AUTH-TOKEN'] =  res.data.user.auth_token;
       $state.go('root.profile');
-    }) ;
+    });
   };
 
   // Login

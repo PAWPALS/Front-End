@@ -65,42 +65,44 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var HomeController = function HomeController($scope, UserService, $cookies, $state) {
+var HomeController = function HomeController($scope, HomeService, $cookies, $state) {
 
   // Authentication
 
-  var promise = UserService.checkAuth();
+  var promise = HomeService.checkAuth();
 
   if (promise) {
     promise.then(function (res) {
       console.log(res);
       if (res.data.status === 'Authentication failed.') {
-        $state.go('root.login');
+        $state.go('root.home');
       } else {
         $scope.message = 'I am logged in';
       }
     });
   }
 
-  // Join
-  $scope.login = function (user) {
-    UserService.login(user);
+  // Signup
+  $scope.createUser = function (user) {
+    console.log(user);
+
+    HomeService.createUser(user);
   };
 
   // Login
   $scope.login = function (user) {
-    UserService.sendLogin(user).then(function (res) {
-      UserService.loginSuccess(res);
+    HomeService.sendLogin(user).then(function (res) {
+      HomeService.loginSuccess(res);
     });
   };
 
   // Logout
   $scope.logmeout = function () {
-    UserService.logout();
+    HomeService.logout();
   };
 };
 
-HomeController.$inject = ['$scope', 'UserService', '$cookies', '$state'];
+HomeController.$inject = ['$scope', 'HomeService', '$cookies', '$state'];
 
 exports['default'] = HomeController;
 module.exports = exports['default'];
@@ -126,14 +128,7 @@ var _servicesHomeService = require('./services/home.service');
 
 var _servicesHomeService2 = _interopRequireDefault(_servicesHomeService);
 
-_angular2['default'].module('app.layout', ['app.core']).constant('SERVER', {
-  URL: 'https://herokaupp.com/',
-  CONFIG: {
-    headers: {}
-
-  }
-
-}).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
+_angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
 
 },{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":16,"angular-ui-router":14}],5:[function(require,module,exports){
 'use strict';
@@ -145,8 +140,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
   console.log(SERVER);
 
-  // Authentication
-
+  // Auth
   this.checkAuth = function () {
 
     var token = $cookies.get('authToken');
@@ -160,10 +154,20 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
     }
   };
 
-  // Join
-  this.login = function (userObj) {
-    // let u = new user (userObj);
-    return $http.post(SERVER.URL + 'signup', userObj).then(function (res) {
+  // Signup
+  var User = function User(userObj) {
+    this.email = userObj.email;
+    this.password = userObj.password;
+  };
+
+  // New instance of user
+  this.createUser = function (userObj) {
+    console.log(userObj);
+
+    var u = new User(userObj);
+
+    return $http.post(SERVER.URL + 'signup', u).then(function (res) {
+
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
@@ -229,16 +233,6 @@ _angular2['default'].module('app.map', ['app.core']).controller('MapController',
 
 },{"../app-core/index":2,"./controllers/map.controller":6,"angular":16}],8:[function(require,module,exports){
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var PetRegController = function PetRegController() {};
-
-PetRegController.$inject = [];
-
-exports["default"] = PetRegController;
-module.exports = exports["default"];
 
 },{}],9:[function(require,module,exports){
 "use strict";
