@@ -8,7 +8,7 @@ let HomeController = function($scope, HomeService, $cookies, $state) {
     promise.then( (res) => {
       console.log(res);
       if (res.data.status === 'Authentication failed.') {
-        $state.go('root.home');
+        $state.go('root.login');
       } else {
         $scope.message = 'I am logged in';
       }

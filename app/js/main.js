@@ -65,17 +65,17 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var HomeController = function HomeController($scope, HomeService, $cookies, $state) {
+var HomeController = function HomeController($scope, UserService, $cookies, $state) {
 
   // Authentication
 
-  var promise = HomeService.checkAuth();
+  var promise = UserService.checkAuth();
 
   if (promise) {
     promise.then(function (res) {
       console.log(res);
       if (res.data.status === 'Authentication failed.') {
-        $state.go('root.home');
+        $state.go('root.login');
       } else {
         $scope.message = 'I am logged in';
       }
@@ -84,23 +84,23 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
 
   // Join
   $scope.login = function (user) {
-    HomeService.login(user);
+    UserService.login(user);
   };
 
   // Login
   $scope.login = function (user) {
-    HomeService.sendLogin(user).then(function (res) {
-      HomeService.loginSuccess(res);
+    UserService.sendLogin(user).then(function (res) {
+      UserService.loginSuccess(res);
     });
   };
 
   // Logout
   $scope.logmeout = function () {
-    HomeService.logout();
+    UserService.logout();
   };
 };
 
-HomeController.$inject = ['$scope', 'HomeService', '$cookies', '$state'];
+HomeController.$inject = ['$scope', 'UserService', '$cookies', '$state'];
 
 exports['default'] = HomeController;
 module.exports = exports['default'];

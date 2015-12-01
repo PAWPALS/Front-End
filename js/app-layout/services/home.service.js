@@ -30,8 +30,6 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     }) ;
   };
 
-
-
   // Login
 
   this.sendLogin = function (userObj) {
