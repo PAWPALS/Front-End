@@ -13,5 +13,4 @@ angular
     }
   })
   .config(config)
-  
 ;
