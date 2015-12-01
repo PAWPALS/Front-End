@@ -29,8 +29,6 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     }) ;
   };
 
-  // $state.go('root.dashboard') === 'root.profile'
-
   this.sendLogin = function (userObj) {
     $http.post(SERVER.URL + 'login', userObj, SERVER.CONFIG).then((res) => {
       console.log(res);
