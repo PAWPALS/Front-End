@@ -1,7 +1,9 @@
 // Core files
 import angular from 'angular';
 import 'angular-ui-router';
-import 'angular-cookies';
+
+
+
 // Sub modules
 import './app-core/index';
 import './app-layout/index';

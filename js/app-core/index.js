@@ -5,7 +5,12 @@ import 'angular-cookies';
 import config from './config';
 
 angular
-  .module('app.core', ['ui.router', 'ng-cookies'])
-  .config(config)
-  
+  .module('app.core', ['ui.router', 'ngCookies'])
+  .constant('SERVER', {
+    URL: 'https://pawpals.herokuapp.com/',
+    CONFIG: {
+      headers: {}
+    }
+  })
+  .config(config)  
 ;
