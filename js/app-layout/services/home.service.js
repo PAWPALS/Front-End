@@ -19,7 +19,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
   };
 
   // Join
-  this.join = function (userObj) {
+  this.login = function (userObj) {
     // let u = new user (userObj);
     return $http.post(SERVER.URL + 'signup', userObj).then((res) => {
       console.log(res);
@@ -41,14 +41,14 @@ let HomeService = function($http, SERVER, $cookies, $state) {
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.auth_token);
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.auth_token;
-    $state.go('root.home');
+    $state.go('root.profile');
   };
 
   // Logout
   this.logout = function () {
     $cookies.remove('authToken');
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
-    $state.go('root.login');
+    $state.go('root.home');
   };
 
 };

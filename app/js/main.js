@@ -68,13 +68,14 @@ Object.defineProperty(exports, '__esModule', {
 var HomeController = function HomeController($scope, HomeService, $cookies, $state) {
 
   // Authentication
+
   var promise = HomeService.checkAuth();
 
   if (promise) {
     promise.then(function (res) {
       console.log(res);
       if (res.data.status === 'Authentication failed.') {
-        $state.go('root.login');
+        $state.go('root.home');
       } else {
         $scope.message = 'I am logged in';
       }
@@ -83,7 +84,7 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
 
   // Join
   $scope.login = function (user) {
-    HomeService.join(user);
+    HomeService.login(user);
   };
 
   // Login
@@ -160,7 +161,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
   };
 
   // Join
-  this.join = function (userObj) {
+  this.login = function (userObj) {
     // let u = new user (userObj);
     return $http.post(SERVER.URL + 'signup', userObj).then(function (res) {
       console.log(res);
@@ -180,14 +181,14 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.auth_token);
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.auth_token;
-    $state.go('root.home');
+    $state.go('root.profile');
   };
 
   // Logout
   this.logout = function () {
     $cookies.remove('authToken');
     SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
-    $state.go('root.login');
+    $state.go('root.home');
   };
 };
 
