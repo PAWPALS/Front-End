@@ -1,1 +1,16 @@
-<div class="profile">profile</div>
+<div class="profile">
+  <h5>Profile</h5>
+
+  <ul class="profile-list" ng-repeat="vm.pets">
+<!--     <li>User: {{ pets.user_id }}</li>
+ -->    <li>Pet: {{  pets.name }}</li>
+    <li>Age: {{ pets.age }}</li>
+    <li>Breed: {{ pets.breed }}</li>
+    <li>Description: {{ pets.description }}</li>
+    <li>Status: {{ pets.present }}</li>
+  </ul>
+
+  <button ng-click="addPet">Add Pet</button>
+
+
+</div>

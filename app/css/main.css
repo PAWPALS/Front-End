@@ -8407,8 +8407,33 @@ th.hide-for-touch {
 .fa-fonticons:before {
   content: ""; }
 
-body {
-  background: #e2ebf3; }
+ul {
+  list-style: none; }
+
+.top-bar {
+  background: #FFFFFF;
+  height: 3rem; }
+  .top-bar .title-area .name a {
+    color: #353535;
+    font-size: 1.2rem; }
+
+nav {
+  border-bottom: 1px solid #EDEEEE; }
+  nav .top-bar-section .right {
+    height: 25px; }
+    nav .top-bar-section .right li {
+      margin-left: 15px; }
+  nav .top-bar-section li a:not(.button) {
+    background: #FFFFFF !important;
+    color: #84878B;
+    font-size: 0.90rem; }
+  nav .top-bar-section li a:not(.button):hover {
+    background: #FFFFFF !important;
+    color: #09477D; }
+  nav .top-bar-section ul li.active > a {
+    background: #FFFFFF !important; }
+  nav .top-bar-section ul li.active > a:hover {
+    background: #FFFFFF !important; }
 
 .home {
   width: 30%;

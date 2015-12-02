@@ -34,7 +34,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
       SERVER.CONFIG.headers['X-AUTH-TOKEN'] =  res.data.user.auth_token;
-      $state.go('root.profile');
+      $state.go('root.pet-reg');
     });
   };
 

@@ -3,7 +3,54 @@
 @import "font-awesome";
 
 body {
-  background: #e2ebf3;
+  // background: #E5E5E5;
+}
+
+ul {
+  list-style: none;
+}
+
+.top-bar {
+  background: #FFFFFF;
+  height: 3rem;
+
+  .title-area .name a {
+    color: #353535;
+    font-size: 1.2rem;
+
+  }
+}
+
+nav {
+  border-bottom: 1px solid #EDEEEE;
+
+  .top-bar-section .right {
+    // border-bottom: 1px solid #cccccc;
+    height: 25px;
+
+    li {
+      margin-left: 15px;
+     } 
+  }
+
+  .top-bar-section li a:not(.button) {
+      background: #FFFFFF !important;
+      color: #84878B; 
+      font-size: 0.90rem 
+  }
+
+  .top-bar-section li a:not(.button):hover {
+      background: #FFFFFF !important;
+      color: #09477D;   
+  }
+
+  .top-bar-section ul li.active > a {
+      background: #FFFFFF !important;   
+  }
+
+  .top-bar-section ul li.active > a:hover {
+      background: #FFFFFF !important;   
+  }
 }
 
 .home {
