@@ -12,7 +12,13 @@ import './app-map/index';
 
 angular
   .module('app', ['app.core', 'app.layout', 'app.user', 'app.map'])
-  
+  .run( function (HomeService, $rootScope) {
+
+    $rootScope.$on('$stateChangeSuccess', function () {
+      HomeService.checkAuth();
+    });
+
+  })
 ;
 
 

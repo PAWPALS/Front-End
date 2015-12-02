@@ -12,5 +12,7 @@ angular
       headers: {}
     }
   })
+
   .config(config)
+
 ;

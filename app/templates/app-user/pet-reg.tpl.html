@@ -1,1 +1,12 @@
-<div class="pet-reg">pet reg</div>
+<h2>Register Your Pet</h2>
+
+<form ng-submit="vm.addPet(pet)">
+  <input placeholder="Name" ng-model="pet.name">
+  <input placeholder="Age" ng-model="pet.age">
+  <input placeholder="Breed" ng-model="pet.breed">
+  <textarea
+    placeholder="Description" ng-model="pet.description" ng-maxlength="250">
+  </textarea>    
+  
+  <button>Submit</button>
+</form>

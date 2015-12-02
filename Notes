@@ -1,0 +1,6 @@
+
+
+1. On Login/Register, store cookie
+2. On every page load/template success, check for a cookie
+3. If a cookie exsists, add it to your SERVER.CONFIG
+4. If no cookie, then route your user to the login page/register page
