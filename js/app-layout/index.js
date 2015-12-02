@@ -7,8 +7,6 @@ import HomeController from './controllers/home.controller';
 
 import HomeService from './services/home.service';
 
-
-
 angular
   .module('app.layout', ['app.core'])
   .controller('HomeController', HomeController)
