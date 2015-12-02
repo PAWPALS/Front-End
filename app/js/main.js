@@ -89,10 +89,19 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
     HomeService.createUser(user);
   };
 
+  $scope.addPet = function (pet) {
+    console.log(pet);
+
+    HomeService.addPet(pet);
+  };
+
   // Login
   $scope.login = function (user) {
+    console.log(user);
     HomeService.sendLogin(user).then(function (res) {
+      console.log(res);
       HomeService.loginSuccess(res);
+      console.log(res);
     });
   };
 
@@ -145,7 +154,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
     var token = $cookies.get('authToken');
 
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = token;
+    SERVER.CONFIG.headers['Access-Token'] = token;
 
     if (token) {
       return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
@@ -166,13 +175,13 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
     var u = new User(userObj);
 
-    return $http.post(SERVER.URL + 'signup', u).then(function (res) {
+    return $http.post(SERVER.URL + '/signup', u).then(function (res) {
 
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
-      SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.user.auth_token;
-      $state.go('root.profile');
+      SERVER.CONFIG.headers['Access-Token'] = res.data.user.auth_token;
+      $state.go('root.pet-reg');
     });
   };
 
@@ -183,16 +192,40 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
   };
 
   this.loginSuccess = function (res) {
-    $cookies.put('authToken', res.data.auth_token);
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = res.data.auth_token;
+    $cookies.put('authToken', res.data.user.access_token);
+    SERVER.CONFIG.headers['Access-Token'] = res.data.auth_token;
     $state.go('root.profile');
   };
 
   // Logout
   this.logout = function () {
     $cookies.remove('authToken');
-    SERVER.CONFIG.headers['X-AUTH-TOKEN'] = null;
+    SERVER.CONFIG.headers['Access-Token'] = null;
     $state.go('root.home');
+  };
+
+  // Pet Registration
+  var Pet = function Pet(petObj) {
+    this.name = petObj.name;
+    this.age = petObj.age;
+    this.breed = petObj.breed;
+    this.description = petObj.description;
+  };
+
+  this.addPet = function (petObj) {
+    console.log(petObj);
+
+    var p = new Pet(petObj);
+
+    console.log(SERVER);
+
+    return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then(function (res) {
+      console.log(res);
+      $cookies.get('authToken', res.data.pet.auth_token);
+      $cookies.put('pet_id', res.data.pet.id);
+      SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
+      $state.go('root.pet-reg');
+    });
   };
 };
 
@@ -232,7 +265,28 @@ var _controllersMapController2 = _interopRequireDefault(_controllersMapControlle
 _angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']);
 
 },{"../app-core/index":2,"./controllers/map.controller":6,"angular":16}],8:[function(require,module,exports){
-"use strict";
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var PetRegController = function PetRegController($scope, HomeService, $cookies, $state) {
+
+  var vm = this;
+
+  vm.addPet = addPet;
+
+  function addPet(petObj) {
+    HomeService.addPet(petObj).then(function (res) {
+      console.log(res);
+    });
+  }
+};
+
+PetRegController.$inject = ['$scope', 'HomeService', '$cookies', '$state'];
+
+exports['default'] = PetRegController;
+module.exports = exports['default'];
 
 },{}],9:[function(require,module,exports){
 "use strict";
@@ -290,7 +344,12 @@ require('./app-user/index');
 
 require('./app-map/index');
 
-_angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.map']);
+_angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.map']).run(function (HomeService, $rootScope) {
+
+  $rootScope.$on('$stateChangeSuccess', function () {
+    HomeService.checkAuth();
+  });
+});
 
 },{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":10,"angular":16,"angular-ui-router":14}],12:[function(require,module,exports){
 /**
