@@ -9,9 +9,9 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
     SERVER.CONFIG.headers['Access-Token'] = token;
     
-
+    console.log('this function is running', token);
     if (token) {
-      //return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
+
     } else {
       $state.go('root.home');
     }
