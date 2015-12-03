@@ -22,12 +22,6 @@ let HomeController = function($scope, HomeService, $cookies, $state) {
     HomeService.createUser(user);
   };
 
-  $scope.addPet = function(pet) {
-    console.log(pet);
-
-    HomeService.addPet(pet);
-  };  
-
   // Login
   $scope.login = function (user) {
     console.log(user);

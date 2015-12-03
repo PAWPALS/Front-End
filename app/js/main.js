@@ -89,12 +89,6 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
     HomeService.createUser(user);
   };
 
-  $scope.addPet = function (pet) {
-    console.log(pet);
-
-    HomeService.addPet(pet);
-  };
-
   // Login
   $scope.login = function (user) {
     console.log(user);
@@ -156,11 +150,12 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
     SERVER.CONFIG.headers['Access-Token'] = token;
 
+    console.log('this function is running', token);
     if (token) {
-      return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
+      // return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
     } else {
-      $state.go('root.home');
-    }
+        $state.go('root.home');
+      }
   };
 
   // Signup
@@ -258,6 +253,12 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
       console.log(res);
     });
   }
+
+  $scope.addPet = function (pet) {
+    console.log(pet);
+
+    HomeService.addPet(pet);
+  };
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
