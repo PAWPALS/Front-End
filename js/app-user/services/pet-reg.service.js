@@ -21,13 +21,8 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
       $cookies.put('pet_id', res.data.pet.id);
       SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
       $state.go('root.pet-reg');
-    });
-
-   
+    });   
   };
-
-  
-  
 
 };
 
