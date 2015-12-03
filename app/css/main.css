@@ -6389,15 +6389,15 @@ th.hide-for-touch {
     display: table-cell !important; } }
 
 /*!
- *  Font Awesome 4.5.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../fonts/fontawesome-webfont.eot?v=4.5.0");
-  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.5.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.5.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.5.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.5.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular") format("svg");
+  src: url("../fonts/fontawesome-webfont.eot?v=4.4.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.4.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -8407,68 +8407,33 @@ th.hide-for-touch {
 .fa-fonticons:before {
   content: ""; }
 
-.fa-reddit-alien:before {
-  content: ""; }
+ul {
+  list-style: none; }
 
-.fa-edge:before {
-  content: ""; }
+.top-bar {
+  background: #FFFFFF;
+  height: 3rem; }
+  .top-bar .title-area .name a {
+    color: #353535;
+    font-size: 1.2rem; }
 
-.fa-credit-card-alt:before {
-  content: ""; }
-
-.fa-codiepie:before {
-  content: ""; }
-
-.fa-modx:before {
-  content: ""; }
-
-.fa-fort-awesome:before {
-  content: ""; }
-
-.fa-usb:before {
-  content: ""; }
-
-.fa-product-hunt:before {
-  content: ""; }
-
-.fa-mixcloud:before {
-  content: ""; }
-
-.fa-scribd:before {
-  content: ""; }
-
-.fa-pause-circle:before {
-  content: ""; }
-
-.fa-pause-circle-o:before {
-  content: ""; }
-
-.fa-stop-circle:before {
-  content: ""; }
-
-.fa-stop-circle-o:before {
-  content: ""; }
-
-.fa-shopping-bag:before {
-  content: ""; }
-
-.fa-shopping-basket:before {
-  content: ""; }
-
-.fa-hashtag:before {
-  content: ""; }
-
-.fa-bluetooth:before {
-  content: ""; }
-
-.fa-bluetooth-b:before {
-  content: ""; }
-
-.fa-percent:before {
-  content: ""; }
-
-body {
-  background: #e2ebf3; }
+nav {
+  border-bottom: 1px solid #EDEEEE; }
+  nav .top-bar-section .right {
+    height: 25px; }
+    nav .top-bar-section .right li {
+      margin-left: 15px; }
+  nav .top-bar-section li a:not(.button) {
+    background: #FFFFFF !important;
+    color: #84878B;
+    font-size: 0.90rem; }
+  nav .top-bar-section li a:not(.button):hover {
+    background: #FFFFFF !important;
+    color: #09477D; }
+  nav .top-bar-section ul li.active > a {
+    background: #FFFFFF !important; }
+  nav .top-bar-section ul li.active > a:hover {
+    background: #FFFFFF !important; }
 
 .home {
   width: 30%;

@@ -59,7 +59,7 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
   }
 }).config(_config2['default']);
 
-},{"./config":1,"angular":16,"angular-cookies":13,"angular-ui-router":14}],3:[function(require,module,exports){
+},{"./config":1,"angular":18,"angular-cookies":15,"angular-ui-router":16}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -139,7 +139,7 @@ var _servicesHomeService2 = _interopRequireDefault(_servicesHomeService);
 
 _angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
 
-},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":16,"angular-ui-router":14}],5:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":18,"angular-ui-router":16}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -180,6 +180,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);
+
       SERVER.CONFIG.headers['Access-Token'] = res.data.user.auth_token;
       $state.go('root.pet-reg');
     });
@@ -202,30 +203,6 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
     $cookies.remove('authToken');
     SERVER.CONFIG.headers['Access-Token'] = null;
     $state.go('root.home');
-  };
-
-  // Pet Registration
-  var Pet = function Pet(petObj) {
-    this.name = petObj.name;
-    this.age = petObj.age;
-    this.breed = petObj.breed;
-    this.description = petObj.description;
-  };
-
-  this.addPet = function (petObj) {
-    console.log(petObj);
-
-    var p = new Pet(petObj);
-
-    console.log(SERVER);
-
-    return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then(function (res) {
-      console.log(res);
-      $cookies.get('authToken', res.data.pet.auth_token);
-      $cookies.put('pet_id', res.data.pet.id);
-      SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
-      $state.go('root.pet-reg');
-    });
   };
 };
 
@@ -264,42 +241,55 @@ var _controllersMapController2 = _interopRequireDefault(_controllersMapControlle
 
 _angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']);
 
-},{"../app-core/index":2,"./controllers/map.controller":6,"angular":16}],8:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/map.controller":6,"angular":18}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var PetRegController = function PetRegController($scope, HomeService, $cookies, $state) {
+var PetRegController = function PetRegController($scope, PetRegService, $cookies, $state) {
 
   var vm = this;
 
   vm.addPet = addPet;
 
   function addPet(petObj) {
-    HomeService.addPet(petObj).then(function (res) {
+    PetRegService.addPet(petObj).then(function (res) {
       console.log(res);
     });
   }
 };
 
-PetRegController.$inject = ['$scope', 'HomeService', '$cookies', '$state'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
 
 exports['default'] = PetRegController;
 module.exports = exports['default'];
 
 },{}],9:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileController = function ProfileController() {};
+var ProfileController = function ProfileController($scope, ProfileService, $state) {
 
-ProfileController.$inject = [];
+  var vm = this;
 
-exports["default"] = ProfileController;
-module.exports = exports["default"];
+  ProfileService.getProfile().then(function (res) {
+    vm.pets = res.data.results;
+    console.log(vm.pets);
+    return vm.pets;
+  });
+
+  $scope.addPet = function () {
+    ProfileService.add();
+  };
+};
+
+ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
+
+exports['default'] = ProfileController;
+module.exports = exports['default'];
 
 },{}],10:[function(require,module,exports){
 'use strict';
@@ -320,9 +310,91 @@ var _controllersProfileController = require('./controllers/profile.controller');
 
 var _controllersProfileController2 = _interopRequireDefault(_controllersProfileController);
 
-_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']);
+var _servicesPetRegService = require('./services/pet-reg.service');
 
-},{"../app-core/index":2,"./controllers/pet-reg.controller":8,"./controllers/profile.controller":9,"angular":16}],11:[function(require,module,exports){
+var _servicesPetRegService2 = _interopRequireDefault(_servicesPetRegService);
+
+var _servicesProfileService = require('./services/profile.service');
+
+var _servicesProfileService2 = _interopRequireDefault(_servicesProfileService);
+
+_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']);
+
+},{"../app-core/index":2,"./controllers/pet-reg.controller":8,"./controllers/profile.controller":9,"./services/pet-reg.service":11,"./services/profile.service":12,"angular":18}],11:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
+
+  // Pet Registration
+  var Pet = function Pet(petObj) {
+    this.name = petObj.name;
+    this.age = petObj.age;
+    this.breed = petObj.breed;
+    this.description = petObj.description;
+  };
+
+  this.addPet = function (petObj) {
+    console.log(petObj);
+
+    var p = new Pet(petObj);
+
+    console.log(SERVER);
+
+    return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then(function (res) {
+      console.log(res);
+      $cookies.get('authToken', res.data.pet.auth_token);
+      $cookies.put('pet_id', res.data.pet.id);
+      SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
+      $state.go('root.pet-reg');
+    });
+  };
+};
+
+PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
+
+exports['default'] = PetRegService;
+module.exports = exports['default'];
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ProfileService = function ProfileService($http, SERVER, $cookies) {
+
+  var url = SERVER.URL;
+
+  // Display index of users pets
+  // Get user by id
+
+  this.getProfile = function (id) {
+    var token = $cookies.get('authToken');
+    return $http({
+      url: url + 'users/' + id / pets,
+      method: 'GET',
+      headers: {
+        auth_token: token
+      },
+      data: {}
+
+    });
+  };
+
+  this.add = function () {
+    $state.go('root.add-pet');
+  };
+};
+
+ProfileService.$inject = ['$http', 'SERVER', '$cookies'];
+
+exports['default'] = ProfileService;
+module.exports = exports['default'];
+
+},{}],13:[function(require,module,exports){
 // Core files
 'use strict';
 
@@ -351,7 +423,7 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.m
   });
 });
 
-},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":10,"angular":16,"angular-ui-router":14}],12:[function(require,module,exports){
+},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":10,"angular":18,"angular-ui-router":16}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -674,11 +746,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":12}],14:[function(require,module,exports){
+},{"./angular-cookies":14}],16:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -5049,7 +5121,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34068,11 +34140,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":15}]},{},[11])
+},{"./angular":17}]},{},[13])
 
 
 //# sourceMappingURL=main.js.map
