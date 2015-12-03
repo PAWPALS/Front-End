@@ -157,10 +157,10 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
     SERVER.CONFIG.headers['Access-Token'] = token;
 
     if (token) {
-      return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
+      //return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
     } else {
-      $state.go('root.home');
-    }
+        $state.go('root.home');
+      }
   };
 
   // Signup
