@@ -1,15 +1,20 @@
 <h2>Register Your Pet</h2>
 
 <form ng-submit="vm.addPet(pet)">
-  <input placeholder="Name" ng-model="pet.name">
-  <input placeholder="Adress" ng-model="pet.address">
-  <input placeholder="Age" ng-model="pet.age">
-  <input placeholder="Breed" ng-model="pet.breed">
-  <textarea
-    placeholder="Description" ng-model="pet.description" ng-maxlength="250">
-  </textarea>
+  <input placeholder="Name:" ng-model="pet.name">
+  <input placeholder="Adress:" ng-model="pet.address">
+  <input placeholder="Age:" ng-model="pet.age">
+  <input placeholder="Breed:" ng-model="pet.breed">
+  <textarea placeholder="Description:" ng-model="pet.description" ng-maxlength="250"></textarea> 
 
-  <upload photo>    
+<hr>
+
+<a class="attachImage" ng-click="vm.showForm()"><i class="fa fa-cloud-upload"></i> Attach Image</a>
+
+<add-image ng-show="vm.showImageUpload" pet="vm.pet"></add-image>
+<hr/>
+   
   
-  <button>Submit</button>
-</form>
+<button ng-click="submit">Submit</button>
+
+</form>  

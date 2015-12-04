@@ -3,8 +3,16 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
   let vm = this;
 
   vm.addPet = addPet;
+  vm.showForm = showForm;
+  vm.uploadImage = uploadImage;
 
+  activate();
 
+  function activate (){
+    PetRegService.getPet($stateParams.id).then( (res) => {
+      vm.pet = res.data;
+    });
+  }   
 
   function addPet (petObj) {
     PetRegService.addPet(petObj).then( (res) => {
@@ -15,7 +23,7 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
   $scope.addPet = function(pet) {
     console.log(pet);
 
-    HomeService.addPet(pet);
+    PetRegService.addPet(pet);
   };  
 
 };

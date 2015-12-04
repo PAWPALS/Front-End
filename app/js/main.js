@@ -245,6 +245,16 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   var vm = this;
 
   vm.addPet = addPet;
+  vm.showForm = showForm;
+  vm.uploadImage = uploadImage;
+
+  activate();
+
+  function activate() {
+    PetRegService.getPet($stateParams.id).then(function (res) {
+      vm.pet = res.data;
+    });
+  }
 
   function addPet(petObj) {
     PetRegService.addPet(petObj).then(function (res) {
@@ -255,7 +265,7 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   $scope.addPet = function (pet) {
     console.log(pet);
 
-    HomeService.addPet(pet);
+    PetRegService.addPet(pet);
   };
 };
 
