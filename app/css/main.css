@@ -8439,4 +8439,7 @@ nav {
   width: 30%;
   margin: auto; }
 
+.map #map {
+  height: 500px; }
+
 /*# sourceMappingURL=main.css.map */

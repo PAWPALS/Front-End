@@ -5,18 +5,11 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
   vm.addPet = addPet;
 
 
-
   function addPet (petObj) {
     PetRegService.addPet(petObj).then( (res) => {
       console.log(res);
     });
   }
-
-  $scope.addPet = function(pet) {
-    console.log(pet);
-
-    HomeService.addPet(pet);
-  };  
 
 };
 

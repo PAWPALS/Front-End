@@ -57,9 +57,9 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
   CONFIG: {
     headers: {}
   }
-}).config(_config2['default']);
+}).config(_config2['default']).constant('glocURL', 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU').constant('gmapURL', 'url');
 
-},{"./config":1,"angular":18,"angular-cookies":15,"angular-ui-router":16}],3:[function(require,module,exports){
+},{"./config":1,"angular":20,"angular-cookies":17,"angular-ui-router":18}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -133,7 +133,7 @@ var _servicesHomeService2 = _interopRequireDefault(_servicesHomeService);
 
 _angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
 
-},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":18,"angular-ui-router":16}],5:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":20,"angular-ui-router":18}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -151,11 +151,9 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
     SERVER.CONFIG.headers['Access-Token'] = token;
 
     console.log('this function is running', token);
-    if (token) {
-      // return $http.get(SERVER.URL + 'check', SERVER.CONFIG);
-    } else {
-        $state.go('root.home');
-      }
+    if (token) {} else {
+      $state.go('root.home');
+    }
   };
 
   // Signup
@@ -207,19 +205,119 @@ exports['default'] = HomeService;
 module.exports = exports['default'];
 
 },{}],6:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var MapController = function MapController() {};
+var MapController = function MapController(MapService) {
 
-MapController.$inject = [];
+  var vm = this;
 
-exports["default"] = MapController;
-module.exports = exports["default"];
+  vm.pets = [];
+
+  getPets();
+
+  function getPets() {
+    MapService.getPets().then(function (res) {
+      vm.Pets = res.data.results;
+    });
+  }
+};
+
+MapController.$inject = ['MapService'];
+
+exports['default'] = MapController;
+module.exports = exports['default'];
 
 },{}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var mapDirective = function mapDirective(MapService) {
+
+  return {
+    restrict: 'A',
+    replace: true,
+    template: '<div id="map"></div>',
+    controller: 'MapController as vm',
+    link: function link(scope, element, attrs) {
+      var map, infoWindow;
+      var markers = [];
+      var initialLocation;
+
+      // Find location
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          console.log(pos);
+          initialLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          map.setCenter(initialLocation);
+        });
+      }
+
+      // map config
+      var mapOptions = {
+        center: initialLocation,
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        scrollwheel: false,
+        styles: [{
+          featureType: "poi",
+          stylers: [{ visibility: "off" }]
+        }, {
+          featureType: "transit",
+          stylers: [{ visibility: "off" }]
+        }]
+      };
+
+      // Place a marker
+      function setMarker(map, pos, title, content) {
+        var marker;
+        var markerOptions = {
+          position: pos,
+          map: map,
+          title: title,
+          draggable: true,
+          icon: ''
+        };
+
+        marker = new google.maps.Marker(markerOptions);
+        markers.push(marker); // Add marker to array
+
+        google.maps.event.addListener(marker, 'click', function (marker) {
+          // Close window if not undefined
+          if (infoWindow !== void 0) {
+            infoWindow.close();
+          }
+          // Create new window
+          var infoWindowOptions = {
+            content: content
+          };
+          infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+          infoWindow.open(map, marker);
+        });
+      }
+
+      // Map initialization
+      function initMap() {
+        if (map === void 0) {
+          map = new google.maps.Map(element[0], mapOptions);
+        }
+      }
+
+      initMap();
+    }
+  };
+};
+
+mapDirective.$inject = ['MapService'];
+
+exports['default'] = mapDirective;
+module.exports = exports['default'];
+
+},{}],8:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -234,9 +332,39 @@ var _controllersMapController = require('./controllers/map.controller');
 
 var _controllersMapController2 = _interopRequireDefault(_controllersMapController);
 
-_angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']);
+var _directivesMapDirective = require('./directives/map.directive');
 
-},{"../app-core/index":2,"./controllers/map.controller":6,"angular":18}],8:[function(require,module,exports){
+var _directivesMapDirective2 = _interopRequireDefault(_directivesMapDirective);
+
+var _servicesMapService = require('./services/map.service');
+
+var _servicesMapService2 = _interopRequireDefault(_servicesMapService);
+
+_angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).directive('mapDirective', _directivesMapDirective2['default']).service('MapService', _servicesMapService2['default']);
+
+},{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":20}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var MapService = function MapService($http, SERVER) {
+
+  var url = SERVER.URL + 'pets';
+
+  this.getPets = getPets;
+
+  function getPets(obj) {
+    return $http.get(url, SERVER.CONFIG);
+  }
+};
+
+MapService.$inject = ['$http', 'SERVER'];
+
+exports['default'] = MapService;
+module.exports = exports['default'];
+
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -253,12 +381,6 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
       console.log(res);
     });
   }
-
-  $scope.addPet = function (pet) {
-    console.log(pet);
-
-    HomeService.addPet(pet);
-  };
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
@@ -266,7 +388,7 @@ PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
 exports['default'] = PetRegController;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -292,7 +414,7 @@ ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
 exports['default'] = ProfileController;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -321,7 +443,7 @@ var _servicesProfileService2 = _interopRequireDefault(_servicesProfileService);
 
 _angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']);
 
-},{"../app-core/index":2,"./controllers/pet-reg.controller":8,"./controllers/profile.controller":9,"./services/pet-reg.service":11,"./services/profile.service":12,"angular":18}],11:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/pet-reg.controller":10,"./controllers/profile.controller":11,"./services/pet-reg.service":13,"./services/profile.service":14,"angular":20}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -359,7 +481,7 @@ PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 exports['default'] = PetRegService;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -395,7 +517,7 @@ ProfileService.$inject = ['$http', 'SERVER', '$cookies'];
 exports['default'] = ProfileService;
 module.exports = exports['default'];
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // Core files
 'use strict';
 
@@ -424,7 +546,11 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.m
   });
 });
 
-},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":10,"angular":18,"angular-ui-router":16}],14:[function(require,module,exports){
+window.initMap = function () {
+  _angular2['default'].bootstrap(document, ['app']);
+};
+
+},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":8,"./app-user/index":12,"angular":20,"angular-ui-router":18}],16:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -747,11 +873,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":14}],16:[function(require,module,exports){
+},{"./angular-cookies":16}],18:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -5122,7 +5248,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34141,11 +34267,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":17}]},{},[13])
+},{"./angular":19}]},{},[15])
 
 
 //# sourceMappingURL=main.js.map
