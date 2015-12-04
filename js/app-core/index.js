@@ -14,5 +14,8 @@ angular
   })
 
   .config(config)
+  .constant('glocURL', 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU')
+  .constant('gmapURL', 'url')
 
 ;
+
