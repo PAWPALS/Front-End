@@ -21,4 +21,8 @@ angular
   })
 ;
 
+window.initMap = function () {
+  angular.bootstrap(document, ['app']);
+};
+
 
