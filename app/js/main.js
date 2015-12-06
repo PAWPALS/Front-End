@@ -257,11 +257,11 @@ var mapDirective = function mapDirective(MapService) {
         });
       }
 
-      // map config
+      // Map config
       var mapOptions = {
         center: initialLocation,
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
         styles: [{
           featureType: "poi",
@@ -540,7 +540,6 @@ require('./app-user/index');
 require('./app-map/index');
 
 _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.map']).run(function (HomeService, $rootScope) {
-
   $rootScope.$on('$stateChangeSuccess', function () {
     HomeService.checkAuth();
   });

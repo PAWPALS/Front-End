@@ -2,8 +2,6 @@
 import angular from 'angular';
 import 'angular-ui-router';
 
-
-
 // Sub modules
 import './app-core/index';
 import './app-layout/index';
@@ -13,11 +11,9 @@ import './app-map/index';
 angular
   .module('app', ['app.core', 'app.layout', 'app.user', 'app.map'])
   .run( function (HomeService, $rootScope) {
-
     $rootScope.$on('$stateChangeSuccess', function () {
       HomeService.checkAuth();
     });
-
   })
 ;
 

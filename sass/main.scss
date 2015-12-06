@@ -58,8 +58,29 @@ nav {
   margin: auto;
 }
 
+.profile {
+  width: 30%;
+  margin: auto;
+}
+
+.pet-reg {
+  width: 30%;
+  margin: auto;
+}
+
 .map {
+  width: 80%;
+  margin: auto;
 
   #map { 
-    height: 500px; }
+    width: 600px;
+    height: 600px; 
+    margin: 0;
+  }
+
+  .lost {
+    width: 30%;
+    height: 80%;
+
+  }
 }

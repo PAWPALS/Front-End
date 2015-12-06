@@ -1,9 +1,8 @@
 <div class="profile">
   <h5>Profile</h5>
 
+  <div>User: {{ pets.user_id }}</div>
   <ul class="profile-list" ng-repeat="pet in vm.pets">
-<!--     <li>User: {{ pets.user_id }}</li>
- -->    
     <li>Pet: {{  pet.name }}</li>
     <li>Age: {{ pet.age }}</li>
     <li>Breed: {{ pet.breed }}</li>

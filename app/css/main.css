@@ -8439,7 +8439,23 @@ nav {
   width: 30%;
   margin: auto; }
 
-.map #map {
-  height: 500px; }
+.profile {
+  width: 30%;
+  margin: auto; }
+
+.pet-reg {
+  width: 30%;
+  margin: auto; }
+
+.map {
+  width: 80%;
+  margin: auto; }
+  .map #map {
+    width: 600px;
+    height: 600px;
+    margin: 0; }
+  .map .lost {
+    width: 30%;
+    height: 80%; }
 
 /*# sourceMappingURL=main.css.map */
