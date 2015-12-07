@@ -375,6 +375,16 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   var vm = this;
 
   vm.addPet = addPet;
+  vm.showForm = showForm;
+  vm.uploadImage = uploadImage;
+
+  activate();
+
+  function activate() {
+    PetRegService.getPet($stateParams.id).then(function (res) {
+      vm.pet = res.data;
+    });
+  }
 
   // Register new pet
   function addPet(petObj) {
@@ -382,6 +392,12 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
       console.log(res);
     });
   }
+
+  $scope.addPet = function (pet) {
+    console.log(pet);
+
+    PetRegService.addPet(pet);
+  };
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
@@ -487,6 +503,26 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
 PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 exports['default'] = PetRegService;
+
+//to upload pet photos by owner
+// let UploadService = function($http, FILESERVER) {
+
+//   this.upload = upload;
+
+//   function upload (file) {
+
+//     let formData = new FormData();
+//     formData.append('upload', file);
+//     // formData.append('details', JSON.stringify({ name: 'Tim' }));
+
+//     return $http.post(FILESERVER.URL, formData, FILESERVER.CONFIG);
+//   }
+
+// };
+
+// UploadService.$inject = ['$http', 'FILESERVER'];
+
+// export default UploadService;
 module.exports = exports['default'];
 
 },{}],14:[function(require,module,exports){

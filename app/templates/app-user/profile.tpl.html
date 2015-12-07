@@ -11,7 +11,9 @@
     <li>Status: {{ pet.present }}</li>
   </ul>
 
-  <button ng-click="addPet">Add</button>
-  <button ng-click="lostPet">Lost</button>
+  <img ng-show="vm.pet.image" ng-src="{{ vm.pet.image }}">
+
+  <button ng-click="addPet">Add Pet</button>
+  <button ng-click="lostPet">Lost Pet</button>
 
 </div>

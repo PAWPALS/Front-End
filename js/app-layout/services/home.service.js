@@ -11,6 +11,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     
     console.log('this function is running', token);
     if (token) {
+
     } else {
       $state.go('root.home');
     }

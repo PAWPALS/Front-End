@@ -1,6 +1,24 @@
 <div class="pet-reg"> 
   <h5>Add Your Pet</h5>
 
+<form ng-submit="vm.addPet(pet)">
+  <input placeholder="Name:" ng-model="pet.name">
+  <input placeholder="Adress:" ng-model="pet.address">
+  <input placeholder="Age:" ng-model="pet.age">
+  <input placeholder="Breed:" ng-model="pet.breed">
+  <textarea placeholder="Description:" ng-model="pet.description" ng-maxlength="250"></textarea> 
+
+<hr>
+
+<a class="attachImage" ng-click="vm.showForm()"><i class="fa fa-cloud-upload"></i> Attach Image</a>
+
+<add-image ng-show="vm.showImageUpload" pet="vm.pet"></add-image>
+<hr/>
+   
+  
+<button ng-click="submit">Submit</button>
+
+ 
   <form ng-submit="vm.addPet(pet)">
     <input placeholder="Name" ng-model="pet.name">
     <input placeholder="Age" ng-model="pet.age">
