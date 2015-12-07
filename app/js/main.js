@@ -59,7 +59,7 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
   }
 }).config(_config2['default']).constant('glocURL', 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU').constant('gmapURL', 'url');
 
-},{"./config":1,"angular":20,"angular-cookies":17,"angular-ui-router":18}],3:[function(require,module,exports){
+},{"./config":1,"angular":22,"angular-cookies":19,"angular-ui-router":20}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -133,7 +133,7 @@ var _servicesHomeService2 = _interopRequireDefault(_servicesHomeService);
 
 _angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
 
-},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":20,"angular-ui-router":18}],5:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":22,"angular-ui-router":20}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -220,7 +220,7 @@ var MapController = function MapController(MapService) {
 
   function getPets() {
     MapService.getPets().then(function (res) {
-      vm.Pets = res.data.results;
+      vm.Pets = res.data.pets;
     });
   }
 };
@@ -342,7 +342,7 @@ var _servicesMapService2 = _interopRequireDefault(_servicesMapService);
 
 _angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).directive('mapDirective', _directivesMapDirective2['default']).service('MapService', _servicesMapService2['default']);
 
-},{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":20}],9:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":22}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -370,15 +370,19 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var PetRegController = function PetRegController($scope, PetRegService, $cookies, $state) {
+var PetRegController = function PetRegController($scope, PetRegService, $cookies, $stateParams) {
 
   var vm = this;
 
   vm.addPet = addPet;
   vm.showForm = showForm;
-  vm.uploadImage = uploadImage;
+  vm.showImageUpload = showImageUpload;
 
   activate();
+
+  function showForm() {}
+
+  function showImageUpload() {}
 
   function activate() {
     PetRegService.getPet($stateParams.id).then(function (res) {
@@ -400,7 +404,7 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   };
 };
 
-PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
 
 exports['default'] = PetRegController;
 module.exports = exports['default'];
@@ -417,7 +421,7 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
 
   // Get user pets
   ProfileService.getPets().then(function (res) {
-    vm.pets = res.data.results;
+    vm.pets = res.data.pets;
     console.log('pets', vm.pets);
     // return vm.pets;
   });
@@ -439,6 +443,39 @@ exports['default'] = ProfileController;
 module.exports = exports['default'];
 
 },{}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var addImage = function addImage(PetRegService, UploadService) {
+
+  return {
+
+    restrict: 'E',
+    replace: true,
+    scope: {
+      pet: '='
+    },
+    templateUrl: 'templates/app-user/pet-reg.tpl.html',
+    link: function link(scope, element, attrs) {
+      element.on('submit', function () {
+
+        var file = element.find('input')[0].files[0];
+        UploadService.upload(file).then(function (res) {
+          PetRegService.addImage(res.data.upload.file_url, scope.pet).then(function (res) {});
+        });
+      });
+    }
+  };
+};
+
+addImage.$inject = ['PetRegService', 'UploadService'];
+
+exports['default'] = addImage;
+module.exports = exports['default'];
+
+},{}],13:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -465,9 +502,17 @@ var _servicesProfileService = require('./services/profile.service');
 
 var _servicesProfileService2 = _interopRequireDefault(_servicesProfileService);
 
-_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']);
+var _directivesAddImageDirective = require('./directives/addImage.directive');
 
-},{"../app-core/index":2,"./controllers/pet-reg.controller":10,"./controllers/profile.controller":11,"./services/pet-reg.service":13,"./services/profile.service":14,"angular":20}],13:[function(require,module,exports){
+var _directivesAddImageDirective2 = _interopRequireDefault(_directivesAddImageDirective);
+
+var _servicesUploadService = require('./services/upload.service');
+
+var _servicesUploadService2 = _interopRequireDefault(_servicesUploadService);
+
+_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']).service('UploadService', _servicesUploadService2['default']).directive('addImage', _directivesAddImageDirective2['default']);
+
+},{"../app-core/index":2,"./controllers/pet-reg.controller":10,"./controllers/profile.controller":11,"./directives/addImage.directive":12,"./services/pet-reg.service":14,"./services/profile.service":15,"./services/upload.service":16,"angular":22}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -481,6 +526,7 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
     this.age = petObj.age;
     this.breed = petObj.breed;
     this.description = petObj.description;
+    this.addImage = addImage.picture;
   };
 
   this.addPet = function (petObj) {
@@ -498,6 +544,11 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
       $state.go('root.pet-reg');
     });
   };
+
+  function addImage(imageUrl, pet) {
+    pet.picture = imageUrl;
+    return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+  }
 };
 
 PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
@@ -525,54 +576,86 @@ exports['default'] = PetRegService;
 // export default UploadService;
 module.exports = exports['default'];
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
+var ProfileService = function ProfileService($state, $http, SERVER) {
 
-  console.log(SERVER);
+  // console.log(SERVER);
 
   var url = SERVER.URL;
 
   // Display index of users pets
   // Get user by id
-  this.getPets = function () {
-    var token = $cookies.get('authToken');
-    return $http({
-      url: url + 'users/' + pets,
-      method: 'GET',
-      headers: {
-        auth_token: token
-      },
-      data: {}
+  // this.getPets = function() {
+  //   let token = $cookies.get('authToken');
+  //   return $http({
+  //     url: url + 'users/' + pets,
+  //     method: 'GET',
+  //     headers: {
+  //       auth_token: token
+  //     },
+  //     data: {
+  //     }
 
-    });
-  };
+  //   });
 
-  // this.getPets = function (id) {
-  //   return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
   // };
+
+  this.getPets = function (id) {
+    return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
+  };
 
   // Go to pet-reg
   this.addPet = function () {
-    $state.go('root.add-pet');
+    $state.go('root.pet-reg');
   };
 
   // Lost pet
   // Change status to false
-  this.lostPet = function () {};
+  this.lostPet = function () {
+    $state.go('root.home');
+  };
 };
 
-ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
+ProfileService.$inject = ['$state', '$http', 'SERVER'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
-// Core files
+},{}],16:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var UploadService = function UploadService($http, SERVER) {
+
+  this.upload = upload;
+
+  // function addImage (imageUrl, pet) {
+  //     pet.picture = imageUrl;
+  //     return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+  //   }
+
+  function upload(file) {
+
+    var formData = new FormData();
+    formData.append('upload', file);
+
+    return $http.post(SERVER.URL, formData, SERVER.CONFIG);
+  }
+};
+
+UploadService.$inject = ['$http', 'SERVER'];
+
+exports['default'] = UploadService;
+module.exports = exports['default'];
+
+},{}],17:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -603,7 +686,7 @@ window.initMap = function () {
   _angular2['default'].bootstrap(document, ['app']);
 };
 
-},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":8,"./app-user/index":12,"angular":20,"angular-ui-router":18}],16:[function(require,module,exports){
+},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":8,"./app-user/index":13,"angular":22,"angular-ui-router":20}],18:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -926,11 +1009,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":16}],18:[function(require,module,exports){
+},{"./angular-cookies":18}],20:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -5301,7 +5384,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34320,11 +34403,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":19}]},{},[15])
+},{"./angular":21}]},{},[17])
 
 
 //# sourceMappingURL=main.js.map

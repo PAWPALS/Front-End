@@ -4,7 +4,7 @@ let ProfileController = function($scope, ProfileService, $state) {
 
   // Get user pets
   ProfileService.getPets().then( (res) => {
-    vm.pets = res.data.results;
+    vm.pets = res.data.pets;
     console.log('pets', vm.pets);
     // return vm.pets;  
   });

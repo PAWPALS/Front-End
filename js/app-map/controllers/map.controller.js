@@ -8,7 +8,7 @@ let MapController = function(MapService) {
 
   function getPets () {
     MapService.getPets().then( (res) => {
-      vm.Pets = res.data.results;
+      vm.Pets = res.data.pets;
     });
   }
 

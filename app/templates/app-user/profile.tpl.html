@@ -1,7 +1,7 @@
 <div class="profile">
-  <h5>Profile</h5>
+  <h3>Profile</h3>
 
-  <h6>User: {{ pet.user_id }}</h6>
+  <h5>User: {{ pets.user }}</h5>
 
   <ul class="profile-list" ng-repeat="pet in vm.pets | filter: { status: false } ">
     <li>Pet: {{  pet.name }}</li>
@@ -11,9 +11,9 @@
     <li>Status: {{ pet.present }}</li>
   </ul>
 
-  <img ng-show="vm.pet.image" ng-src="{{ vm.pet.image }}">
+  <img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
 
   <button ng-click="addPet">Add Pet</button>
-  <button ng-click="lostPet">Lost Pet</button>
+  <button ng-click="lostPet">Report a Lost Pet</button>
 
 </div>

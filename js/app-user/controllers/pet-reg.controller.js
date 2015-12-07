@@ -1,12 +1,20 @@
-let PetRegController = function($scope, PetRegService, $cookies, $state) {
+let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
   
   let vm = this;
 
   vm.addPet = addPet;
   vm.showForm = showForm;
-  vm.uploadImage = uploadImage;
+  vm.showImageUpload = showImageUpload;
 
   activate();
+
+  function showForm () {
+    
+  }
+
+  function showImageUpload () {
+
+  }
 
 
   function activate (){
@@ -30,6 +38,6 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
 
 };
 
-PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
 
 export default PetRegController;
