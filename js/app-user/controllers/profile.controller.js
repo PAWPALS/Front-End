@@ -2,15 +2,22 @@ let ProfileController = function($scope, ProfileService, $state) {
   
   let vm = this;
 
-  ProfileService.getProfile().then( (res) => {
-    vm.pets= res.data.results;
-    console.log(vm.pets);
-    return vm.pets;
+  // Get user pets
+  ProfileService.getPets().then( (res) => {
+    vm.pets = res.data.results;
+    console.log('pets', vm.pets);
+    // return vm.pets;  
   });
 
-  $scope.addPet = function() {
-    ProfileService.add();
-  };  
+  // Go to pet-reg
+  // $scope.addPet() {
+  //   ProfileService.addPet();
+  // };  
+
+  // Lost pet alert
+  // $scope.lostPet() {
+  //   ProfileService.lostPet();
+  // };
 
 };
 

@@ -19,11 +19,11 @@ let mapDirective = function(MapService) {
         });
       }
         
-      // map config
+      // Map config
       var mapOptions = {
         center: initialLocation,
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
         styles: [{
           featureType: "poi",
