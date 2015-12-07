@@ -6,10 +6,10 @@ let ProfileService = function($scope, $http, SERVER, $cookies) {
 
   // Display index of users pets
   // Get user by id 
-  this.getPets = function(id) {
+  this.getPets = function() {
     let token = $cookies.get('authToken');
     return $http({
-      url: url + 'users/' + id/pets,
+      url: url + 'users/' + pets,
       method: 'GET',
       headers: {
         auth_token: token
@@ -21,7 +21,11 @@ let ProfileService = function($scope, $http, SERVER, $cookies) {
 
   };
 
-  // Add pet
+  // this.getPets = function (id) {
+  //   return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
+  // };
+
+  // Go to pet-reg
   this.addPet = function () {
     $state.go('root.add-pet');
   };

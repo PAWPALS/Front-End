@@ -3,7 +3,7 @@
 
   <h6>User: {{ pet.user_id }}</h6>
 
-  <ul class="profile-list" ng-repeat="pet in vm.pets">
+  <ul class="profile-list" ng-repeat="pet in vm.pets | filter: { status: false } ">
     <li>Pet: {{  pet.name }}</li>
     <li>Age: {{ pet.age }}</li>
     <li>Breed: {{ pet.breed }}</li>

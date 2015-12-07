@@ -402,14 +402,19 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
   // Get user pets
   ProfileService.getPets().then(function (res) {
     vm.pets = res.data.results;
-    console.log(vm.pets);
-    return vm.pets;
+    console.log('pets', vm.pets);
+    // return vm.pets;
   });
 
-  // Click add go to pet-reg
-  $scope.addPet = function () {
-    ProfileService.addPet();
-  };
+  // Go to pet-reg
+  // $scope.addPet() {
+  //   ProfileService.addPet();
+  // }; 
+
+  // Lost pet alert
+  // $scope.lostPet() {
+  //   ProfileService.lostPet();
+  // };
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -492,14 +497,16 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
 
+  console.log(SERVER);
+
   var url = SERVER.URL;
 
   // Display index of users pets
   // Get user by id
-  this.getPets = function (id) {
+  this.getPets = function () {
     var token = $cookies.get('authToken');
     return $http({
-      url: url + 'users/' + id / pets,
+      url: url + 'users/' + pets,
       method: 'GET',
       headers: {
         auth_token: token
@@ -509,12 +516,18 @@ var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
     });
   };
 
-  // Add pet
+  // this.getPets = function (id) {
+  //   return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
+  // };
+
+  // Go to pet-reg
   this.addPet = function () {
     $state.go('root.add-pet');
   };
 
   // Lost pet
+  // Change status to false
+  this.lostPet = function () {};
 };
 
 ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
