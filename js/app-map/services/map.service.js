@@ -1,4 +1,4 @@
-let MapService = function($http, SERVER) {
+let MapService = function($http, SERVER, $cookies, $state) {
   
   let url = SERVER.URL + 'pets';
 
@@ -6,11 +6,10 @@ let MapService = function($http, SERVER) {
 
   function getPets(obj) {
     return $http.get(url, SERVER.CONFIG);
-
   }
 
 };
 
-MapService.$inject = ['$http', 'SERVER'];
+MapService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 export default MapService;

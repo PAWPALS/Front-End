@@ -1,5 +1,6 @@
-let MapController = function(MapService) {
+let MapController = function($scope, MapService, $state) {
   
+  // Show all pets
   let vm = this;
 
   vm.pets = [];
@@ -8,12 +9,17 @@ let MapController = function(MapService) {
 
   function getPets () {
     MapService.getPets().then( (res) => {
-      vm.Pets = res.data.pets;
+
+      console.log(res);
+      vm.pets = res.data.pets;
+      
     });
   }
 
+
+
 };
 
-MapController.$inject = ['MapService'];
+MapController.$inject = ['$scope', 'MapService', '$state'];
 
 export default MapController;

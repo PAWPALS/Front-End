@@ -210,8 +210,9 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var MapController = function MapController(MapService) {
+var MapController = function MapController($scope, MapService, $state) {
 
+  // Show all pets
   var vm = this;
 
   vm.pets = [];
@@ -220,12 +221,14 @@ var MapController = function MapController(MapService) {
 
   function getPets() {
     MapService.getPets().then(function (res) {
-      vm.Pets = res.data.pets;
+
+      console.log(res);
+      vm.pets = res.data.pets;
     });
   }
 };
 
-MapController.$inject = ['MapService'];
+MapController.$inject = ['$scope', 'MapService', '$state'];
 
 exports['default'] = MapController;
 module.exports = exports['default'];
@@ -332,15 +335,15 @@ var _controllersMapController = require('./controllers/map.controller');
 
 var _controllersMapController2 = _interopRequireDefault(_controllersMapController);
 
-var _directivesMapDirective = require('./directives/map.directive');
-
-var _directivesMapDirective2 = _interopRequireDefault(_directivesMapDirective);
-
 var _servicesMapService = require('./services/map.service');
 
 var _servicesMapService2 = _interopRequireDefault(_servicesMapService);
 
-_angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).directive('mapDirective', _directivesMapDirective2['default']).service('MapService', _servicesMapService2['default']);
+var _directivesMapDirective = require('./directives/map.directive');
+
+var _directivesMapDirective2 = _interopRequireDefault(_directivesMapDirective);
+
+_angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).directive('mapDirective', _directivesMapDirective2['default']);
 
 },{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":22}],9:[function(require,module,exports){
 'use strict';
@@ -348,7 +351,7 @@ _angular2['default'].module('app.map', ['app.core']).controller('MapController',
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var MapService = function MapService($http, SERVER) {
+var MapService = function MapService($http, SERVER, $cookies, $state) {
 
   var url = SERVER.URL + 'pets';
 
@@ -359,7 +362,7 @@ var MapService = function MapService($http, SERVER) {
   }
 };
 
-MapService.$inject = ['$http', 'SERVER'];
+MapService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 exports['default'] = MapService;
 module.exports = exports['default'];
