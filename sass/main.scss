@@ -56,10 +56,93 @@ nav {
 .home {
   width: 30%;
   margin: auto;
+
+  .login form {
+    margin: 2em;
+
+    input {
+      border-radius: .25em;
+    }
+  }
+
+  .login-button {
+    width: 59%;
+    margin: auto;
+
+    button {
+      border-radius: .25em;
+      background-color: #DCDCDC;
+    }
+  }
+}
+
+.profile {
+  width: 30%;
+  margin: auto;
+
+  h6 {
+
+  }
+
+  .profile-list {
+
+  }
+
+  button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+  }
+
+}
+
+.pet-reg {
+  width: 30%;
+  margin: auto;
+
+  h2 {
+
+  }
+
+  form {
+
+    input {
+      border-radius: .25em;
+
+
+    }
+
+    textarea {
+      border-radius: .25em;
+    }
+
+    button {
+      border-radius: .25em;
+      background-color: #DCDCDC;
+    }
+  }
 }
 
 .map {
+  width: 90%;
+  margin: auto;
+
+  div {
+    display: inline-block;
+  }
 
   #map { 
-    height: 500px; }
+    width: 60%;
+    height: 37.500em; 
+    margin: 2em;
+    border-radius: .25em;
+  }
+
+  .lost {
+    width: 30%;
+    height: 100%;
+    border: 1em solid #EDEEEE;
+    
+
+
+  }
 }

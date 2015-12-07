@@ -257,11 +257,11 @@ var mapDirective = function mapDirective(MapService) {
         });
       }
 
-      // map config
+      // Map config
       var mapOptions = {
         center: initialLocation,
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
         styles: [{
           featureType: "poi",
@@ -386,6 +386,7 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
     });
   }
 
+  // Register new pet
   function addPet(petObj) {
     PetRegService.addPet(petObj).then(function (res) {
       console.log(res);
@@ -414,15 +415,22 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
 
   var vm = this;
 
-  ProfileService.getProfile().then(function (res) {
+  // Get user pets
+  ProfileService.getPets().then(function (res) {
     vm.pets = res.data.results;
-    console.log(vm.pets);
-    return vm.pets;
+    console.log('pets', vm.pets);
+    // return vm.pets;
   });
 
-  $scope.addPet = function () {
-    ProfileService.add();
-  };
+  // Go to pet-reg
+  // $scope.addPet() {
+  //   ProfileService.addPet();
+  // }; 
+
+  // Lost pet alert
+  // $scope.lostPet() {
+  //   ProfileService.lostPet();
+  // };
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -523,17 +531,18 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($http, SERVER, $cookies) {
+var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
+
+  console.log(SERVER);
 
   var url = SERVER.URL;
 
   // Display index of users pets
   // Get user by id
-
-  this.getProfile = function (id) {
+  this.getPets = function () {
     var token = $cookies.get('authToken');
     return $http({
-      url: url + 'users/' + id / pets,
+      url: url + 'users/' + pets,
       method: 'GET',
       headers: {
         auth_token: token
@@ -543,12 +552,21 @@ var ProfileService = function ProfileService($http, SERVER, $cookies) {
     });
   };
 
-  this.add = function () {
+  // this.getPets = function (id) {
+  //   return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
+  // };
+
+  // Go to pet-reg
+  this.addPet = function () {
     $state.go('root.add-pet');
   };
+
+  // Lost pet
+  // Change status to false
+  this.lostPet = function () {};
 };
 
-ProfileService.$inject = ['$http', 'SERVER', '$cookies'];
+ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];
@@ -576,7 +594,6 @@ require('./app-user/index');
 require('./app-map/index');
 
 _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.map']).run(function (HomeService, $rootScope) {
-
   $rootScope.$on('$stateChangeSuccess', function () {
     HomeService.checkAuth();
   });

@@ -15,7 +15,7 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
     });
   }   
 
-
+  // Register new pet
   function addPet (petObj) {
     PetRegService.addPet(petObj).then( (res) => {
       console.log(res);

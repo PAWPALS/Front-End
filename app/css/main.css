@@ -8498,8 +8498,48 @@ nav {
 .home {
   width: 30%;
   margin: auto; }
+  .home .login form {
+    margin: 2em; }
+    .home .login form input {
+      border-radius: .25em; }
+  .home .login-button {
+    width: 59%;
+    margin: auto; }
+    .home .login-button button {
+      border-radius: .25em;
+      background-color: #DCDCDC; }
 
-.map #map {
-  height: 500px; }
+.profile {
+  width: 30%;
+  margin: auto; }
+  .profile button {
+    border-radius: .25em;
+    background-color: #DCDCDC; }
+
+.pet-reg {
+  width: 30%;
+  margin: auto; }
+  .pet-reg form input {
+    border-radius: .25em; }
+  .pet-reg form textarea {
+    border-radius: .25em; }
+  .pet-reg form button {
+    border-radius: .25em;
+    background-color: #DCDCDC; }
+
+.map {
+  width: 90%;
+  margin: auto; }
+  .map div {
+    display: inline-block; }
+  .map #map {
+    width: 60%;
+    height: 37.500em;
+    margin: 2em;
+    border-radius: .25em; }
+  .map .lost {
+    width: 30%;
+    height: 100%;
+    border: 1em solid #EDEEEE; }
 
 /*# sourceMappingURL=main.css.map */
