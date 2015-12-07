@@ -376,6 +376,7 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
 
   vm.addPet = addPet;
 
+  // Register new pet
   function addPet(petObj) {
     PetRegService.addPet(petObj).then(function (res) {
       console.log(res);
@@ -398,14 +399,16 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
 
   var vm = this;
 
-  ProfileService.getProfile().then(function (res) {
+  // Get user pets
+  ProfileService.getPets().then(function (res) {
     vm.pets = res.data.results;
     console.log(vm.pets);
     return vm.pets;
   });
 
+  // Click add go to pet-reg
   $scope.addPet = function () {
-    ProfileService.add();
+    ProfileService.addPet();
   };
 };
 
@@ -487,14 +490,13 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($http, SERVER, $cookies) {
+var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
 
   var url = SERVER.URL;
 
   // Display index of users pets
   // Get user by id
-
-  this.getProfile = function (id) {
+  this.getPets = function (id) {
     var token = $cookies.get('authToken');
     return $http({
       url: url + 'users/' + id / pets,
@@ -507,12 +509,15 @@ var ProfileService = function ProfileService($http, SERVER, $cookies) {
     });
   };
 
-  this.add = function () {
+  // Add pet
+  this.addPet = function () {
     $state.go('root.add-pet');
   };
+
+  // Lost pet
 };
 
-ProfileService.$inject = ['$http', 'SERVER', '$cookies'];
+ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];

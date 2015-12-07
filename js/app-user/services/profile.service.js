@@ -1,11 +1,12 @@
-let ProfileService = function($http, SERVER, $cookies) {
+let ProfileService = function($scope, $http, SERVER, $cookies) {
   
+  console.log(SERVER);
+
   let url = SERVER.URL;
 
   // Display index of users pets
   // Get user by id 
-
-  this.getProfile = function(id) {
+  this.getPets = function(id) {
     let token = $cookies.get('authToken');
     return $http({
       url: url + 'users/' + id/pets,
@@ -20,13 +21,20 @@ let ProfileService = function($http, SERVER, $cookies) {
 
   };
 
-  this.add = function () {
+  // Add pet
+  this.addPet = function () {
     $state.go('root.add-pet');
+  };
+
+  // Lost pet
+  // Change status to false
+  this.lostPet = function () {
+
   };
   
 
 };
 
-ProfileService.$inject = ['$http', 'SERVER', '$cookies'];
+ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
 
 export default ProfileService;

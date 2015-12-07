@@ -1,15 +1,13 @@
 <div class="home">
-  <h5>PawPals</h5>
 
-  <div>
-
+  <div class="login">
     <form ng-submit="login(user)">
       <input placeholder="email" ng-model="user.email">
       <input placeholder="password" ng-model="user.password" type="password">
     </form>
   </div>
 
-  <div>
+  <div class="login-button">
     <button ng-click="createUser(user)">Join</button>
     <button ng-click="login(user)">Login</button>
 

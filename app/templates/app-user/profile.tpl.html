@@ -1,7 +1,8 @@
 <div class="profile">
   <h5>Profile</h5>
 
-  <div>User: {{ pets.user_id }}</div>
+  <h6>User: {{ pet.user_id }}</h6>
+
   <ul class="profile-list" ng-repeat="pet in vm.pets">
     <li>Pet: {{  pet.name }}</li>
     <li>Age: {{ pet.age }}</li>
@@ -10,7 +11,7 @@
     <li>Status: {{ pet.present }}</li>
   </ul>
 
-  <button ng-click="addPet">Add Pet</button>
-
+  <button ng-click="addPet">Add</button>
+  <button ng-click="lostPet">Lost</button>
 
 </div>
