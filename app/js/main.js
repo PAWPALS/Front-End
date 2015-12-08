@@ -274,15 +274,15 @@ var mapDirective = function mapDirective(MapService) {
         }]
       };
 
-      // Place a marker
+      // Create & Place a marker
       function setMarker(map, pos, title, content) {
         var marker;
         var markerOptions = {
           position: pos,
           map: map,
           title: title,
-          draggable: true,
-          icon: ''
+          draggable: false,
+          icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
         };
 
         marker = new google.maps.Marker(markerOptions);
@@ -299,6 +299,11 @@ var mapDirective = function mapDirective(MapService) {
           };
           infoWindow = new google.maps.InfoWindow(infoWindowOptions);
           infoWindow.open(map, marker);
+        });
+
+        // Set markers for missing pets
+        missingPetsArray.forEach(function (pet) {
+          MapService.setMarker(MapService.map, new google.maps.LatLng(pet.latitude, pet.longitude), pet.present, pet.name);
         });
       }
 
@@ -359,6 +364,8 @@ var MapService = function MapService($http, SERVER, $cookies, $state) {
   function getPets(obj) {
     return $http.get(url, SERVER.CONFIG);
   }
+
+  function setMarker() {}
 };
 
 MapService.$inject = ['$http', 'SERVER', '$cookies', '$state'];

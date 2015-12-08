@@ -8469,17 +8469,21 @@ nav {
 
 .map {
   width: 90%;
-  margin: auto; }
+  margin: auto;
+  border: .1em solid #EDEEEE;
+  border-radius: .25em;
+  margin: 2em; }
   .map div {
     display: inline-block; }
   .map #map {
     width: 60%;
     height: 37.500em;
-    margin: 2em;
-    border-radius: .25em; }
+    vertical-align: top; }
   .map .lost {
     width: 30%;
-    height: 100%;
-    border: 1em solid #EDEEEE; }
+    height: 37.500em;
+    overflow-y: scroll; }
+    .map .lost ul {
+      overflow: hidden; }
 
 /*# sourceMappingURL=main.css.map */
