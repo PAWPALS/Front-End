@@ -11,7 +11,7 @@ let ProfileController = function($scope, ProfileService, $state) {
   function getPets () {
     ProfileService.getPets().then( (res) => {
       console.log(res);
-      vm.pets = res.data;    
+      vm.pets = res.data.pets;    
     });
   }
 };
