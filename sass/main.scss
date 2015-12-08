@@ -107,24 +107,25 @@ nav {
 
     input {
       border-radius: .25em;
-
-
     }
 
     textarea {
       border-radius: .25em;
     }
+  }
 
-    button {
-      border-radius: .25em;
-      background-color: #DCDCDC;
-    }
+  button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
   }
 }
 
 .map {
   width: 90%;
   margin: auto;
+  border: .1em solid #EDEEEE;
+  border-radius: .25em;
+  margin: 2em;
 
   div {
     display: inline-block;
@@ -133,16 +134,15 @@ nav {
   #map { 
     width: 60%;
     height: 37.500em; 
-    margin: 2em;
-    border-radius: .25em;
-  }
+    vertical-align: top;  }
 
   .lost {
     width: 30%;
-    height: 100%;
-    border: 1em solid #EDEEEE;
-    
+    height: 37.500em;
+    overflow-y: scroll;
 
-
+    ul {
+      overflow: hidden;
+    }
   }
 }

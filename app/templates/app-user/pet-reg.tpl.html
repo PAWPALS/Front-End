@@ -2,42 +2,26 @@
   <h5>Add Your Pet</h5>
 
 <form ng-submit="vm.addPet(pet)">
-  <input placeholder="Name:" ng-model="pet.name">
-  <input placeholder="Adress:" ng-model="pet.address">
-  <input placeholder="Age:" ng-model="pet.age">
-  <input placeholder="Breed:" ng-model="pet.breed">
-  <textarea placeholder="Description:" ng-model="pet.description" ng-maxlength="250"></textarea>   
+  <input placeholder="Name" ng-model="pet.name">
+  <input placeholder="Address" ng-model="pet.address">
+  <input placeholder="Age" ng-model="pet.age">
+  <input placeholder="Breed" ng-model="pet.breed">
+  <textarea placeholder="Description" ng-model="pet.description" ng-maxlength="250"></textarea>     
 
-<hr/>
+<img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
 
-  <p>Add Your Pet's Picture</p>
-
-  <input type="file" id="petPicture" ng-click="vm.showForm()">
+  <input type="file" id="petImage">
   
-  <add-image ng-show="vm.showImageUpload" pet="vm.pet"></add-image>
+
+<hr>
+
+<button ng-click="submit">Submit</button>
 </form>  
 
 
-<hr/>
-
-<button ng-click="submit">Submit</button>
-  
-
 </div>
 
-<!-- <form class="uploadForm">
-  <input type="file" id="petImage">
-  <button class="somepetpic">Add Image</button>
-</form>
-
- -->
-
-
-  <!-- <input type="file" id="petPicture">
-  <button class="something">Add Pet Picture</button> -->
-  <!-- <a class="attachImage" ng-click="vm.showForm()"><i class="fa fa-cloud-upload"></i>Add Pet's Picture</a> -->
 
 
 
-<!-- <add-image ng-show="vm.showImageUpload" pet="vm.addPet"></add-image> -->
      
