@@ -6,12 +6,17 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
     this.age = petObj.age;
     this.breed = petObj.breed;
     this.description = petObj.description;
+    this.addImage = addImage;
   };
+
+  function getPet (petObj) {
+    return $http.get(url + '/' + petObj, SERVER.CONFIG);
+  }
 
   this.addPet = function(petObj) {
     console.log(petObj);
 
-    let p = new Pet(petObj);
+    let p = new Pet(petObj);    
 
     console.log(SERVER);
 
@@ -23,6 +28,11 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
       $state.go('root.pet-reg');
     });   
   };
+
+  function addImage (imageUrl, pets) {
+      pet.picture = imageUrl;
+      return $http.put(url + '/' + pet.objectId, pets, SERVER.CONFIG);
+    }
 
 };
 

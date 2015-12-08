@@ -2,23 +2,18 @@ let ProfileController = function($scope, ProfileService, $state) {
   
   let vm = this;
 
-  // Get user pets
-  ProfileService.getPets().then( (res) => {
-    vm.pets = res.data.results;
-    console.log('pets', vm.pets);
-    // return vm.pets;  
-  });
+  // Show all pets
+  vm.pets =[];
+  console.log(vm.pets);
 
-  // Go to pet-reg
-  // $scope.addPet() {
-  //   ProfileService.addPet();
-  // };  
+  getPets();
 
-  // Lost pet alert
-  // $scope.lostPet() {
-  //   ProfileService.lostPet();
-  // };
-
+  function getPets () {
+    ProfileService.getPets().then( (res) => {
+      console.log(res);
+      vm.pets = res.data;    
+    });
+  }
 };
 
 ProfileController.$inject = ['$scope','ProfileService', '$state'];

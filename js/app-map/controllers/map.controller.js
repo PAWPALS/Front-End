@@ -9,8 +9,10 @@ let MapController = function($scope, MapService, $state) {
 
   function getPets () {
     MapService.getPets().then( (res) => {
+
       console.log(res);
       vm.pets = res.data.pets;
+      
     });
   }
 
