@@ -385,13 +385,14 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   var vm = this;
 
   vm.addPet = addPet;
-  vm.showImageUpload = false;
-  vm.showForm = showForm;
-  vm.uploadImage = uploadImage;
 
   // Register new pet
   function addPet(petObj) {
-    PetRegService.addPet(petObj).then(function (res) {
+
+    var fileUpload = document.getElementById('petImage');
+    var petImage = fileUpload.files[0];
+
+    PetRegService.addPet(petObj, petImage).then(function (res) {
       console.log(res);
     });
   }
@@ -399,16 +400,7 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   // $scope.addPet = function(pet) {
   //   console.log(pet);
   //   PetRegService.addPet(pet);
-  // }; 
-
-  function showForm() {
-    vm.showImageUpload = vm.showImageUpload ? false : true;
-  }
-
-  // Upload image
-  function uploadImage(data) {
-    console.log(data);
-  }
+  // };
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
@@ -486,28 +478,35 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
 
   this.upload = upload;
 
-  // Pet Registration
-  var Pet = function Pet(petObj) {
-    this.name = petObj.name;
-    this.age = petObj.age;
-    this.breed = petObj.breed;
-    this.description = petObj.description;
-  };
+  this.addPet = function (petObj, petImage) {
 
-  this.addPet = function (petObj) {
-    console.log(petObj);
+    var formData = new FormData();
 
-    var p = new Pet(petObj);
+    formData.append('name', petObj.name);
+    formData.append('age', petObj.age);
+    formData.append('breed', petObj.breed);
+    formData.append('description', petObj.description);
+    formData.append('picture', petImage);
 
-    console.log(SERVER);
+    SERVER.CONFIG.headers['Content-Type'] = undefined;
 
-    return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then(function (res) {
-      console.log(res);
-      $cookies.get('authToken', res.data.pet.auth_token);
-      $cookies.put('pet_id', res.data.pet.id);
-      SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
-      $state.go('root.pet-reg');
-    });
+    return $http.post(SERVER.URL + 'pets', formData, SERVER.CONFIG);
+
+    // ----
+
+    // console.log(petObj);
+
+    // let p = new Pet(petObj);   
+
+    // console.log(SERVER);
+
+    // return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then((res) => {
+    //   console.log(res);
+    //   $cookies.get('authToken', res.data.pet.auth_token);
+    //   $cookies.put('pet_id', res.data.pet.id);
+    //   SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
+    //   $state.go('root.pet-reg');
+    // }); 
   };
 
   // Upload image

@@ -3,13 +3,14 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
   let vm = this;
 
   vm.addPet           = addPet;
-  vm.showImageUpload  = false;
-  vm.showForm         = showForm;
-  vm.uploadImage      = uploadImage;
 
   // Register new pet
   function addPet (petObj) {
-    PetRegService.addPet(petObj).then( (res) => {
+
+    let fileUpload = document.getElementById('petImage');
+    let petImage = fileUpload.files[0];
+
+    PetRegService.addPet(petObj, petImage).then( (res) => {
       console.log(res);
     });
   }
@@ -19,15 +20,6 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
   //   PetRegService.addPet(pet);
   // };  
 
-
-  function showForm () {
-    vm.showImageUpload = (vm.showImageUpload) ? false : true;    
-  }
-
-  // Upload image
-  function uploadImage (data) {
-    console.log(data);
-  }
   
 };
 
