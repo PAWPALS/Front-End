@@ -2,7 +2,7 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
   
   let vm = this;
 
-  vm.addPet           = addPet;
+  vm.addPet = addPet;
 
   // Register new pet
   function addPet (petObj) {
@@ -14,12 +14,6 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
       console.log(res);
     });
   }
-
-  // $scope.addPet = function(pet) {
-  //   console.log(pet);
-  //   PetRegService.addPet(pet);
-  // };  
-
   
 };
 

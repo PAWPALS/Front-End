@@ -187,7 +187,9 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.user.access_token);
-    SERVER.CONFIG.headers['Access-Token'] = res.data.auth_token;
+    $cookies.put('user_id', res.data.user.id);
+
+    SERVER.CONFIG.headers['Access-Token'] = res.data.user.auth_token;
     $state.go('root.profile');
   };
 
@@ -396,11 +398,6 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
       console.log(res);
     });
   }
-
-  // $scope.addPet = function(pet) {
-  //   console.log(pet);
-  //   PetRegService.addPet(pet);
-  // };
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
@@ -430,6 +427,16 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
       vm.pets = res.data.pets;
     });
   }
+
+  $scope.addPet = function () {
+    $state.go('root.pet-reg');
+  };
+
+  // function lostPet () {
+  //   ProfileService.lostPet() {
+
+  //   }
+  // }
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -530,7 +537,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($state, $http, SERVER) {
+var ProfileService = function ProfileService($state, $http, SERVER, $cookies) {
 
   console.log(SERVER);
 
@@ -540,25 +547,20 @@ var ProfileService = function ProfileService($state, $http, SERVER) {
 
   this.getPets = getPets;
 
+  // Set userId to get user pets
   function getPets() {
-    return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
-    //pet.picture = imageUrl;
-    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+    var userId = $cookies.get('user_id');
+    return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
   }
-
-  // Go to pet-reg
-  this.addPet = function () {
-    $state.go('root.pet-reg');
-  };
 
   // Lost pet
   // Change status to false
-  this.lostPet = function () {
-    $state.go('root.home');
-  };
+  // this.lostPet = function () {
+  //   $state.go('root.home');
+  // };
 };
 
-ProfileService.$inject = ['$state', '$http', 'SERVER'];
+ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];

@@ -1,4 +1,4 @@
-let ProfileService = function($state, $http, SERVER) {
+let ProfileService = function($state, $http, SERVER, $cookies) {
   
   console.log(SERVER);
 
@@ -8,27 +8,21 @@ let ProfileService = function($state, $http, SERVER) {
 
   this.getPets = getPets;
 
+  // Set userId to get user pets
   function getPets() {
-    return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
-    //pet.picture = imageUrl;
-    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+    let userId = $cookies.get('user_id');
+    return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
   }
 
   
-  // Go to pet-reg
-  this.addPet = function () {
-    $state.go('root.pet-reg');
-  };
-
   // Lost pet
   // Change status to false
-  this.lostPet = function () {
-    $state.go('root.home');
-  };
+  // this.lostPet = function () {
+  //   $state.go('root.home');
+  // };
   
-
 };
 
-ProfileService.$inject = ['$state', '$http', 'SERVER'];
+ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
 
 export default ProfileService;
