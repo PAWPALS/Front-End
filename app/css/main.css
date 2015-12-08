@@ -8454,12 +8454,18 @@ nav {
   margin: auto; }
   .profile .profile-list {
     border: .1em solid #EDEEEE;
-    border-radius: .25em; }
-    .profile .profile-list ul {
-      margin: 2em; }
-  .profile button {
     border-radius: .25em;
-    background-color: #DCDCDC; }
+    overflow-y: scroll; }
+    .profile .profile-list ul {
+      margin: 2em;
+      overflow: hidden; }
+  .profile .buttons {
+    width: 62%;
+    margin: auto;
+    margin-top: 1em; }
+    .profile .buttons button {
+      border-radius: .25em;
+      background-color: #DCDCDC; }
 
 .pet-reg {
   width: 30%;
