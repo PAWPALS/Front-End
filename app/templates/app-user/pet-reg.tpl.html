@@ -1,22 +1,21 @@
 <div class="pet-reg"> 
   <h5>Add Your Pet</h5>
 
-<form ng-submit="vm.addPet(pet)">
-  <input placeholder="Name" ng-model="pet.name">
-  <input placeholder="Address" ng-model="pet.address">
-  <input placeholder="Age" ng-model="pet.age">
-  <input placeholder="Breed" ng-model="pet.breed">
-  <textarea placeholder="Description" ng-model="pet.description" ng-maxlength="250"></textarea>     
+  <form ng-submit="vm.addPet(pet)">
+    <input placeholder="Name" ng-model="pet.name">
+    <input placeholder="Address" ng-model="pet.address">
+    <input placeholder="Age" ng-model="pet.age">
+    <input placeholder="Breed" ng-model="pet.breed">
+    <textarea placeholder="Description" ng-model="pet.description" ng-maxlength="250"></textarea>     
 
-<img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
+    <img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
 
-  <input type="file" id="petImage">
-  
+    <input type="file" id="petImage">
+      
+    <hr>
 
-<hr>
-
-<button ng-click="submit">Submit</button>
-</form>  
+    <button ng-click="submit">Submit</button>
+  </form>  
 
 
 </div>

@@ -88,17 +88,24 @@ nav {
     // width: 100%;
     border: .1em solid #EDEEEE;
     border-radius: .25em;
+    overflow-y: scroll;
 
     ul {
       margin: 2em;
+      overflow: hidden;
 
     }
-
   }
 
-  button {
+  .buttons {
+    width: 62%;
+    margin: auto;
+    margin-top: 1em;
+
+    button {
     border-radius: .25em;
     background-color: #DCDCDC;
+    }
   }
 
 }
