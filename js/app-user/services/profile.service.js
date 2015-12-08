@@ -10,27 +10,17 @@ let ProfileService = function($state, $http, SERVER, $cookies) {
 
   // Set userId to get user pets
   function getPets() {
-    let userId = $cookies.get('userId');
+    let userId = $cookies.get('user_id');
     return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
-
-
-    //pet.picture = imageUrl;
-    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
 
   
-  // Go to pet-reg
-  this.addPet = function () {
-    $state.go('root.pet-reg');
-  };
-
   // Lost pet
   // Change status to false
-  this.lostPet = function () {
-    $state.go('root.home');
-  };
+  // this.lostPet = function () {
+  //   $state.go('root.home');
+  // };
   
-
 };
 
 ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];

@@ -77,7 +77,7 @@ nav {
 }
 
 .profile {
-  width: 30%;
+  width: 40%;
   margin: auto;
 
   h6 {
@@ -85,6 +85,14 @@ nav {
   }
 
   .profile-list {
+    // width: 100%;
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
+
+    ul {
+      margin: 2em;
+
+    }
 
   }
 

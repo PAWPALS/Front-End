@@ -34,7 +34,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
-      $cookies.put('user_id', res.data.user_id);
+      $cookies.put('user_id', res.data.user.id);
 
       SERVER.CONFIG.headers['Access-Token'] =  res.data.user.auth_token;
       $state.go('root.pet-reg');
@@ -49,7 +49,7 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.user.access_token);
-    $cookies.put('user_id', res.data.user_id);
+    $cookies.put('user_id', res.data.user.id);
 
     SERVER.CONFIG.headers['Access-Token'] =  res.data.user.auth_token;    
     $state.go('root.profile');

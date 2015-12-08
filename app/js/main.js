@@ -172,7 +172,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
-      $cookies.put('user_id', res.data.user_id);
+      $cookies.put('user_id', res.data.user.id);
 
       SERVER.CONFIG.headers['Access-Token'] = res.data.user.auth_token;
       $state.go('root.pet-reg');
@@ -187,7 +187,7 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
   this.loginSuccess = function (res) {
     $cookies.put('authToken', res.data.user.access_token);
-    $cookies.put('user_id', res.data.user_id);
+    $cookies.put('user_id', res.data.user.id);
 
     SERVER.CONFIG.headers['Access-Token'] = res.data.user.auth_token;
     $state.go('root.profile');
@@ -427,6 +427,16 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
       vm.pets = res.data.pets;
     });
   }
+
+  $scope.addPet = function () {
+    $state.go('root.pet-reg');
+  };
+
+  // function lostPet () {
+  //   ProfileService.lostPet() {
+
+  //   }
+  // }
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -539,23 +549,15 @@ var ProfileService = function ProfileService($state, $http, SERVER, $cookies) {
 
   // Set userId to get user pets
   function getPets() {
-    var userId = $cookies.get('userId');
+    var userId = $cookies.get('user_id');
     return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
-
-    //pet.picture = imageUrl;
-    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
-
-  // Go to pet-reg
-  this.addPet = function () {
-    $state.go('root.pet-reg');
-  };
 
   // Lost pet
   // Change status to false
-  this.lostPet = function () {
-    $state.go('root.home');
-  };
+  // this.lostPet = function () {
+  //   $state.go('root.home');
+  // };
 };
 
 ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
