@@ -465,6 +465,7 @@ var addImage = function addImage(PetRegService, UploadService) {
     scope: {
       pet: '='
     },
+
     templateUrl: 'templates/app-user/pet-reg.tpl.html',
     link: function link(scope, element, attrs) {
       element.on('submit', function () {
@@ -536,10 +537,6 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
     this.description = petObj.description;
     this.addImage = addImage;
   };
-
-  function getPet(petObj) {
-    return $http.get(url + '/' + petObj, SERVER.CONFIG);
-  }
 
   this.addPet = function (petObj) {
     console.log(petObj);

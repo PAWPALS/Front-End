@@ -7,9 +7,8 @@ let addImage = function(PetRegService, UploadService) {
     scope: {
       pet: '='
     },
-    template: `
-      <div class=
-    //templateUrl: 'templates/app-user/pet-reg.tpl.html',
+  
+    templateUrl: 'templates/app-user/pet-reg.tpl.html',
     link: function (scope, element, attrs) {
       element.on('submit', function () {
 

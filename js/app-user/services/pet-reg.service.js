@@ -9,10 +9,6 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
     this.addImage = addImage;
   };
 
-  function getPet (petObj) {
-    return $http.get(url + '/' + petObj, SERVER.CONFIG);
-  }
-
   this.addPet = function(petObj) {
     console.log(petObj);
 

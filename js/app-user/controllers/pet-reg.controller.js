@@ -9,7 +9,7 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
 
   activate();
 
-  function activate (){
+  function activate () {
     PetRegService.getPet($stateParams.id).then( (res) => {
       vm.pet = res.data;
     });
@@ -24,7 +24,7 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
 
   }
 
-  function getPet ( ) {
+  function getPet () {
     
   }
 
