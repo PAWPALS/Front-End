@@ -44,15 +44,16 @@ let HomeService = function($http, SERVER, $cookies, $state) {
 
   // Login
 
-  this.sendLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'login', userObj, SERVER.CONFIG);
+  this.sendLogin = function (user) {
+    return $http.post(SERVER.URL + 'login', user, SERVER.CONFIG);
   };
 
-  this.loginSuccess = function (res) {
+  this.loginSuccess = function (user) {
     $cookies.put('authToken', res.data.user.access_token);
     SERVER.CONFIG.headers['Access-Token'] = res.data.auth_token;
     $state.go('root.profile');
   };
+
 
   // Logout
   this.logout = function () {

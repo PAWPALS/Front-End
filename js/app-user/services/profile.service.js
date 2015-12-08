@@ -1,4 +1,4 @@
-let ProfileService = function($state, $http, SERVER) {
+let ProfileService = function($state, $http, $cookies, SERVER) {
   
   console.log(SERVER);
 
@@ -9,7 +9,8 @@ let ProfileService = function($state, $http, SERVER) {
   this.getPets = getPets;
 
   function getPets() {
-    return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
+    let userId = $cookies.get('user.id');
+    return $http.get(url + user_id + '/pets', SERVER.CONFIG);
     //pet.picture = imageUrl;
     //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
@@ -29,6 +30,13 @@ let ProfileService = function($state, $http, SERVER) {
 
 };
 
-ProfileService.$inject = ['$state', '$http', 'SERVER'];
+ProfileService.$inject = ['$state', '$http', '$cookies', 'SERVER'];
 
 export default ProfileService;
+
+
+
+
+
+
+

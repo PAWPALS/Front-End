@@ -14,7 +14,14 @@ let ProfileController = function($scope, ProfileService, $state) {
       vm.pets = res.data.pets;    
     });
   }
-};
+
+  $scope.addPet = function () {
+    $scope.pets ={};
+    console.log(res);
+    };        
+    $state.go('root.pet-reg');
+
+  };
 
 ProfileController.$inject = ['$scope','ProfileService', '$state'];
 

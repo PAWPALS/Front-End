@@ -85,7 +85,6 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
   // Signup
   $scope.createUser = function (user) {
     console.log(user);
-
     HomeService.createUser(user);
   };
 
@@ -94,6 +93,7 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
     console.log(user);
     HomeService.sendLogin(user).then(function (res) {
       console.log(res);
+
       HomeService.loginSuccess(res);
       console.log(res);
     });
@@ -181,11 +181,11 @@ var HomeService = function HomeService($http, SERVER, $cookies, $state) {
 
   // Login
 
-  this.sendLogin = function (userObj) {
-    return $http.post(SERVER.URL + 'login', userObj, SERVER.CONFIG);
+  this.sendLogin = function (user) {
+    return $http.post(SERVER.URL + 'login', user, SERVER.CONFIG);
   };
 
-  this.loginSuccess = function (res) {
+  this.loginSuccess = function (user) {
     $cookies.put('authToken', res.data.user.access_token);
     SERVER.CONFIG.headers['Access-Token'] = res.data.auth_token;
     $state.go('root.profile');
@@ -430,6 +430,12 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
       vm.pets = res.data.pets;
     });
   }
+
+  $scope.addPet = function () {
+    $scope.pets = {};
+    console.log(res);
+  };
+  $state.go('root.pet-reg');
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -530,7 +536,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($state, $http, SERVER) {
+var ProfileService = function ProfileService($state, $http, $cookies, SERVER) {
 
   console.log(SERVER);
 
@@ -541,7 +547,8 @@ var ProfileService = function ProfileService($state, $http, SERVER) {
   this.getPets = getPets;
 
   function getPets() {
-    return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
+    var userId = $cookies.get('user.id');
+    return $http.get(url + user_id + '/pets', SERVER.CONFIG);
     //pet.picture = imageUrl;
     //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
@@ -558,7 +565,7 @@ var ProfileService = function ProfileService($state, $http, SERVER) {
   };
 };
 
-ProfileService.$inject = ['$state', '$http', 'SERVER'];
+ProfileService.$inject = ['$state', '$http', '$cookies', 'SERVER'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];
