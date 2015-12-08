@@ -1,5 +1,9 @@
 let PetRegService = function($http, SERVER, $cookies, $state) {
 
+  // let url = SERVER.URL + 'pets';
+
+  this.upload = upload;
+
   // Pet Registration
   let Pet = function(petObj) {
     this.name = petObj.name;
@@ -11,7 +15,7 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
   this.addPet = function(petObj) {
     console.log(petObj);
 
-    let p = new Pet(petObj);
+    let p = new Pet(petObj);    
 
     console.log(SERVER);
 
@@ -24,28 +28,18 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
     });   
   };
 
+  // Upload image
+  function upload (file) {
+
+    let formData = new FormData();
+    formData.append('upload', file);
+
+    return $http.post(SERVER.URL, formData, SERVER.CONFIG);
+  }
+
 };
 
 PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 export default PetRegService;
 
-//to upload pet photos by owner
-// let UploadService = function($http, FILESERVER) {
-  
-//   this.upload = upload;
-
-//   function upload (file) {
-
-//     let formData = new FormData();
-//     formData.append('upload', file);
-//     // formData.append('details', JSON.stringify({ name: 'Tim' }));
-
-//     return $http.post(FILESERVER.URL, formData, FILESERVER.CONFIG);
-//   }
-
-// };
-
-// UploadService.$inject = ['$http', 'FILESERVER'];
-
-// export default UploadService;

@@ -221,6 +221,7 @@ var MapController = function MapController($scope, MapService, $state) {
 
   function getPets() {
     MapService.getPets().then(function (res) {
+
       console.log(res);
       vm.pets = res.data.pets;
     });
@@ -379,21 +380,14 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var PetRegController = function PetRegController($scope, PetRegService, $cookies, $state) {
+var PetRegController = function PetRegController($scope, PetRegService, $cookies, $stateParams) {
 
   var vm = this;
 
   vm.addPet = addPet;
+  vm.showImageUpload = false;
   vm.showForm = showForm;
   vm.uploadImage = uploadImage;
-
-  activate();
-
-  function activate() {
-    PetRegService.getPet($stateParams.id).then(function (res) {
-      vm.pet = res.data;
-    });
-  }
 
   // Register new pet
   function addPet(petObj) {
@@ -402,14 +396,22 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
     });
   }
 
-  $scope.addPet = function (pet) {
-    console.log(pet);
+  // $scope.addPet = function(pet) {
+  //   console.log(pet);
+  //   PetRegService.addPet(pet);
+  // }; 
 
-    PetRegService.addPet(pet);
-  };
+  function showForm() {
+    vm.showImageUpload = vm.showImageUpload ? false : true;
+  }
+
+  // Upload image
+  function uploadImage(data) {
+    console.log(data);
+  }
 };
 
-PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
 
 exports['default'] = PetRegController;
 module.exports = exports['default'];
@@ -424,22 +426,18 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
 
   var vm = this;
 
-  // Get user pets
-  ProfileService.getPets().then(function (res) {
-    vm.pets = res.data.results;
-    console.log('pets', vm.pets);
-    // return vm.pets;
-  });
+  // Show all pets
+  vm.pets = [];
+  console.log(vm.pets);
 
-  // Go to pet-reg
-  // $scope.addPet() {
-  //   ProfileService.addPet();
-  // }; 
+  getPets();
 
-  // Lost pet alert
-  // $scope.lostPet() {
-  //   ProfileService.lostPet();
-  // };
+  function getPets() {
+    ProfileService.getPets().then(function (res) {
+      console.log(res);
+      vm.pets = res.data.pets;
+    });
+  }
 };
 
 ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
@@ -484,6 +482,10 @@ Object.defineProperty(exports, '__esModule', {
 });
 var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
 
+  // let url = SERVER.URL + 'pets';
+
+  this.upload = upload;
+
   // Pet Registration
   var Pet = function Pet(petObj) {
     this.name = petObj.name;
@@ -507,31 +509,20 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
       $state.go('root.pet-reg');
     });
   };
+
+  // Upload image
+  function upload(file) {
+
+    var formData = new FormData();
+    formData.append('upload', file);
+
+    return $http.post(SERVER.URL, formData, SERVER.CONFIG);
+  }
 };
 
 PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 
 exports['default'] = PetRegService;
-
-//to upload pet photos by owner
-// let UploadService = function($http, FILESERVER) {
-
-//   this.upload = upload;
-
-//   function upload (file) {
-
-//     let formData = new FormData();
-//     formData.append('upload', file);
-//     // formData.append('details', JSON.stringify({ name: 'Tim' }));
-
-//     return $http.post(FILESERVER.URL, formData, FILESERVER.CONFIG);
-//   }
-
-// };
-
-// UploadService.$inject = ['$http', 'FILESERVER'];
-
-// export default UploadService;
 module.exports = exports['default'];
 
 },{}],14:[function(require,module,exports){
@@ -540,48 +531,40 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileService = function ProfileService($scope, $http, SERVER, $cookies) {
+var ProfileService = function ProfileService($state, $http, SERVER) {
 
   console.log(SERVER);
 
-  var url = SERVER.URL;
-
   // Display index of users pets
   // Get user by id
-  this.getPets = function () {
-    var token = $cookies.get('authToken');
-    return $http({
-      url: url + 'users/' + pets,
-      method: 'GET',
-      headers: {
-        auth_token: token
-      },
-      data: {}
+  var url = SERVER.URL + 'users';
 
-    });
-  };
+  this.getPets = getPets;
 
-  // this.getPets = function (id) {
-  //   return $http.get(url + 'users/' + id + 'pet', SERVER.CONFIG);
-  // };
+  function getPets() {
+    return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
+    //pet.picture = imageUrl;
+    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+  }
 
   // Go to pet-reg
   this.addPet = function () {
-    $state.go('root.add-pet');
+    $state.go('root.pet-reg');
   };
 
   // Lost pet
   // Change status to false
-  this.lostPet = function () {};
+  this.lostPet = function () {
+    $state.go('root.home');
+  };
 };
 
-ProfileService.$inject = ['$scope', '$http', 'SERVER', '$cookies'];
+ProfileService.$inject = ['$state', '$http', 'SERVER'];
 
 exports['default'] = ProfileService;
 module.exports = exports['default'];
 
 },{}],15:[function(require,module,exports){
-// Core files
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }

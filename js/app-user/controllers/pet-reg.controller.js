@@ -1,19 +1,11 @@
-let PetRegController = function($scope, PetRegService, $cookies, $state) {
+let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
   
   let vm = this;
 
-  vm.addPet = addPet;
-  vm.showForm = showForm;
-  vm.uploadImage = uploadImage;
-
-  activate();
-
-
-  function activate (){
-    PetRegService.getPet($stateParams.id).then( (res) => {
-      vm.pet = res.data;
-    });
-  }   
+  vm.addPet           = addPet;
+  vm.showImageUpload  = false;
+  vm.showForm         = showForm;
+  vm.uploadImage      = uploadImage;
 
   // Register new pet
   function addPet (petObj) {
@@ -22,14 +14,23 @@ let PetRegController = function($scope, PetRegService, $cookies, $state) {
     });
   }
 
-  $scope.addPet = function(pet) {
-    console.log(pet);
+  // $scope.addPet = function(pet) {
+  //   console.log(pet);
+  //   PetRegService.addPet(pet);
+  // };  
 
-    PetRegService.addPet(pet);
-  };  
 
+  function showForm () {
+    vm.showImageUpload = (vm.showImageUpload) ? false : true;    
+  }
+
+  // Upload image
+  function uploadImage (data) {
+    console.log(data);
+  }
+  
 };
 
-PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$state'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
 
 export default PetRegController;
