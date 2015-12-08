@@ -15,12 +15,6 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
       console.log(res);
     });
   }
-
-  // $scope.addPet = function(pet) {
-  //   console.log(pet);
-  //   PetRegService.addPet(pet);
-  // };  
-
   
 };
 

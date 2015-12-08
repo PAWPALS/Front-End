@@ -24,8 +24,6 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
 
     // ----
 
-
-
     // console.log(petObj);
 
     // let p = new Pet(petObj);    

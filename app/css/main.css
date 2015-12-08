@@ -8510,8 +8510,13 @@ nav {
       background-color: #DCDCDC; }
 
 .profile {
-  width: 30%;
+  width: 40%;
   margin: auto; }
+  .profile .profile-list {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em; }
+    .profile .profile-list ul {
+      margin: 2em; }
   .profile button {
     border-radius: .25em;
     background-color: #DCDCDC; }
