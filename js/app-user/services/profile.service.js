@@ -18,6 +18,10 @@ let ProfileService = function($state, $http, SERVER, $cookies) {
 
   }
 
+  this.lostPet = function (){
+    $state.go('root.map');
+  };
+
   
   // Lost pet
   // Change status to false

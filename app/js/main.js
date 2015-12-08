@@ -551,6 +551,10 @@ var ProfileService = function ProfileService($state, $http, SERVER, $cookies) {
     return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
   }
 
+  this.lostPet = function () {
+    $state.go('root.map');
+  };
+
   // Lost pet
   // Change status to false
   // this.lostPet = function () {

@@ -19,6 +19,7 @@ let HomeController = function($scope, HomeService, $cookies, $state) {
   $scope.createUser = function(user) {
     console.log(user);      
     HomeService.createUser(user);
+    
   };
 
   // Login
