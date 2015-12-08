@@ -380,18 +380,23 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
   vm.addPet = addPet;
   vm.showForm = showForm;
   vm.showImageUpload = showImageUpload;
+  vm.addImage = addImage;
 
   activate();
-
-  function showForm() {}
-
-  function showImageUpload() {}
 
   function activate() {
     PetRegService.getPet($stateParams.id).then(function (res) {
       vm.pet = res.data;
     });
   }
+
+  function showForm() {
+    vm.showImageUpload = vm.showImageUpload ? false : true;
+  }
+
+  function showImageUpload() {}
+
+  function getPet() {}
 
   // Register new pet
   function addPet(petObj) {
@@ -405,6 +410,10 @@ var PetRegController = function PetRegController($scope, PetRegService, $cookies
 
     PetRegService.addPet(pet);
   };
+
+  function addImage(data) {
+    console.log(data);
+  }
 };
 
 PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
@@ -525,8 +534,12 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
     this.age = petObj.age;
     this.breed = petObj.breed;
     this.description = petObj.description;
-    this.addImage = addImage.picture;
+    this.addImage = addImage;
   };
+
+  function getPet(petObj) {
+    return $http.get(url + '/' + petObj, SERVER.CONFIG);
+  }
 
   this.addPet = function (petObj) {
     console.log(petObj);
@@ -544,9 +557,9 @@ var PetRegService = function PetRegService($http, SERVER, $cookies, $state) {
     });
   };
 
-  function addImage(imageUrl, pet) {
+  function addImage(imageUrl, pets) {
     pet.picture = imageUrl;
-    return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
+    return $http.put(url + '/' + pet.objectId, pets, SERVER.CONFIG);
   }
 };
 
@@ -593,6 +606,8 @@ var ProfileService = function ProfileService($state, $http, SERVER) {
 
   function getPets() {
     return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
+    //pet.picture = imageUrl;
+    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
 
   // Go to pet-reg

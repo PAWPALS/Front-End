@@ -14,7 +14,7 @@
 
   <input type="file" id="petPicture" ng-click="vm.showForm()">
   
-  <add-image pet="vm.showImageUpload"></add-image>
+  <add-image ng-show="vm.showImageUpload" pet="vm.pet"></add-image>
 </form>  
 
 
@@ -25,7 +25,12 @@
 
 </div>
 
+<!-- <form class="uploadForm">
+  <input type="file" id="petImage">
+  <button class="somepetpic">Add Image</button>
+</form>
 
+ -->
 
 
   <!-- <input type="file" id="petPicture">

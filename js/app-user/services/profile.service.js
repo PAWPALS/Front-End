@@ -10,6 +10,8 @@ let ProfileService = function($state, $http, SERVER) {
 
   function getPets() {
     return $http.get(url + '/:id' + '/pets', SERVER.CONFIG);
+    //pet.picture = imageUrl;
+    //return $http.put(url + '/' + pet.objectId, pet, SERVER.CONFIG);
   }
 
   

@@ -1,18 +1,23 @@
 <div class="profile">
-  <h3>Profile</h3>
-  {{pet}}
+  <h3>Pet Profile</h3>
 
-  <ul class="profile-list" ng-repeat="pet in vm.pets">
-    <li>Pet: {{  pet.name }}</li>
-    <li>Age: {{ pet.age }}</li>
-    <li>Breed: {{ pet.breed }}</li>
-    <li>Description: {{ pet.description }}</li>
-    <li>Status: {{ pet.present }}</li>
-  </ul>
+  <div class="profile-list">
 
-  <img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
+    <ul ng-repeat="pet in vm.pets">
+      <li>Pet Name: {{ pet.name }}</li>
+      <li>Age: {{ pet.age }}</li>
+      <li>Breed: {{ pet.breed }}</li>
+      <li>Description: {{ pet.description }}</li>
+      <li>Status: {{ pet.present }}</li>
+    </ul>
 
-  <button ng-click="addPet">Add Pet</button>
-  <button ng-click="lostPet">Report a Lost Pet</button>
+    <img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
+
+    <button ng-click="addPet">Add Pet</button>
+    <button ng-click="lostPet">Report a Lost Pet</button>
+
+  </div>
 
 </div>
+
+
