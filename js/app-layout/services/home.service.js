@@ -62,7 +62,6 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     SERVER.CONFIG.headers['Access-Token'] = null;
     $state.go('root.home');
   };
-
   
 };
 
