@@ -13,7 +13,7 @@ let addImage = function(PetRegService, UploadService) {
       element.on('submit', function () {
 
         let file = element.find('input')[0].files[0];
-        UploadService.upload(file).then( (res) => {
+        UploadService.upload(file).then ((res) => {
           PetRegService.addImage(res.data.upload.file_url, scope.pet)
             .then( (res) => {
               

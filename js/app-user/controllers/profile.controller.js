@@ -16,7 +16,6 @@ let ProfileController = function($scope, ProfileService, $state) {
 
   }
 
-
   $scope.addPet = function() {
     $state.go('root.pet-reg'); 
   };

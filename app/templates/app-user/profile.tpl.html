@@ -9,10 +9,11 @@
       <li>Breed - {{ pet.breed }}</li>
       <li>Desc - {{ pet.description }}</li>
       <li>Status - {{ pet.present }}</li>
-      <hr>
+      <li><img ng-src="{{ pet.picture }}"></li> 
+      <hr/>     
     </ul>
 
-    <img ng-show="vm.pet.picture" ng-src="{{ vm.pet.picture }}">
+    
 
   </div>
 

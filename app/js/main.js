@@ -534,6 +534,9 @@ module.exports = exports['default'];
 },{}],14:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var ProfileService = function ProfileService($state, $http, SERVER, $cookies) {
 
   console.log(SERVER);
@@ -546,23 +549,21 @@ var ProfileService = function ProfileService($state, $http, SERVER, $cookies) {
 
   // Set userId to get user pets
   function getPets() {
-
     var userId = $cookies.get('user_id');
     return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
   }
-
-  this.lostPet = function () {
-    $state.go('root.map');
-  };
-
-  // Lost pet
-  // Change status to false
-  // this.lostPet = function () {
-  //   $state.go('root.home');
-  // };
 };
 
+// Lost pet
+// Change status to false
+// this.lostPet = function () {
+//   $state.go('root.home');
+// };
+
 ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
+
+exports['default'] = ProfileService;
+module.exports = exports['default'];
 
 },{}],15:[function(require,module,exports){
 'use strict';
