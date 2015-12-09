@@ -6,7 +6,7 @@
 
     <ul ng-repeat="pet in vm.pets" ng-hide="pet.present">
   <!-- <ul ng-repeat="pet in vm.pets"> -->
-      <li>{{ pet.picture }}</li>
+      <li><img ng-src="{{ pet.picture }}"></li>
       <li>{{ pet.name }}</li>
       <li>age {{ pet.age }}</li>
       <li>{{ pet.breed }}</li>
