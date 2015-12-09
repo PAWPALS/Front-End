@@ -8459,6 +8459,11 @@ nav {
     .profile .profile-list ul {
       margin: 2em;
       overflow: hidden; }
+      .profile .profile-list ul li img {
+        width: 10em;
+        height: 10em;
+        border-radius: .25em;
+        margin-bottom: 2em; }
   .profile .buttons {
     width: 62%;
     margin: auto;
