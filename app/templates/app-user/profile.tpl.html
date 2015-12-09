@@ -4,6 +4,7 @@
   <div class="profile-list">
 
     <ul ng-repeat="pet in vm.pets">
+      <li><img ng-src="{{ pet.picture }}"></li>
       <li>Pet - {{ pet.name }}</li>
       <li>Age - {{ pet.age }}</li>
       <li>Breed - {{ pet.breed }}</li>
@@ -12,8 +13,6 @@
       <li><img ng-src="{{ pet.picture }}"></li> 
       <hr/>     
     </ul>
-
-    
 
   </div>
 
