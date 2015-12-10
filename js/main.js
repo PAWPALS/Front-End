@@ -8,7 +8,7 @@ import './app-user/index';
 import './app-map/index';
 
 angular
-  .module('app', ['app.core', 'app.layout', 'app.user', 'app.map'])
+  .module('app', ['app.core', 'app.layout', 'app.user', 'app.map', 'uiGmapgoogle-maps'])
   .run( function (HomeService, $rootScope) {
     $rootScope.$on('$stateChangeSuccess', function () {
       HomeService.checkAuth();

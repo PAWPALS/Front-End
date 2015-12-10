@@ -8543,7 +8543,8 @@ nav {
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
-  margin: 2em; }
+  margin: 2em;
+  height: 900px; }
   .map div {
     display: inline-block; }
   .map #map {
