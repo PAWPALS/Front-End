@@ -153,10 +153,12 @@ nav {
     display: inline-block;
   }
 
-  #map { 
-    width: 60%;
-    height: 37.500em; 
-    vertical-align: top;  }
+  // #map { 
+  //   width: 60%;
+  //   height: 37.500em; 
+  //   vertical-align: top;  }
+
+  .angular-google-map-container { height: 400px; }
 
   .lost {
     width: 30%;

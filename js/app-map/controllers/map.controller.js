@@ -16,6 +16,10 @@ let MapController = function($scope, MapService, $state) {
     });
   }
 
+  // Map
+
+  vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
 
 
 };
