@@ -14,8 +14,13 @@ angular
   })
 
   .config(config)
-  .constant('glocURL', 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU')
-  .constant('gmapURL', 'url')
+  .config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU',
+      v: '3.20', //defaults to latest 3.X anyhow
+      libraries: 'weather,geometry,visualization'
+    });
+  })
 
 ;
 

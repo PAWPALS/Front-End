@@ -8459,6 +8459,11 @@ nav {
     .profile .profile-list ul {
       margin: 2em;
       overflow: hidden; }
+      .profile .profile-list ul li img {
+        width: 10em;
+        height: 10em;
+        border-radius: .25em;
+        margin-bottom: 2em; }
   .profile .buttons {
     width: 62%;
     margin: auto;
@@ -8486,10 +8491,8 @@ nav {
   margin: 2em; }
   .map div {
     display: inline-block; }
-  .map #map {
-    width: 60%;
-    height: 37.500em;
-    vertical-align: top; }
+  .map .angular-google-map-container {
+    height: 400px; }
   .map .lost {
     width: 30%;
     height: 37.500em;
