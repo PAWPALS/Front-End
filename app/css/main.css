@@ -8491,15 +8491,19 @@ nav {
   margin: 2em; }
   .map div {
     display: inline-block; }
-  .map .angular-google-map {
-    display: block; }
-  .map .angular-google-map-container {
-    height: 400px; }
-  .map .lost {
-    width: 30%;
-    height: 37.500em;
-    overflow-y: scroll; }
-    .map .lost ul {
-      overflow: hidden; }
+    .map div .angular-google-map {
+      display: block; }
+    .map div .angular-google-map-container {
+      height: 500px;
+      width: 500px; }
+    .map div .lost {
+      width: 30%;
+      height: 37.500em;
+      overflow-y: scroll; }
+      .map div .lost ul {
+        overflow: hidden; }
+        .map div .lost ul li img {
+          width: 20%;
+          height: 20%; }
 
 /*# sourceMappingURL=main.css.map */

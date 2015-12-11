@@ -20,11 +20,7 @@ let ProfileController = function($scope, ProfileService, $state) {
     $state.go('root.pet-reg'); 
   };
 
-  // function lostPet () {
-  //   ProfileService.lostPet() {
-
-  //   }
-  // }
+  
 };
 
 ProfileController.$inject = ['$scope','ProfileService', '$state'];

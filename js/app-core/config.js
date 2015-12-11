@@ -27,6 +27,11 @@ let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProv
       controller: 'ProfileController as vm',
       templateUrl: 'templates/app-user/profile.tpl.html'
     })
+    .state('root.single', {
+      url: '/single',
+      controller: 'SingleController as vm',
+      templateUrl: 'templates/app-user/single.tpl.html'
+    })
     .state('root.map', {
       url: '/map',
       controller: 'MapController as vm',

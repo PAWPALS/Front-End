@@ -9,6 +9,7 @@ let MapService = function($http, SERVER, $cookies, $state) {
     return $http.get(url, SERVER.CONFIG);
   }
 
+  
   // function setMarker() {
 
   // }
