@@ -8491,6 +8491,8 @@ nav {
   margin: 2em; }
   .map div {
     display: inline-block; }
+  .map .angular-google-map {
+    display: block; }
   .map .angular-google-map-container {
     height: 400px; }
   .map .lost {

@@ -1,4 +1,8 @@
-let config = function($stateProvider, $urlRouterProvider) {
+let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+
+  uiGmapGoogleMapApiProvider.configure({
+    china: true
+  });
   
   $urlRouterProvider.otherwise('/');
 
@@ -32,6 +36,6 @@ let config = function($stateProvider, $urlRouterProvider) {
 
 };
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider', '$urlRouterProvider', 'uiGmapGoogleMapApiProvider'];
 
 export default config;

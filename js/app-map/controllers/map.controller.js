@@ -3,8 +3,8 @@ let MapController = function($scope, MapService, uiGmapGoogleMapApi, $state) {
   let vm = this;
 
   // Map
-  vm.map = { center: { latitude: 33.7550, longitude: 84.3900 }, zoom: 8 };
-
+  $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+  $scope.options = {scrollwheel: false};
 
   
   // Show all pets
