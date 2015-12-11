@@ -7,7 +7,7 @@ import MapService from './services/map.service';
 import mapDirective from './directives/map.directive';
 
 angular
-  .module('app.map', ['myAppModule', 'app.core', 'uiGmapgoogle-maps'])
+  .module('app.map', ['app.core', 'uiGmapgoogle-maps'])
   .controller('MapController', MapController)
   .service('MapService', MapService)
   .directive('mapDirective', mapDirective)

@@ -57,7 +57,13 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('SE
   CONFIG: {
     headers: {}
   }
-}).config(_config2['default']).constant('glocURL', 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU').constant('gmapURL', 'url');
+}).config(_config2['default']).config(function (uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    key: 'AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU',
+    v: '3.20', //defaults to latest 3.X anyhow
+    libraries: 'weather,geometry,visualization'
+  });
+});
 
 },{"./config":1,"angular":21,"angular-cookies":17,"angular-ui-router":19}],3:[function(require,module,exports){
 'use strict';
@@ -212,29 +218,27 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var MapController = function MapController($scope, MapService, $state) {
+var MapController = function MapController($scope, MapService, uiGmapGoogleMapApi, $state) {
 
-  // Show all pets
   var vm = this;
 
+  // Map
+  vm.map = { center: { latitude: 33.7550, longitude: 84.3900 }, zoom: 8 };
+
+  // Show all pets
   vm.pets = [];
 
   getPets();
 
   function getPets() {
     MapService.getPets().then(function (res) {
-
       console.log(res);
       vm.pets = res.data.pets;
     });
   }
-
-  // Map
-
-  vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 };
 
-MapController.$inject = ['$scope', 'MapService', '$state'];
+MapController.$inject = ['$scope', 'MapService', 'uiGmapGoogleMapApi', '$state'];
 
 exports['default'] = MapController;
 module.exports = exports['default'];
@@ -365,7 +369,7 @@ var _directivesMapDirective = require('./directives/map.directive');
 
 var _directivesMapDirective2 = _interopRequireDefault(_directivesMapDirective);
 
-_angular2['default'].module('app.map', ['myAppModule', 'app.core', 'uiGmapgoogle-maps']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).directive('mapDirective', _directivesMapDirective2['default']);
+_angular2['default'].module('app.map', ['app.core', 'uiGmapgoogle-maps']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).directive('mapDirective', _directivesMapDirective2['default']);
 
 },{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":21,"angular-google-maps":18}],9:[function(require,module,exports){
 'use strict';
@@ -607,9 +611,9 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.m
   });
 });
 
-window.initMap = function () {
-  _angular2['default'].bootstrap(document, ['app']);
-};
+// window.initMap = function () {
+//   angular.bootstrap(document, ['app']);
+// };
 
 },{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":8,"./app-user/index":12,"angular":21,"angular-ui-router":19}],16:[function(require,module,exports){
 /**
