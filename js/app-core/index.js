@@ -1,11 +1,16 @@
 import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-cookies';
+import 'angular-google-maps';
+import 'angular-simple-logger';
+import _ from 'lodash';
+
+window._ = _;
 
 import config from './config';
 
 angular
-  .module('app.core', ['ui.router', 'ngCookies'])
+  .module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle-maps'])
   .constant('SERVER', {
     URL: 'https://pawpals.herokuapp.com/',
     CONFIG: {
@@ -14,13 +19,5 @@ angular
   })
 
   .config(config)
-  .config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-      key: 'AIzaSyBx7KpGx1lDTlm5WqK8UMWA9CQDplQkXTU',
-      v: '3.20', //defaults to latest 3.X anyhow
-      libraries: 'weather,geometry,visualization'
-    });
-  })
-
 ;
 

@@ -1,6 +1,6 @@
 let mapDirective = function(MapService) {
 
-  
+  // Markers for all missing pets
 
   
   // return {
