@@ -1,4 +1,8 @@
-let config = function($stateProvider, $urlRouterProvider) {
+let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+
+  uiGmapGoogleMapApiProvider.configure({
+    china: true
+  });
   
   $urlRouterProvider.otherwise('/');
 
@@ -23,6 +27,11 @@ let config = function($stateProvider, $urlRouterProvider) {
       controller: 'ProfileController as vm',
       templateUrl: 'templates/app-user/profile.tpl.html'
     })
+    .state('root.single', {
+      url: '/single',
+      controller: 'SingleController as vm',
+      templateUrl: 'templates/app-user/single.tpl.html'
+    })
     .state('root.map', {
       url: '/map',
       controller: 'MapController as vm',
@@ -32,6 +41,6 @@ let config = function($stateProvider, $urlRouterProvider) {
 
 };
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider', '$urlRouterProvider', 'uiGmapGoogleMapApiProvider'];
 
 export default config;

@@ -1,5 +1,6 @@
 let MapService = function($http, SERVER, $cookies, $state) {
   
+  // Get index of pets
   let url = SERVER.URL + 'pets';
 
   this.getPets = getPets;
@@ -8,9 +9,10 @@ let MapService = function($http, SERVER, $cookies, $state) {
     return $http.get(url, SERVER.CONFIG);
   }
 
-  function setMarker() {
+  
+  // function setMarker() {
 
-  }
+  // }
 
 };
 

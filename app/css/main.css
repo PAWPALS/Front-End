@@ -8519,6 +8519,11 @@ nav {
     .profile .profile-list ul {
       margin: 2em;
       overflow: hidden; }
+      .profile .profile-list ul li img {
+        width: 10em;
+        height: 10em;
+        border-radius: .25em;
+        margin-bottom: 2em; }
   .profile .buttons {
     width: 62%;
     margin: auto;
@@ -8547,15 +8552,19 @@ nav {
   height: 900px; }
   .map div {
     display: inline-block; }
-  .map #map {
-    width: 60%;
-    height: 37.500em;
-    vertical-align: top; }
-  .map .lost {
-    width: 30%;
-    height: 37.500em;
-    overflow-y: scroll; }
-    .map .lost ul {
-      overflow: hidden; }
+    .map div .angular-google-map {
+      display: block; }
+    .map div .angular-google-map-container {
+      height: 500px;
+      width: 500px; }
+    .map div .lost {
+      width: 30%;
+      height: 37.500em;
+      overflow-y: scroll; }
+      .map div .lost ul {
+        overflow: hidden; }
+        .map div .lost ul li img {
+          width: 20%;
+          height: 20%; }
 
 /*# sourceMappingURL=main.css.map */

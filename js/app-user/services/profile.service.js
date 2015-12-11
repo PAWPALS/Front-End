@@ -14,6 +14,7 @@ let ProfileService = function($state, $http, SERVER, $cookies) {
     return $http.get(url + '/' + userId + '/pets', SERVER.CONFIG);
   }
 
+  
 };
 
 

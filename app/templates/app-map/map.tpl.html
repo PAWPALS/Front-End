@@ -1,15 +1,14 @@
 <div class="map">
-   
-  <div map-directive></div>
 
-  <!-- <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'></ui-gmap-google-map> -->
+  <div><ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
+  </div>
+
 
 
   <div class="lost">
 
     <ul ng-repeat="pet in vm.pets" ng-hide="pet.present">
-  <!-- <ul ng-repeat="pet in vm.pets"> -->
-  
+
       <li><img ng-src="{{ pet.picture }}"></li>
       <li>{{ pet.name }}</li>
       <li>{{ pet.age }}</li>
