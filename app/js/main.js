@@ -66,7 +66,7 @@ var _config2 = _interopRequireDefault(_config);
 
 window._ = _lodash2['default'];
 
-_angular2['default'].module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle-maps']).constant('SERVER', {
+_angular2['default'].module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle-maps', 'nemLogging']).constant('SERVER', {
   URL: 'https://pawpals.herokuapp.com/',
   CONFIG: {
     headers: {}
@@ -231,7 +231,8 @@ var MapController = function MapController($scope, MapService, uiGmapGoogleMapAp
   var vm = this;
 
   // Map
-  vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+  $scope.map = { center: { latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+  $scope.options = { scrollwheel: false };
 
   // Show all pets
   vm.pets = [];
@@ -518,10 +519,6 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.m
     HomeService.checkAuth();
   });
 });
-
-// window.initMap = function () {
-//   angular.bootstrap(document, ['app']);
-// };
 
 },{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":11,"angular":24,"angular-ui-router":22}],15:[function(require,module,exports){
 /**

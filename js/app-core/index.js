@@ -10,7 +10,7 @@ window._ = _;
 import config from './config';
 
 angular
-  .module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle-maps'])
+  .module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle-maps', 'nemLogging'])
   .constant('SERVER', {
     URL: 'https://pawpals.herokuapp.com/',
     CONFIG: {
