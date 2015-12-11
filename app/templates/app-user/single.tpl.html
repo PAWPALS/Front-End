@@ -1,0 +1,18 @@
+<div class="single">
+  <h5>{{ pet.name }}</h5>
+
+  <ul>
+    <li><img ng-src="{{ pet.picture }}"></li>
+    <li>Pet - {{ pet.name }}</li>
+    <li>Age - {{ pet.age }}</li>
+    <li>Breed - {{ pet.breed }}</li>      
+    <li>Desc - {{ pet.description }}</li>
+    <li>Status - {{ pet.present }}</li>
+  </ul>
+  <hr>
+
+  <button ng-click="editPet()">Edit</button>
+  <button ng-click="deletPet()">Delete</button>
+  <button ng-click="lostPet()">Lost Pet</button>
+
+</div>
