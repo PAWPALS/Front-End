@@ -352,7 +352,7 @@ var _directivesMapDirective = require('./directives/map.directive');
 
 var _directivesMapDirective2 = _interopRequireDefault(_directivesMapDirective);
 
-_angular2['default'].module('app.map', ['uiGmapgoogle-maps', 'app.core']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).directive('mapDirective', _directivesMapDirective2['default']);
+_angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).directive('mapDirective', _directivesMapDirective2['default']);
 
 },{"../app-core/index":2,"./controllers/map.controller":6,"./directives/map.directive":7,"./services/map.service":9,"angular":21,"angular-google-maps":18}],9:[function(require,module,exports){
 'use strict';
