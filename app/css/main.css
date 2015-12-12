@@ -8464,6 +8464,9 @@ nav {
         height: 10em;
         border-radius: .25em;
         margin-bottom: 2em; }
+      .profile .profile-list ul li a {
+        text-decoration: none;
+        color: grey; }
   .profile .buttons {
     width: 62%;
     margin: auto;

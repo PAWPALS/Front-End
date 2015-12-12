@@ -238,51 +238,6 @@ var MapController = function MapController($scope, MapService, uiGmapGoogleMapAp
 
   var vm = this;
 
-  // Map
-  $scope.map = {
-    center: { latitude: 33.7490000, longitude: -84.3879800 }, zoom: 14
-  };
-
-  $scope.options = {
-    scrollwheel: false
-  };
-
-  // Markers
-  var createRandomMarker = function createRandomMarker(i, bounds, idKey) {
-    var lat_min = bounds.southwest.latitude,
-        lat_range = bounds.northeast.latitude - lat_min,
-        lng_min = bounds.southwest.longitude,
-        lng_range = bounds.northeast.longitude - lng_min;
-
-    if (idKey === null) {
-      idKey = "id";
-    }
-
-    var latitude = lat_min + Math.random() * lat_range;
-    var longitude = lng_min + Math.random() * lng_range;
-    var ret = {
-      latitude: latitude,
-      longitude: longitude,
-      title: 'm' + i
-    };
-    ret[idKey] = i;
-    return ret;
-  };
-  $scope.randomMarkers = [];
-  // Get the bounds from the map once it's loaded
-  $scope.$watch(function () {
-    return $scope.map.bounds;
-  }, function (nv, ov) {
-    // Only need to regenerate once
-    if (!ov.southwest && nv.southwest) {
-      var markers = [];
-      for (var i = 0; i < 50; i++) {
-        markers.push(createRandomMarker(i, $scope.map.bounds));
-      }
-      $scope.randomMarkers = markers;
-    }
-  }, true);
-
   // Show all pets
   vm.pets = [];
 
@@ -294,6 +249,40 @@ var MapController = function MapController($scope, MapService, uiGmapGoogleMapAp
       vm.pets = res.data.pets;
     });
   }
+
+  // Map
+  $scope.map = {
+    center: {
+      latitude: 33.7490000,
+      longitude: -84.3879800
+    },
+    zoom: 14,
+    markers: [],
+    events: {}
+  };
+
+  $scope.options = {
+    scrollwheel: false
+  };
+
+  // Markers
+
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: 33.7490000,
+      longitude: -84.3879800
+    }
+  };
+
+  // Array of markers
+  $scope.markers = [];
+
+  // Get request
+  // $http.get()
+  //   .success(function(res) {
+  //     $scope.markers = res;
+  //   });
 };
 
 MapController.$inject = ['$scope', 'MapService', 'uiGmapGoogleMapApi', '$state'];
