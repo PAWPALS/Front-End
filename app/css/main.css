@@ -8472,6 +8472,34 @@ nav {
       border-radius: .25em;
       background-color: #DCDCDC; }
 
+.single {
+  width: 40%;
+  margin: auto; }
+  .single .single-pet {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em; }
+  .single ul {
+    margin: 2em; }
+    .single ul li img {
+      width: 10em;
+      height: 10em;
+      border-radius: .25em;
+      margin-bottom: 2em; }
+  .single .buttons-single {
+    width: 42%;
+    margin: auto;
+    margin-top: 1em; }
+    .single .buttons-single button {
+      border-radius: .25em;
+      background-color: #DCDCDC; }
+  .single .button-lost {
+    width: 20%;
+    margin-top: auto;
+    margin-top: 1em; }
+    .single .button-lost button {
+      border-radius: .25em;
+      background-color: #E42102; }
+
 .pet-reg {
   width: 30%;
   margin: auto; }

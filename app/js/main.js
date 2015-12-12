@@ -28,9 +28,13 @@ var config = function config($stateProvider, $urlRouterProvider, uiGmapGoogleMap
     controller: 'ProfileController as vm',
     templateUrl: 'templates/app-user/profile.tpl.html'
   }).state('root.single', {
-    url: '/single',
+    url: '/single/:id',
     controller: 'SingleController as vm',
     templateUrl: 'templates/app-user/single.tpl.html'
+  }).state('root.edit', {
+    url: '/single/:id',
+    controller: 'EditController as vm',
+    templateUrl: 'templates/app-user/edit.tpl.html'
   }).state('root.map', {
     url: '/map',
     controller: 'MapController as vm',
@@ -77,7 +81,7 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies', 'uiGmapgoogle
   }
 }).config(_config2['default']);
 
-},{"./config":1,"angular":26,"angular-cookies":18,"angular-google-maps":19,"angular-simple-logger":20,"angular-ui-router":24,"lodash":27}],3:[function(require,module,exports){
+},{"./config":1,"angular":27,"angular-cookies":19,"angular-google-maps":20,"angular-simple-logger":21,"angular-ui-router":25,"lodash":28}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -151,7 +155,7 @@ var _servicesHomeService2 = _interopRequireDefault(_servicesHomeService);
 
 _angular2['default'].module('app.layout', ['app.core']).controller('HomeController', _controllersHomeController2['default']).service('HomeService', _servicesHomeService2['default']);
 
-},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":26,"angular-ui-router":24}],5:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/home.controller":3,"./services/home.service":5,"angular":27,"angular-ui-router":25}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -284,7 +288,7 @@ _angular2['default'].module('app.map', ['app.core']).controller('MapController',
 
 // .directive('mapDirective', mapDirective)
 
-},{"../app-core/index":2,"./controllers/map.controller":6,"./services/map.service":8,"angular":26}],8:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/map.controller":6,"./services/map.service":8,"angular":27}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -312,6 +316,19 @@ exports['default'] = MapService;
 module.exports = exports['default'];
 
 },{}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var EditController = function EditController() {};
+
+EditController.$inject = [];
+
+exports["default"] = EditController;
+module.exports = exports["default"];
+
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -340,7 +357,7 @@ PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams
 exports['default'] = PetRegController;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -373,21 +390,22 @@ ProfileController.$inject = ['$scope', 'ProfileService', '$state'];
 exports['default'] = ProfileController;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SingleController = function SingleController($scope, SingleService, $state) {
+var SingleController = function SingleController($scope, SingleService, $state, $stateParams) {
 
   var vm = this;
 
-  function getPet(id) {
-    SingleService.getPet(id).then(function (res) {
-      vm.pet = res.data.pets;
-    });
-  }
+  var petId = $stateParams.id;
+
+  SingleService.getPet(petId).then(function (res) {
+    console.log(res);
+    vm.pet = res.data.pets.pet_id;
+  });
 
   // Edit pet
   // $scope.editPet = function (id) {
@@ -406,12 +424,12 @@ var SingleController = function SingleController($scope, SingleService, $state) 
   // }
 };
 
-SingleController.$inject = ['$scope', 'SingleService', '$state'];
+SingleController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
 
 exports['default'] = SingleController;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -434,6 +452,10 @@ var _controllersSingleController = require('./controllers/single.controller');
 
 var _controllersSingleController2 = _interopRequireDefault(_controllersSingleController);
 
+var _controllersEditController = require('./controllers/edit.controller');
+
+var _controllersEditController2 = _interopRequireDefault(_controllersEditController);
+
 var _servicesPetRegService = require('./services/pet-reg.service');
 
 var _servicesPetRegService2 = _interopRequireDefault(_servicesPetRegService);
@@ -448,7 +470,7 @@ var _servicesSingleService2 = _interopRequireDefault(_servicesSingleService);
 
 _angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).controller('SingleController', _controllersSingleController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']).service('SingleService', _servicesSingleService2['default']);
 
-},{"../app-core/index":2,"./controllers/pet-reg.controller":9,"./controllers/profile.controller":10,"./controllers/single.controller":11,"./services/pet-reg.service":13,"./services/profile.service":14,"./services/single.service":15,"angular":26}],13:[function(require,module,exports){
+},{"../app-core/index":2,"./controllers/edit.controller":9,"./controllers/pet-reg.controller":10,"./controllers/profile.controller":11,"./controllers/single.controller":12,"./services/pet-reg.service":14,"./services/profile.service":15,"./services/single.service":16,"angular":27}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -506,7 +528,7 @@ PetRegService.$inject = ['$http', 'SERVER', '$cookies', '$state'];
 exports['default'] = PetRegService;
 module.exports = exports['default'];
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -534,35 +556,37 @@ ProfileService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
 exports['default'] = ProfileService;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SingleService = function SingleService($state, $http, SERVER, $cookies) {
+var SingleService = function SingleService($state, $stateParams, $http, SERVER, $cookies) {
 
   // Display user's single pet
   // Get user by id
-  var url = SERVER.URL + 'users';
+  var url = SERVER.URL + 'pets';
+
+  var petId = $stateParams.id;
 
   this.getPet = getPet;
 
-  function getPet() {
-    var userId = $cookies.get('user_id');
-    return $http.get(url + '/' + userId + '/pets' + 'pet_id', SERVER.CONFIG);
+  function getPet(petId) {
+    // let userId = $cookies.get('user_id');
+    return $http.get(url + '/' + petId, SERVER.CONFIG);
   }
 
   // Edit pet
   function editPet() {}
 };
 
-SingleService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
+SingleService.$inject = ['$state', '$stateParams', '$http', 'SERVER', '$cookies'];
 
 exports['default'] = SingleService;
 module.exports = exports['default'];
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -589,7 +613,7 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.user', 'app.m
   });
 });
 
-},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":12,"angular":26,"angular-ui-router":24}],17:[function(require,module,exports){
+},{"./app-core/index":2,"./app-layout/index":4,"./app-map/index":7,"./app-user/index":13,"angular":27,"angular-ui-router":25}],18:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -912,11 +936,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":17}],19:[function(require,module,exports){
+},{"./angular-cookies":18}],20:[function(require,module,exports){
 /*! angular-google-maps 2.2.1 2015-09-11
  *  AngularJS directives for Google Maps
  *  git: https://github.com/angular-ui/angular-google-maps.git
@@ -16356,7 +16380,7 @@ angular.module('uiGmapgoogle-maps.extensions')
   };
 }]);
 }( window,angular));
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
  *  angular-simple-logger
  *
@@ -16496,7 +16520,7 @@ angular.module('nemLogging').provider('nemSimpleLogger', [
   }
 ]);
 
-},{"angular":26,"debug":21}],21:[function(require,module,exports){
+},{"angular":27,"debug":22}],22:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -16666,7 +16690,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":22}],22:[function(require,module,exports){
+},{"./debug":23}],23:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -16865,7 +16889,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":23}],23:[function(require,module,exports){
+},{"ms":24}],24:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -16992,7 +17016,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -21363,7 +21387,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -50382,11 +50406,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":25}],27:[function(require,module,exports){
+},{"./angular":26}],28:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -62742,7 +62766,7 @@ module.exports = angular;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}]},{},[16])
+},{}]},{},[17])
 
 
 //# sourceMappingURL=main.js.map

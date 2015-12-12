@@ -1,13 +1,13 @@
-let SingleController = function($scope, SingleService, $state) {
+let SingleController = function($scope, SingleService, $state, $stateParams) {
   
   let vm = this;
 
-  function getPet (id) {
-    SingleService.getPet(id).then( (res) => {
-      vm.pet = res.data.pets;    
-    });
+  let petId = $stateParams.id;
 
-  }
+  SingleService.getPet(petId).then( (res) => {
+    console.log(res);
+    vm.pet = res.data.pets.pet_id;    
+  });
 
   // Edit pet
   // $scope.editPet = function (id) {
@@ -27,6 +27,6 @@ let SingleController = function($scope, SingleService, $state) {
 
 };
 
-SingleController.$inject = ['$scope', 'SingleService', '$state'];
+SingleController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
 
 export default SingleController;

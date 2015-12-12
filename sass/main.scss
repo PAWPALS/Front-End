@@ -117,6 +117,56 @@ nav {
 
 }
 
+.single {
+  width: 40%;
+  margin: auto;
+
+
+  h5 {
+
+  }
+
+  .single-pet {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
+  }
+
+  ul {
+    margin: 2em;
+
+    li img {
+      width: 10em;
+      height: 10em;
+      border-radius: .25em;
+      margin-bottom: 2em;
+    }
+  }
+
+  .buttons-single {
+    width: 42%;
+    margin: auto;
+    margin-top: 1em;
+
+    button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+    }
+  }
+
+  .button-lost {
+    width: 20%;
+    margin-top: auto;
+    margin-top: 1em;
+
+    button {
+      border-radius: .25em;
+      background-color: #E42102;
+    }
+  }
+
+
+}
+
 .pet-reg {
   width: 30%;
   margin: auto;

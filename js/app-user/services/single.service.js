@@ -1,14 +1,17 @@
-let SingleService = function($state, $http, SERVER, $cookies) {
+let SingleService = function($state, $stateParams, $http, SERVER, $cookies) {
  
   // Display user's single pet
   // Get user by id 
-  let url = SERVER.URL + 'users';
+  let url = SERVER.URL + 'pets';
+
+  let petId = $stateParams.id;
+
 
   this.getPet = getPet;
 
-  function getPet() {
-    let userId = $cookies.get('user_id');
-    return $http.get(url + '/' + userId + '/pets' + 'pet_id', SERVER.CONFIG);
+  function getPet(petId) {
+    // let userId = $cookies.get('user_id');
+    return $http.get(url + '/' + petId, SERVER.CONFIG);
   } 
 
   // Edit pet
@@ -19,6 +22,6 @@ let SingleService = function($state, $http, SERVER, $cookies) {
 
 };
 
-SingleService.$inject = ['$state', '$http', 'SERVER', '$cookies'];
+SingleService.$inject = ['$state', '$stateParams', '$http', 'SERVER', '$cookies'];
 
 export default SingleService;
