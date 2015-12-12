@@ -1,12 +1,15 @@
 <div class="map">
   
+  <div>
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
 
-  <div><ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
+      <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'">
+      </ui-gmap-markers>
+      
+    </ui-gmap-google-map>
   </div>
 
-
   <div class="lost">
-
     <ul ng-repeat="pet in vm.pets" ng-hide="pet.present">
       <li><img ng-src="{{ pet.picture }}"></li>
       <li>{{ pet.name }}</li>
@@ -15,7 +18,6 @@
       <li>{{ pet.description }}</li>
       <hr>
     </ul>
-    
   </div>
 
 </div>

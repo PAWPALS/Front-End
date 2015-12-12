@@ -4,26 +4,33 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
 
   let petId = $stateParams.id;
 
+  // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
     console.log(res);
     vm.pet = res.data.pets.pet_id;    
   });
 
   // Edit pet
-  // $scope.editPet = function (id) {
-  //   SingleService.editPet(id).then( (res) => {
-
-  //   });
-
-  // }
+  // Send to edit view
+  $scope.editPet = function (petId) {
+    $state.go('root.edit');
+  };
 
   // Delete pet
-  // $scope.deletePet = function (id) {
-  //   SingleService.delete(id).then( (res => {
-  //     console.log(res);
-  //     $state.go('root.profile');
-  //     ));
-  // }
+  $scope.deletePet = function (petId) {
+    SingleService.deletePet(petId).then( (res) => {
+      console.log(res);
+      $state.go('root.profile');
+    });
+  };
+
+  // Lost pet alert
+  $scope.lostPet = function (petId) {
+    SingleService.lostPet(petId).then( (res) => {
+      console.log(res);
+      $state.go('root.single');
+    });
+  };  
 
 };
 

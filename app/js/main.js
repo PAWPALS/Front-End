@@ -32,7 +32,7 @@ var config = function config($stateProvider, $urlRouterProvider, uiGmapGoogleMap
     controller: 'SingleController as vm',
     templateUrl: 'templates/app-user/single.tpl.html'
   }).state('root.edit', {
-    url: '/single/:id',
+    url: '/edit/:id',
     controller: 'EditController as vm',
     templateUrl: 'templates/app-user/edit.tpl.html'
   }).state('root.map', {
@@ -239,11 +239,49 @@ var MapController = function MapController($scope, MapService, uiGmapGoogleMapAp
   var vm = this;
 
   // Map
-  $scope.map = { center: { latitude: 33.7490000, longitude: -84.3879800 }, zoom: 14 };
+  $scope.map = {
+    center: { latitude: 33.7490000, longitude: -84.3879800 }, zoom: 14
+  };
 
-  $scope.options = { scrollwheel: false };
+  $scope.options = {
+    scrollwheel: false
+  };
 
   // Markers
+  var createRandomMarker = function createRandomMarker(i, bounds, idKey) {
+    var lat_min = bounds.southwest.latitude,
+        lat_range = bounds.northeast.latitude - lat_min,
+        lng_min = bounds.southwest.longitude,
+        lng_range = bounds.northeast.longitude - lng_min;
+
+    if (idKey === null) {
+      idKey = "id";
+    }
+
+    var latitude = lat_min + Math.random() * lat_range;
+    var longitude = lng_min + Math.random() * lng_range;
+    var ret = {
+      latitude: latitude,
+      longitude: longitude,
+      title: 'm' + i
+    };
+    ret[idKey] = i;
+    return ret;
+  };
+  $scope.randomMarkers = [];
+  // Get the bounds from the map once it's loaded
+  $scope.$watch(function () {
+    return $scope.map.bounds;
+  }, function (nv, ov) {
+    // Only need to regenerate once
+    if (!ov.southwest && nv.southwest) {
+      var markers = [];
+      for (var i = 0; i < 50; i++) {
+        markers.push(createRandomMarker(i, $scope.map.bounds));
+      }
+      $scope.randomMarkers = markers;
+    }
+  }, true);
 
   // Show all pets
   vm.pets = [];
@@ -305,6 +343,7 @@ var MapService = function MapService($http, SERVER, $cookies, $state) {
     return $http.get(url, SERVER.CONFIG);
   }
 
+  // Drop markers of lost pets
   // function setMarker() {
 
   // }
@@ -316,17 +355,25 @@ exports['default'] = MapService;
 module.exports = exports['default'];
 
 },{}],9:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditController = function EditController() {};
+var EditController = function EditController($scope, SingleService, $state, $stateParams) {
 
-EditController.$inject = [];
+  $scope.editPet = function (petId) {
+    SingleService.editPet(petId).then(function (res) {
+      console.log(res);
+      $state.go('root.profile');
+    });
+  };
+};
 
-exports["default"] = EditController;
-module.exports = exports["default"];
+EditController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
+
+exports['default'] = EditController;
+module.exports = exports['default'];
 
 },{}],10:[function(require,module,exports){
 'use strict';
@@ -380,6 +427,8 @@ var ProfileController = function ProfileController($scope, ProfileService, $stat
     });
   }
 
+  // Add a pet
+  // Go to pet registration
   $scope.addPet = function () {
     $state.go('root.pet-reg');
   };
@@ -402,26 +451,33 @@ var SingleController = function SingleController($scope, SingleService, $state, 
 
   var petId = $stateParams.id;
 
+  // Get a single pet by id
   SingleService.getPet(petId).then(function (res) {
     console.log(res);
     vm.pet = res.data.pets.pet_id;
   });
 
   // Edit pet
-  // $scope.editPet = function (id) {
-  //   SingleService.editPet(id).then( (res) => {
-
-  //   });
-
-  // }
+  // Send to edit view
+  $scope.editPet = function (petId) {
+    $state.go('root.edit');
+  };
 
   // Delete pet
-  // $scope.deletePet = function (id) {
-  //   SingleService.delete(id).then( (res => {
-  //     console.log(res);
-  //     $state.go('root.profile');
-  //     ));
-  // }
+  $scope.deletePet = function (petId) {
+    SingleService.deletePet(petId).then(function (res) {
+      console.log(res);
+      $state.go('root.profile');
+    });
+  };
+
+  // Lost pet alert
+  $scope.lostPet = function (petId) {
+    SingleService.lostPet(petId).then(function (res) {
+      console.log(res);
+      $state.go('root.single');
+    });
+  };
 };
 
 SingleController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
@@ -468,7 +524,7 @@ var _servicesSingleService = require('./services/single.service');
 
 var _servicesSingleService2 = _interopRequireDefault(_servicesSingleService);
 
-_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).controller('SingleController', _controllersSingleController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']).service('SingleService', _servicesSingleService2['default']);
+_angular2['default'].module('app.user', ['app.core']).controller('PetRegController', _controllersPetRegController2['default']).controller('ProfileController', _controllersProfileController2['default']).controller('SingleController', _controllersSingleController2['default']).controller('EditController', _controllersEditController2['default']).service('PetRegService', _servicesPetRegService2['default']).service('ProfileService', _servicesProfileService2['default']).service('SingleService', _servicesSingleService2['default']);
 
 },{"../app-core/index":2,"./controllers/edit.controller":9,"./controllers/pet-reg.controller":10,"./controllers/profile.controller":11,"./controllers/single.controller":12,"./services/pet-reg.service":14,"./services/profile.service":15,"./services/single.service":16,"angular":27}],14:[function(require,module,exports){
 'use strict';
@@ -578,7 +634,20 @@ var SingleService = function SingleService($state, $stateParams, $http, SERVER, 
   }
 
   // Edit pet
-  function editPet() {}
+  this.editPet = function (petId) {
+    return $http.get(url + '/' + petId, SERVER.CONFIG);
+  };
+
+  // Delete pet
+  this.deletePet = function (petId) {
+    return $http.get(url + '/' + petId, SERVER.CONFIG);
+  };
+
+  // Lost pet alert
+  // Change pet present from true to false
+  this.lostPet = function (petId) {
+    return $http.get(url + '/' + petId, SERVER.CONFIG);
+  };
 };
 
 SingleService.$inject = ['$state', '$stateParams', '$http', 'SERVER', '$cookies'];

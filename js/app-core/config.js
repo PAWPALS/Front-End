@@ -33,7 +33,7 @@ let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProv
       templateUrl: 'templates/app-user/single.tpl.html'
     })
     .state('root.edit', {
-      url: '/single/:id',
+      url: '/edit/:id',
       controller: 'EditController as vm',
       templateUrl: 'templates/app-user/edit.tpl.html'
     })
