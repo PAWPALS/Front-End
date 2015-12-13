@@ -15,9 +15,9 @@ ul {
   height: 3rem;
 
   .title-area .name a {
-    color: #353535;
+    color: #E42102;
     font-size: 1.2rem;
-
+    font-family: 'Roboto', sans-serif;
   }
 }
 
@@ -36,7 +36,8 @@ nav {
   .top-bar-section li a:not(.button) {
       background: #FFFFFF !important;
       color: #84878B; 
-      font-size: 0.90rem 
+      font-size: 0.90rem;
+      font-family: 'Roboto', sans-serif; 
   }
 
   .top-bar-section li a:not(.button):hover {
@@ -45,11 +46,11 @@ nav {
   }
 
   .top-bar-section ul li.active > a {
-      background: #FFFFFF !important;   
+      background: #666670 !important;   
   }
 
   .top-bar-section ul li.active > a:hover {
-      background: #FFFFFF !important;   
+      background: #666670 !important;   
   }
 }
 
@@ -76,12 +77,37 @@ nav {
   }
 }
 
+.pet-reg {
+  width: 30%;
+  margin: auto;
+
+  h5 {
+    color: #666670;
+  }
+
+  form {
+
+    input {
+      border-radius: .25em;
+    }
+
+    textarea {
+      border-radius: .25em;
+    }
+  }
+
+  button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+  }
+}
+
 .profile {
   width: 40%;
   margin: auto;
 
-  h6 {
-
+  h5 {
+    color: #666670;
   }
 
   .profile-list {
@@ -96,8 +122,8 @@ nav {
 
       li {
         img {
-        width: 10em;
-        height: 10em;
+        width: 15em;
+        height: 15em;
         border-radius: .25em;
         margin-bottom: 2em;
         }
@@ -130,7 +156,7 @@ nav {
 
 
   h5 {
-
+    color: #666670;
   }
 
   .single-pet {
@@ -142,8 +168,8 @@ nav {
     margin: 2em;
 
     li img {
-      width: 10em;
-      height: 10em;
+      width: 15em;
+        height: 15em;
       border-radius: .25em;
       margin-bottom: 2em;
     }
@@ -174,12 +200,12 @@ nav {
 
 }
 
-.pet-reg {
+.edit {
   width: 30%;
   margin: auto;
 
-  h2 {
-
+  h5 {
+    color: #666670;
   }
 
   form {

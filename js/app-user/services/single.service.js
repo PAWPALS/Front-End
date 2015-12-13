@@ -1,16 +1,14 @@
 let SingleService = function($state, $stateParams, $http, SERVER, $cookies) {
  
-  // Display user's single pet
-  // Get user by id 
+  // Display single pet
   let url = SERVER.URL + 'pets';
 
+  // Get pet single pet id from state params
   let petId = $stateParams.id;
-
 
   this.getPet = getPet;
 
   function getPet(petId) {
-    // let userId = $cookies.get('user_id');
     return $http.get(url + '/' + petId, SERVER.CONFIG);
   }
 
@@ -21,7 +19,7 @@ let SingleService = function($state, $stateParams, $http, SERVER, $cookies) {
 
   // Delete pet
   this.deletePet = function(petId) {
-    return $http.get(url + '/' + petId, SERVER.CONFIG);
+    return $http.delete(url + '/' + petId, SERVER.CONFIG);
   };
 
   // Lost pet alert

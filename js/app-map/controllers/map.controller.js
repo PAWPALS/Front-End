@@ -27,8 +27,6 @@ let MapController = function($scope, MapService, uiGmapGoogleMapApi, $state) {
     } 
   };
 
-
-
   $scope.options = {
     scrollwheel: false
   };
@@ -44,19 +42,16 @@ let MapController = function($scope, MapService, uiGmapGoogleMapApi, $state) {
   };
 
   // Array of markers
-  $scope.markers = [];
+  // $scope.markers = [];
 
+  
   // Get request
+
   // $http.get()
   //   .success(function(res) {
   //     $scope.markers = res;
   //   });
 
-
-
-
-
-  
 
 };
 

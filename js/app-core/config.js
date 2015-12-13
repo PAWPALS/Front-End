@@ -37,6 +37,11 @@ let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProv
       controller: 'EditController as vm',
       templateUrl: 'templates/app-user/edit.tpl.html'
     })
+    .state('root.lost', {
+      url: '/lost/:id',
+      controller: 'LostController as vm',
+      templateUrl: 'templates/app-user/lost.tpl.html'
+    })
     .state('root.map', {
       url: '/map',
       controller: 'MapController as vm',

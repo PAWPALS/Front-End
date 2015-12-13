@@ -8414,8 +8414,9 @@ ul {
   background: #FFFFFF;
   height: 3rem; }
   .top-bar .title-area .name a {
-    color: #353535;
-    font-size: 1.2rem; }
+    color: #E42102;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif; }
 
 nav {
   border-bottom: 1px solid #EDEEEE; }
@@ -8426,14 +8427,15 @@ nav {
   nav .top-bar-section li a:not(.button) {
     background: #FFFFFF !important;
     color: #84878B;
-    font-size: 0.90rem; }
+    font-size: 0.90rem;
+    font-family: 'Roboto', sans-serif; }
   nav .top-bar-section li a:not(.button):hover {
     background: #FFFFFF !important;
     color: #09477D; }
   nav .top-bar-section ul li.active > a {
-    background: #FFFFFF !important; }
+    background: #666670 !important; }
   nav .top-bar-section ul li.active > a:hover {
-    background: #FFFFFF !important; }
+    background: #666670 !important; }
 
 .home {
   width: 30%;
@@ -8449,9 +8451,24 @@ nav {
       border-radius: .25em;
       background-color: #DCDCDC; }
 
+.pet-reg {
+  width: 30%;
+  margin: auto; }
+  .pet-reg h5 {
+    color: #666670; }
+  .pet-reg form input {
+    border-radius: .25em; }
+  .pet-reg form textarea {
+    border-radius: .25em; }
+  .pet-reg button {
+    border-radius: .25em;
+    background-color: #DCDCDC; }
+
 .profile {
   width: 40%;
   margin: auto; }
+  .profile h5 {
+    color: #666670; }
   .profile .profile-list {
     border: .1em solid #EDEEEE;
     border-radius: .25em;
@@ -8460,8 +8477,8 @@ nav {
       margin: 2em;
       overflow: hidden; }
       .profile .profile-list ul li img {
-        width: 10em;
-        height: 10em;
+        width: 15em;
+        height: 15em;
         border-radius: .25em;
         margin-bottom: 2em; }
       .profile .profile-list ul li a {
@@ -8478,14 +8495,16 @@ nav {
 .single {
   width: 40%;
   margin: auto; }
+  .single h5 {
+    color: #666670; }
   .single .single-pet {
     border: .1em solid #EDEEEE;
     border-radius: .25em; }
   .single ul {
     margin: 2em; }
     .single ul li img {
-      width: 10em;
-      height: 10em;
+      width: 15em;
+      height: 15em;
       border-radius: .25em;
       margin-bottom: 2em; }
   .single .buttons-single {
@@ -8503,14 +8522,16 @@ nav {
       border-radius: .25em;
       background-color: #E42102; }
 
-.pet-reg {
+.edit {
   width: 30%;
   margin: auto; }
-  .pet-reg form input {
+  .edit h5 {
+    color: #666670; }
+  .edit form input {
     border-radius: .25em; }
-  .pet-reg form textarea {
+  .edit form textarea {
     border-radius: .25em; }
-  .pet-reg button {
+  .edit button {
     border-radius: .25em;
     background-color: #DCDCDC; }
 

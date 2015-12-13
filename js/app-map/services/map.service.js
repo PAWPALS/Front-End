@@ -6,13 +6,9 @@ let MapService = function($http, SERVER, $cookies, $state) {
   this.getPets = getPets;
 
   function getPets(obj) {
+    console.log(obj);
     return $http.get(url, SERVER.CONFIG);
   }
-
-  // Drop markers of lost pets
-  // function setMarker() {
-
-  // }
 
 };
 

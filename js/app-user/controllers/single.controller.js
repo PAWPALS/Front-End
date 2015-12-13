@@ -1,13 +1,13 @@
 let SingleController = function($scope, SingleService, $state, $stateParams) {
   
-  let vm = this;
+  // let vm = this;
 
   let petId = $stateParams.id;
 
   // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
     console.log(res);
-    vm.pet = res.data.pets.pet_id;    
+    $scope.pet = res.data;  
   });
 
   // Edit pet
@@ -18,7 +18,7 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
 
   // Delete pet
   $scope.deletePet = function (petId) {
-    SingleService.deletePet(petId).then( (res) => {
+    SingleService.delete(petId).then( (res) => {
       console.log(res);
       $state.go('root.profile');
     });
@@ -26,10 +26,7 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
 
   // Lost pet alert
   $scope.lostPet = function (petId) {
-    SingleService.lostPet(petId).then( (res) => {
-      console.log(res);
-      $state.go('root.single');
-    });
+    $state.go('root.lost');
   };  
 
 };
