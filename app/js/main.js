@@ -412,7 +412,7 @@ var EditController = function EditController($scope, SingleService, $state, $sta
   // Get a single pet by id
   SingleService.getPet(petId).then(function (res) {
     console.log(res);
-    vm.pet = res.data.pets.pet_id;
+    $scope.pet = res.data.pets.pet_id;
   });
 
   $scope.editPet = function (petId) {

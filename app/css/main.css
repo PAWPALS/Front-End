@@ -8600,26 +8600,6 @@ nav {
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
-<<<<<<< HEAD
-  margin: 2em;
-  height: 900px; }
-  .map div {
-    display: inline-block; }
-    .map div .angular-google-map {
-      display: block; }
-    .map div .angular-google-map-container {
-      height: 500px;
-      width: 500px; }
-    .map div .lost {
-      width: 30%;
-      height: 37.500em;
-      overflow-y: scroll; }
-      .map div .lost ul {
-        overflow: hidden; }
-        .map div .lost ul li img {
-          width: 20%;
-          height: 20%; }
-=======
   margin-top: 2em; }
   .map .lost-map {
     display: inline;
@@ -8639,6 +8619,5 @@ nav {
       .map .lost ul li img {
         width: 40%;
         height: 40%; }
->>>>>>> de3d43d7e230c1b6590b8954464acdf0c7bd7343
 
 /*# sourceMappingURL=main.css.map */

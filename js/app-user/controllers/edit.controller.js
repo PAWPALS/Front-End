@@ -7,7 +7,7 @@ let EditController = function($scope, SingleService, $state, $stateParams) {
   // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
     console.log(res);
-    vm.pet = res.data.pets.pet_id;    
+    $scope.pet = res.data.pets.pet_id;    
   });
   
   $scope.editPet = function (petId) {
