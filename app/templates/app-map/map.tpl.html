@@ -4,14 +4,13 @@
     <div class="lost-map">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" bounds="map.bounds">
 
-       <!--  <ui-gmap-markers models="markers" coords="self" icon="'icon'">
-        </ui-gmap-markers> -->
+        <ui-gmap-marker ng-repeat="marker in vm.lostPets" coords="marker.coords" idkey="marker.id">
 
       </ui-gmap-google-map>
     </div>
 
     <div class="lost">
-      <ul ng-repeat="pet in vm.pets">
+      <ul ng-repeat="pet in vm.pets" ng-show="isLost()">
         <li><img ng-src="{{ pet.picture }}"></li>
         <li>{{ pet.name }}</li>
         <li>age {{ pet.age }}</li>
