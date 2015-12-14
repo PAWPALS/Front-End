@@ -8,16 +8,17 @@ let SingleService = function($state, $stateParams, $http, SERVER, $cookies) {
 
   this.getPet = getPet;
 
+  // Get single pet
   function getPet(petId) {
     return $http.get(url + '/' + petId, SERVER.CONFIG);
   }
 
-  // Edit pet
+  // Edit single pet
   this.editPet = function(petId) {
-    return $http.get(url + '/' + petId, SERVER.CONFIG);
+    return $http.put(url + '/' + petId, SERVER.CONFIG);
   };
 
-  // Delete pet
+  // Delete single pet
   this.deletePet = function(petId) {
     return $http.delete(url + '/' + petId, SERVER.CONFIG);
   };

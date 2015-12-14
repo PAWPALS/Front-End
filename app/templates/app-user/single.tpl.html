@@ -14,8 +14,8 @@
   </div>
 
   <div class="buttons-single">
-    <button ng-click="editPet(petId)">Edit</button>
-    <button ng-click="deletePet(petId)">Delete</button>
+    <button ng-click="editPet(petId)"><a href="#/edit/{{ pet.pet_id }}">Edit</a></button>
+    <button ng-click="deletePet(petId)"><a href="#/delete/{{ pet.pet_id }}">Delete</a></button>
   </div>
  <!--  <div class="button-lost">
     <button ng-click="lostPet(petId)">Lost</button>

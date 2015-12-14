@@ -10,12 +10,6 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
     $scope.pet = res.data.pet;  
   });
 
-  // Edit pet
-  // Send to edit view
-  $scope.editPet = function (petId) {
-    $state.go('root.edit');
-  };
-
   // Delete pet
   $scope.deletePet = function (petId) {
     SingleService.deletePet(petId).then( (res) => {
@@ -25,9 +19,9 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
   };
 
   // Lost pet alert
-  $scope.lostPet = function (petId) {
-    $state.go('root.lost');
-  };  
+  // $scope.lostPet = function (petId) {
+  //   $state.go('root.lost');
+  // };  
 
 };
 
