@@ -35,6 +35,10 @@ var config = function config($stateProvider, $urlRouterProvider, uiGmapGoogleMap
     url: '/edit/:id',
     controller: 'EditController as vm',
     templateUrl: 'templates/app-user/edit.tpl.html'
+  }).state('root.delete', {
+    url: '/delete/:id',
+    controller: 'SingleController as vm',
+    templateUrl: 'templates/app-user/single.tpl.html'
   }).state('root.lost', {
     url: '/lost/:id',
     controller: 'LostController as vm',
@@ -241,6 +245,7 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
   var vm = this;
 
   vm.pets = [];
+  vm.lostPets = [];
 
   // Show all lost pets in sidebar
   getPets();
@@ -252,12 +257,31 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
     });
   }
 
+  // Show pets with present = no
+  $scope.isLost = function () {
+    if (vm.pets.present === "no") return false;
+  };
+
   // Get coordinates of pets for markers
   lostPets();
 
   function lostPets() {
     MapService.lostPets().then(function (res) {
       console.log(res);
+
+      var lost = [];
+      res.data.lost_pets_coordinates.forEach(function (pet, i) {
+        lost.push({
+          id: i,
+          coords: {
+            latitude: pet.latitude,
+            longitude: pet.longitude
+          }
+        });
+      });
+
+      vm.lostPets = lost;
+
       vm.pets = res.data.lost_pets_coordinates;
     });
   }
@@ -275,43 +299,6 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
   $scope.options = {
     scrollwheel: true
   };
-
-  // Create Marker
-  // var createMarker = function(i, bounds, idKey) {
-  //   var lat_min = bounds.southwest.latitude,
-  //     lat_range = bounds.northeast.latitude - lat_min,
-  //     lng_min = bounds.southwest.longitude,
-  //     lng_range = bounds.northeast.longitude - lng_min;
-
-  //   if (idKey === null) {
-  //     idKey = "id";
-  //   }
-
-  //   var latitude = lat_min + (Math.random() * lat_range);
-  //   var longitude = lng_min + (Math.random() * lng_range);   
-  //   var ret = {
-  //     latitude: latitude,
-  //     longitude: longitude,
-  //     title: 'm' + i
-  //   };
-  //   ret[idKey] = i;
-  //   return ret;
-  // };
-  // // Array of markers
-  // $scope.markers = [];
-  // // Get the bounds from the map once it's loaded
-  // $scope.$watch(function() {
-  //   return $scope.map.bounds;
-  // }, function(nv, ov) {
-  //   // Only need to regenerate once
-  //   if (!ov.southwest && nv.southwest) {
-  //     var markers = [];
-  //     for (var i = 0; i < 50; i++) {
-  //       markers.push(createMarker(i, $scope.map.bounds));
-  //     }
-  //     $scope.markers = markers;
-  //   }
-  // }, true);
 };
 
 MapController.$inject = ['$scope', 'LostService', 'MapService', 'uiGmapGoogleMapApi', '$state'];
@@ -407,7 +394,7 @@ var EditController = function EditController($scope, SingleService, $state, $sta
   // Get a single pet by id
   SingleService.getPet(petId).then(function (res) {
     console.log(res);
-    vm.pet = res.data.pets.pet_id;
+    $scope.pet = res.data.pet;
   });
 
   $scope.editPet = function (petId) {
@@ -519,12 +506,6 @@ var SingleController = function SingleController($scope, SingleService, $state, 
     $scope.pet = res.data.pet;
   });
 
-  // Edit pet
-  // Send to edit view
-  $scope.editPet = function (petId) {
-    $state.go('root.edit');
-  };
-
   // Delete pet
   $scope.deletePet = function (petId) {
     SingleService.deletePet(petId).then(function (res) {
@@ -534,9 +515,9 @@ var SingleController = function SingleController($scope, SingleService, $state, 
   };
 
   // Lost pet alert
-  $scope.lostPet = function (petId) {
-    $state.go('root.lost');
-  };
+  // $scope.lostPet = function (petId) {
+  //   $state.go('root.lost');
+  // };
 };
 
 SingleController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
@@ -675,16 +656,17 @@ var SingleService = function SingleService($state, $stateParams, $http, SERVER, 
 
   this.getPet = getPet;
 
+  // Get single pet
   function getPet(petId) {
     return $http.get(url + '/' + petId, SERVER.CONFIG);
   }
 
-  // Edit pet
+  // Edit single pet
   this.editPet = function (petId) {
-    return $http.get(url + '/' + petId, SERVER.CONFIG);
+    return $http.put(url + '/' + petId, SERVER.CONFIG);
   };
 
-  // Delete pet
+  // Delete single pet
   this.deletePet = function (petId) {
     return $http['delete'](url + '/' + petId, SERVER.CONFIG);
   };
