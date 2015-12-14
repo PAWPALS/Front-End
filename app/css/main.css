@@ -8474,8 +8474,9 @@ ul {
   background: #FFFFFF;
   height: 3rem; }
   .top-bar .title-area .name a {
-    color: #353535;
-    font-size: 1.2rem; }
+    color: #E42102;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif; }
 
 nav {
   border-bottom: 1px solid #EDEEEE; }
@@ -8486,14 +8487,15 @@ nav {
   nav .top-bar-section li a:not(.button) {
     background: #FFFFFF !important;
     color: #84878B;
-    font-size: 0.90rem; }
+    font-size: 0.90rem;
+    font-family: 'Roboto', sans-serif; }
   nav .top-bar-section li a:not(.button):hover {
     background: #FFFFFF !important;
     color: #09477D; }
   nav .top-bar-section ul li.active > a {
-    background: #FFFFFF !important; }
+    background: #666670 !important; }
   nav .top-bar-section ul li.active > a:hover {
-    background: #FFFFFF !important; }
+    background: #666670 !important; }
 
 .home {
   width: 30%;
@@ -8509,32 +8511,11 @@ nav {
       border-radius: .25em;
       background-color: #DCDCDC; }
 
-.profile {
-  width: 40%;
-  margin: auto; }
-  .profile .profile-list {
-    border: .1em solid #EDEEEE;
-    border-radius: .25em;
-    overflow-y: scroll; }
-    .profile .profile-list ul {
-      margin: 2em;
-      overflow: hidden; }
-      .profile .profile-list ul li img {
-        width: 10em;
-        height: 10em;
-        border-radius: .25em;
-        margin-bottom: 2em; }
-  .profile .buttons {
-    width: 62%;
-    margin: auto;
-    margin-top: 1em; }
-    .profile .buttons button {
-      border-radius: .25em;
-      background-color: #DCDCDC; }
-
 .pet-reg {
   width: 30%;
   margin: auto; }
+  .pet-reg h5 {
+    color: #666670; }
   .pet-reg form input {
     border-radius: .25em; }
   .pet-reg form textarea {
@@ -8543,11 +8524,83 @@ nav {
     border-radius: .25em;
     background-color: #DCDCDC; }
 
+.profile {
+  width: 40%;
+  margin: auto; }
+  .profile h5 {
+    color: #666670; }
+  .profile .profile-list {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
+    overflow-y: scroll; }
+    .profile .profile-list ul {
+      margin: 2em;
+      overflow: hidden; }
+      .profile .profile-list ul li img {
+        width: 50%;
+        height: 50%;
+        border-radius: .25em;
+        margin-bottom: 2em; }
+      .profile .profile-list ul li a {
+        text-decoration: none;
+        color: grey; }
+  .profile .buttons {
+    width: 62%;
+    margin: auto;
+    margin-top: 1em; }
+    .profile .buttons button {
+      border-radius: .25em;
+      background-color: #DCDCDC; }
+
+.single {
+  width: 40%;
+  margin: auto; }
+  .single h5 {
+    color: #666670; }
+  .single .single-pet {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em; }
+  .single ul {
+    margin: 2em; }
+    .single ul li img {
+      width: 15em;
+      height: 15em;
+      border-radius: .25em;
+      margin-bottom: 2em; }
+  .single .buttons-single {
+    width: 42%;
+    margin: auto;
+    margin-top: 1em; }
+    .single .buttons-single button {
+      border-radius: .25em;
+      background-color: #DCDCDC; }
+  .single .button-lost {
+    width: 20%;
+    margin-top: auto;
+    margin-top: 1em; }
+    .single .button-lost button {
+      border-radius: .25em;
+      background-color: #E42102; }
+
+.edit {
+  width: 30%;
+  margin: auto; }
+  .edit h5 {
+    color: #666670; }
+  .edit form input {
+    border-radius: .25em; }
+  .edit form textarea {
+    border-radius: .25em; }
+  .edit button {
+    border-radius: .25em;
+    background-color: #DCDCDC; }
+
 .map {
-  width: 90%;
+  width: 80%;
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
+<<<<<<< HEAD
   margin: 2em;
   height: 900px; }
   .map div {
@@ -8566,5 +8619,26 @@ nav {
         .map div .lost ul li img {
           width: 20%;
           height: 20%; }
+=======
+  margin-top: 2em; }
+  .map .lost-map {
+    display: inline;
+    float: left; }
+    .map .lost-map .angular-google-map-container {
+      height: 34.375em;
+      width: 34.375em;
+      vertical-align: top; }
+  .map .lost {
+    display: inline;
+    float: left;
+    width: 30%;
+    height: 34.375em;
+    overflow-y: scroll; }
+    .map .lost ul {
+      overflow: hidden; }
+      .map .lost ul li img {
+        width: 40%;
+        height: 40%; }
+>>>>>>> de3d43d7e230c1b6590b8954464acdf0c7bd7343
 
 /*# sourceMappingURL=main.css.map */

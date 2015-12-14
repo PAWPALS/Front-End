@@ -16,9 +16,9 @@ ul {
   height: 3rem;
 
   .title-area .name a {
-    color: #353535;
+    color: #E42102;
     font-size: 1.2rem;
-
+    font-family: 'Roboto', sans-serif;
   }
 }
 
@@ -37,7 +37,8 @@ nav {
   .top-bar-section li a:not(.button) {
       background: #FFFFFF !important;
       color: #84878B; 
-      font-size: 0.90rem 
+      font-size: 0.90rem;
+      font-family: 'Roboto', sans-serif; 
   }
 
   .top-bar-section li a:not(.button):hover {
@@ -46,11 +47,11 @@ nav {
   }
 
   .top-bar-section ul li.active > a {
-      background: #FFFFFF !important;   
+      background: #666670 !important;   
   }
 
   .top-bar-section ul li.active > a:hover {
-      background: #FFFFFF !important;   
+      background: #666670 !important;   
   }
 }
 
@@ -77,53 +78,12 @@ nav {
   }
 }
 
-.profile {
-  width: 40%;
-  margin: auto;
-
-  h6 {
-
-  }
-
-  .profile-list {
-    // width: 100%;
-    border: .1em solid #EDEEEE;
-    border-radius: .25em;
-    overflow-y: scroll;
-
-    ul {
-      margin: 2em;
-      overflow: hidden;
-
-      li img {
-        width: 10em;
-        height: 10em;
-        border-radius: .25em;
-        margin-bottom: 2em;
-      }
-
-    }
-  }
-
-  .buttons {
-    width: 62%;
-    margin: auto;
-    margin-top: 1em;
-
-    button {
-    border-radius: .25em;
-    background-color: #DCDCDC;
-    }
-  }
-
-}
-
 .pet-reg {
   width: 30%;
   margin: auto;
 
-  h2 {
-
+  h5 {
+    color: #666670;
   }
 
   form {
@@ -143,42 +103,184 @@ nav {
   }
 }
 
+.profile {
+  width: 40%;
+  margin: auto;
+
+  h5 {
+    color: #666670;
+  }
+
+  .profile-list {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
+    overflow-y: scroll;
+
+    ul {
+      margin: 2em;
+      overflow: hidden;
+
+      li {
+        img {
+        width: 50%;
+        height: 50%;
+        border-radius: .25em;
+        margin-bottom: 2em;
+        }
+
+        a {
+          text-decoration: none;
+          color: grey;
+        }
+      }
+
+    }
+  }
+
+  .buttons {
+    width: 62%;
+    margin: auto;
+    margin-top: 1em;
+
+    button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+    }
+  }
+
+}
+
+.single {
+  width: 40%;
+  margin: auto;
+
+
+  h5 {
+    color: #666670;
+  }
+
+  .single-pet {
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
+  }
+
+  ul {
+    margin: 2em;
+
+    li img {
+      width: 15em;
+        height: 15em;
+      border-radius: .25em;
+      margin-bottom: 2em;
+    }
+  }
+
+  .buttons-single {
+    width: 42%;
+    margin: auto;
+    margin-top: 1em;
+
+    button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+    }
+  }
+
+  .button-lost {
+    width: 20%;
+    margin-top: auto;
+    margin-top: 1em;
+
+    button {
+      border-radius: .25em;
+      background-color: #E42102;
+    }
+  }
+
+
+}
+
+.edit {
+  width: 30%;
+  margin: auto;
+
+  h5 {
+    color: #666670;
+  }
+
+  form {
+
+    input {
+      border-radius: .25em;
+    }
+
+    textarea {
+      border-radius: .25em;
+    }
+  }
+
+  button {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+  }
+}
+
+// .lost {
+//   width: 30%;
+//   margin: auto;
+
+//   h5 {
+//     color: #666670;
+//   }
+
+//   form {
+
+//     input {
+//       border-radius: .25em;
+//     }
+//   }
+
+//   button {
+//     border-radius: .25em;
+//     background-color: #E42102;
+//   }
+// }
+
 .map {
-  width: 90%;
+  width: 80%;
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
-  margin: 2em;
-  height: 900px;
 
-  div {
-    display: inline-block;
 
-    .angular-google-map {
-      display: block;
-    }
-    
+  .lost-map {
+    display: inline;
+    float: left;
     .angular-google-map-container { 
-      height: 500px;
-      width: 500px; 
+      height: 34.375em;
+      width: 34.375em; 
+      vertical-align: top;
     }
+  }
 
-    .lost {
-      width: 30%;
-      height: 37.500em;
-      overflow-y: scroll;
+  .lost {
+    display: inline;
+    float: left;
+    width: 30%;
+    height: 34.375em;
+    overflow-y: scroll;
 
-      ul {
-        overflow: hidden;
+    ul {
+      overflow: hidden;
 
-        li {
+      li {
 
-          img {
-          width: 20%;
-          height: 20%;
-          }
+        img {
+          width: 40%;
+          height: 40%;
         }
       }
     }
   }
+  
 }

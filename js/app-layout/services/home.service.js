@@ -31,7 +31,6 @@ let HomeService = function($http, SERVER, $cookies, $state) {
     let u = new User(userObj);
 
     return $http.post(SERVER.URL + '/signup', u).then((res) => {
-
       console.log(res);
       $cookies.put('authToken', res.data.user.auth_token);
       $cookies.put('user_id', res.data.user.id);

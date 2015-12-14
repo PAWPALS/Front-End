@@ -3,7 +3,7 @@ let ProfileService = function($state, $http, SERVER, $cookies) {
   console.log(SERVER);
 
   // Display index of users pets
-  // Get user by id 
+  
   let url = SERVER.URL + 'users';
 
   this.getPets = getPets;

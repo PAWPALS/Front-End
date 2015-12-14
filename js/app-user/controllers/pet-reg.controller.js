@@ -1,4 +1,4 @@
-let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
+let PetRegController = function($scope, PetRegService, $cookies, $stateParams, $state) {
   
   let vm = this;
   
@@ -13,11 +13,12 @@ let PetRegController = function($scope, PetRegService, $cookies, $stateParams) {
 
     PetRegService.addPet(petObj, petImage).then( (res) => {
       console.log(res);
+      $state.go('root.profile');
     });
   }
   
 };
 
-PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams'];
+PetRegController.$inject = ['$scope', 'PetRegService', '$cookies', '$stateParams', '$state'];
 
 export default PetRegController;

@@ -1,18 +1,24 @@
 <div class="single">
-  <h5>{{ pet.name }}</h5>
+  <h5>Edit</h5>
 
-  <ul>
-    <li><img ng-src="{{ pet.picture }}"></li>
-    <li>Pet - {{ pet.name }}</li>
-    <li>Age - {{ pet.age }}</li>
-    <li>Breed - {{ pet.breed }}</li>      
-    <li>Desc - {{ pet.description }}</li>
-    <li>Status - {{ pet.present }}</li>
-  </ul>
-  <hr>
+  <div class="single-pet">
+    <ul>
+      <li><img ng-src="{{ pet.picture }}"></li>
+      <li>{{ pet.name }}</li>
+      <li>Age - {{ pet.age }}</li>
+      <li>Breed - {{ pet.breed }}</li>      
+      <li>Desc - {{ pet.description }}</li>
+      <li>Status - {{ pet.present }}</li>
+    </ul>
 
-  <button ng-click="editPet()">Edit</button>
-  <button ng-click="deletPet()">Delete</button>
-  <button ng-click="lostPet()">Lost Pet</button>
+  </div>
+
+  <div class="buttons-single">
+    <button ng-click="editPet(petId)">Edit</button>
+    <button ng-click="deletePet(petId)">Delete</button>
+  </div>
+ <!--  <div class="button-lost">
+    <button ng-click="lostPet(petId)">Lost</button>
+  </div> -->
 
 </div>
