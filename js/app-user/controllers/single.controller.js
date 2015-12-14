@@ -1,32 +1,36 @@
-let SingleController = function($scope, SingleService, $state) {
+let SingleController = function($scope, SingleService, $state, $stateParams) {
   
-  let vm = this;
+  // let vm = this;
 
-  function getPet (id) {
-    SingleService.getPet(id).then( (res) => {
-      vm.pet = res.data.pets;    
-    });
+  let petId = $stateParams.id;
 
-  }
+  // Get a single pet by id
+  SingleService.getPet(petId).then( (res) => {
+    console.log(res);
+    $scope.pet = res.data.pet;  
+  });
 
   // Edit pet
-  // $scope.editPet = function (id) {
-  //   SingleService.editPet(id).then( (res) => {
-
-  //   });
-
-  // }
+  // Send to edit view
+  $scope.editPet = function (petId) {
+    $state.go('root.edit');
+  };
 
   // Delete pet
-  // $scope.deletePet = function (id) {
-  //   SingleService.delete(id).then( (res => {
-  //     console.log(res);
-  //     $state.go('root.profile');
-  //     ));
-  // }
+  $scope.deletePet = function (petId) {
+    SingleService.deletePet(petId).then( (res) => {
+      console.log(res);
+      $state.go('root.profile');
+    });
+  };
+
+  // Lost pet alert
+  $scope.lostPet = function (petId) {
+    $state.go('root.lost');
+  };  
 
 };
 
-SingleController.$inject = ['$scope', 'SingleService', '$state'];
+SingleController.$inject = ['$scope', 'SingleService', '$state', '$stateParams'];
 
 export default SingleController;

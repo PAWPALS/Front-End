@@ -28,9 +28,19 @@ let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProv
       templateUrl: 'templates/app-user/profile.tpl.html'
     })
     .state('root.single', {
-      url: '/single',
+      url: '/single/:id',
       controller: 'SingleController as vm',
       templateUrl: 'templates/app-user/single.tpl.html'
+    })
+    .state('root.edit', {
+      url: '/edit/:id',
+      controller: 'EditController as vm',
+      templateUrl: 'templates/app-user/edit.tpl.html'
+    })
+    .state('root.lost', {
+      url: '/lost/:id',
+      controller: 'LostController as vm',
+      templateUrl: 'templates/app-user/lost.tpl.html'
     })
     .state('root.map', {
       url: '/map',

@@ -1,0 +1,13 @@
+<div class="edit">
+  <h5>Edit</h5>
+
+  <form ng-submit="vm.editPet(petId)">
+    <input ng-model="pet.name">
+    <input ng-model="pet.age">
+    <input ng-model="pet.breed">
+    <textarea ng-model="pet.description" ng-maxlength="250"></textarea>     
+
+  
+    <button>Update</button>
+  </form>
+</div>

@@ -19,22 +19,6 @@ let PetRegService = function($http, SERVER, $cookies, $state) {
     SERVER.CONFIG.headers['Content-Type'] = undefined;
 
     return $http.post(SERVER.URL + 'pets', formData,  SERVER.CONFIG);
-
-    // ----
-
-    // console.log(petObj);
-
-    // let p = new Pet(petObj);    
-
-    // console.log(SERVER);
-
-    // return $http.post(SERVER.URL + '/pets', p, SERVER.CONFIG).then((res) => {
-    //   console.log(res);
-    //   $cookies.get('authToken', res.data.pet.auth_token);
-    //   $cookies.put('pet_id', res.data.pet.id);
-    //   SERVER.CONFIG.headers['Access-Token'] = res.data.pet.auth_token;
-    //   $state.go('root.pet-reg');
-    // });   
   };
 
   // Upload image

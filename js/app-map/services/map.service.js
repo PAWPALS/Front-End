@@ -1,18 +1,14 @@
 let MapService = function($http, SERVER, $cookies, $state) {
   
-  // Get index of pets
-  let url = SERVER.URL + 'pets';
+  // Get all lost pets & coordinates
+  let url = SERVER.URL + 'pet_notices' + '/pets' + '/all_lost';
 
-  this.getPets = getPets;
+  this.lostPets = lostPets;
 
-  function getPets(obj) {
+  function lostPets(obj) {
+    console.log(obj);
     return $http.get(url, SERVER.CONFIG);
   }
-
-  
-  // function setMarker() {
-
-  // }
 
 };
 
