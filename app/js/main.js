@@ -110,7 +110,9 @@ var HomeController = function HomeController($scope, HomeService, $cookies, $sta
 
   // Signup
   $scope.createUser = function (user) {
+
     console.log(user);
+
     HomeService.createUser(user);
   };
 
@@ -347,11 +349,7 @@ var _servicesLostService2 = _interopRequireDefault(_servicesLostService);
 
 _angular2['default'].module('app.map', ['app.core']).controller('MapController', _controllersMapController2['default']).service('MapService', _servicesMapService2['default']).service('LostService', _servicesLostService2['default']);
 
-<<<<<<< HEAD
-},{"../app-core/index":2,"./controllers/map.controller":6,"./services/map.service":8,"angular":26,"angular-google-maps":19}],8:[function(require,module,exports){
-=======
-},{"../app-core/index":2,"./controllers/map.controller":6,"./services/lost.service":8,"./services/map.service":9,"angular":29}],8:[function(require,module,exports){
->>>>>>> de3d43d7e230c1b6590b8954464acdf0c7bd7343
+},{"../app-core/index":2,"./controllers/map.controller":6,"./services/lost.service":8,"./services/map.service":9,"angular":29,"angular-google-maps":22}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
