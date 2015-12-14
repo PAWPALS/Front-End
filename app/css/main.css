@@ -8477,8 +8477,8 @@ nav {
       margin: 2em;
       overflow: hidden; }
       .profile .profile-list ul li img {
-        width: 15em;
-        height: 15em;
+        width: 50%;
+        height: 50%;
         border-radius: .25em;
         margin-bottom: 2em; }
       .profile .profile-list ul li a {
@@ -8536,26 +8536,28 @@ nav {
     background-color: #DCDCDC; }
 
 .map {
-  width: 90%;
+  width: 80%;
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
-  margin: 2em; }
-  .map div {
-    display: inline-block; }
-    .map div .angular-google-map {
-      display: block; }
-    .map div .angular-google-map-container {
-      height: 500px;
-      width: 500px; }
-    .map div .lost {
-      width: 30%;
-      height: 37.500em;
-      overflow-y: scroll; }
-      .map div .lost ul {
-        overflow: hidden; }
-        .map div .lost ul li img {
-          width: 20%;
-          height: 20%; }
+  margin-top: 2em; }
+  .map .lost-map {
+    display: inline;
+    float: left; }
+    .map .lost-map .angular-google-map-container {
+      height: 34.375em;
+      width: 34.375em;
+      vertical-align: top; }
+  .map .lost {
+    display: inline;
+    float: left;
+    width: 30%;
+    height: 34.375em;
+    overflow-y: scroll; }
+    .map .lost ul {
+      overflow: hidden; }
+      .map .lost ul li img {
+        width: 50%;
+        height: 50%; }
 
 /*# sourceMappingURL=main.css.map */

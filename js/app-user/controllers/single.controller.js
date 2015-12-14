@@ -7,7 +7,7 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
   // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
     console.log(res);
-    $scope.pet = res.data;  
+    $scope.pet = res.data.pet;  
   });
 
   // Edit pet
@@ -18,7 +18,7 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
 
   // Delete pet
   $scope.deletePet = function (petId) {
-    SingleService.delete(petId).then( (res) => {
+    SingleService.deletePet(petId).then( (res) => {
       console.log(res);
       $state.go('root.profile');
     });

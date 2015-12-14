@@ -111,7 +111,6 @@ nav {
   }
 
   .profile-list {
-    // width: 100%;
     border: .1em solid #EDEEEE;
     border-radius: .25em;
     overflow-y: scroll;
@@ -122,8 +121,8 @@ nav {
 
       li {
         img {
-        width: 15em;
-        height: 15em;
+        width: 50%;
+        height: 50%;
         border-radius: .25em;
         margin-bottom: 2em;
         }
@@ -225,41 +224,62 @@ nav {
   }
 }
 
+// .lost {
+//   width: 30%;
+//   margin: auto;
+
+//   h5 {
+//     color: #666670;
+//   }
+
+//   form {
+
+//     input {
+//       border-radius: .25em;
+//     }
+//   }
+
+//   button {
+//     border-radius: .25em;
+//     background-color: #E42102;
+//   }
+// }
+
 .map {
-  width: 90%;
+  width: 80%;
   margin: auto;
   border: .1em solid #EDEEEE;
   border-radius: .25em;
-  margin: 2em;
+  margin-top: 2em;
 
-  div {
-    display: inline-block;
-
-    .angular-google-map {
-      display: block;
-    }
-    
+  .lost-map {
+    display: inline;
+    float: left;
     .angular-google-map-container { 
-      height: 500px;
-      width: 500px; 
+      height: 34.375em;
+      width: 34.375em; 
+      vertical-align: top;
     }
+  }
 
-    .lost {
-      width: 30%;
-      height: 37.500em;
-      overflow-y: scroll;
+  .lost {
+    display: inline;
+    float: left;
+    width: 30%;
+    height: 34.375em;
+    overflow-y: scroll;
 
-      ul {
-        overflow: hidden;
+    ul {
+      overflow: hidden;
 
-        li {
+      li {
 
-          img {
-          width: 20%;
-          height: 20%;
-          }
+        img {
+          width: 50%;
+          height: 50%;
         }
       }
     }
   }
+  
 }

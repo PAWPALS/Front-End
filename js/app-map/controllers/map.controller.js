@@ -1,20 +1,30 @@
-let MapController = function($scope, MapService, uiGmapGoogleMapApi, $state) {
+let MapController = function($scope, LostService, MapService, uiGmapGoogleMapApi, $state) {
   
   let vm = this;
 
-  // Show all pets
   vm.pets = [];
 
+  // Show all lost pets in sidebar 
   getPets();
 
   function getPets () {
-    MapService.getPets().then( (res) => {
+    LostService.getPets().then( (res) => {
       console.log(res);
       vm.pets = res.data.pets;
     });
   }
 
-  // Map
+  // Get coordinates of pets for markers
+  lostPets();
+
+  function lostPets () {
+    MapService.lostPets().then( (res) => {
+      console.log(res);
+      vm.pets = res.data.lost_pets_coordinates;
+    });
+  }
+
+  // Define map
   $scope.map = {
     center: {
       latitude: 33.7490000, 
@@ -26,35 +36,50 @@ let MapController = function($scope, MapService, uiGmapGoogleMapApi, $state) {
 
     } 
   };
-
   $scope.options = {
-    scrollwheel: false
+    scrollwheel: true
   };
 
-  // Markers
+  // Create Marker
+  var createMarker = function(i, bounds, idKey) {
+    var lat_min = bounds.southwest.latitude,
+      lat_range = bounds.northeast.latitude - lat_min,
+      lng_min = bounds.southwest.longitude,
+      lng_range = bounds.northeast.longitude - lng_min;
 
-  $scope.marker = {
-    id: 0,
-    coords: {
-      latitude: 33.7490000, 
-      longitude: -84.3879800 
+    if (idKey === null) {
+      idKey = "id";
     }
+
+    var latitude = lat_min + (Math.random() * lat_range);
+    var longitude = lng_min + (Math.random() * lng_range);    
+    var ret = {
+      latitude: latitude,
+      longitude: longitude,
+      title: 'm' + i
+    };
+    ret[idKey] = i;
+    return ret;
   };
-
   // Array of markers
-  // $scope.markers = [];
-
-  
-  // Get request
-
-  // $http.get()
-  //   .success(function(res) {
-  //     $scope.markers = res;
-  //   });
+  $scope.markers = [];
+  // Get the bounds from the map once it's loaded
+  $scope.$watch(function() {
+    return $scope.map.bounds;
+  }, function(nv, ov) {
+    // Only need to regenerate once
+    if (!ov.southwest && nv.southwest) {
+      var markers = [];
+      for (var i = 0; i < 50; i++) {
+        markers.push(createMarker(i, $scope.map.bounds));
+      }
+      $scope.markers = markers;
+    }
+  }, true);
 
 
 };
 
-MapController.$inject = ['$scope', 'MapService', 'uiGmapGoogleMapApi', '$state'];
+MapController.$inject = ['$scope', 'LostService',  'MapService', 'uiGmapGoogleMapApi', '$state'];
 
 export default MapController;

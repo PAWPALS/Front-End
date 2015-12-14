@@ -24,10 +24,10 @@ let SingleService = function($state, $stateParams, $http, SERVER, $cookies) {
 
   // Lost pet alert
   // Change pet present from true to false
-  this.lostPet = function(petId) {
-    return $http.get(url + '/' + petId, SERVER.CONFIG);
+  // this.lostPet = function(petId) {
+  //   return $http.get(url + '/' + petId, SERVER.CONFIG);
 
-  };
+  // };
   
 
 };
