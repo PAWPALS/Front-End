@@ -2,7 +2,11 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
   
   // let vm = this;
 
+  //this.deletePet = deletePet;
+
   let petId = $stateParams.id;
+  console.log('petId', petId);
+  
 
   // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
@@ -11,7 +15,8 @@ let SingleController = function($scope, SingleService, $state, $stateParams) {
   });
 
   // Delete pet
-  $scope.deletePet = function (petId) {
+  $scope.deletePet = function(petId) {
+    console.log('did i get it ',petId );
     SingleService.deletePet(petId).then( (res) => {
       console.log(res);
       $state.go('root.profile');

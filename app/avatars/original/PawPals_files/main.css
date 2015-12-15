@@ -8457,11 +8457,9 @@ nav {
   .pet-reg h5 {
     color: #666670; }
   .pet-reg form input {
-    border-radius: .25em;
-    color: #666670; }
+    border-radius: .25em; }
   .pet-reg form textarea {
-    border-radius: .25em;
-    color: #666670; }
+    border-radius: .25em; }
   .pet-reg button {
     border-radius: .25em;
     background-color: #DCDCDC; }
@@ -8479,13 +8477,7 @@ nav {
       margin: 2em;
       overflow: hidden; }
       .profile .profile-list ul li {
-        width: 100%;
-        color: #666670; }
-        .profile .profile-list ul li button {
-          border-radius: .25em;
-          background-color: #DCDCDC;
-          margin-bottom: .4em;
-          padding: .8em 1.6em; }
+        width: 100%; }
         .profile .profile-list ul li img {
           width: 100%;
           margin: auto;
@@ -8493,12 +8485,7 @@ nav {
           margin-bottom: 2em; }
         .profile .profile-list ul li a {
           text-decoration: none;
-          color: white; }
-      .profile .profile-list ul .pet-name {
-        border-radius: .25em;
-        width: 3em;
-        height: 1.5em;
-        background-color: #DCDCDC; }
+          color: grey; }
   .profile .buttons {
     width: 40%;
     margin: auto;
@@ -8520,8 +8507,7 @@ nav {
   .single ul {
     margin: 2em; }
     .single ul li {
-      width: 100%;
-      color: #666670; }
+      width: 100%; }
       .single ul li img {
         width: 100%;
         margin: auto;
@@ -8550,11 +8536,9 @@ nav {
   .edit h5 {
     color: #666670; }
   .edit form input {
-    border-radius: .25em;
-    color: #666670; }
+    border-radius: .25em; }
   .edit form textarea {
-    border-radius: .25em;
-    color: #666670; }
+    border-radius: .25em; }
   .edit button {
     border-radius: .25em;
     background-color: #DCDCDC;
@@ -8562,7 +8546,7 @@ nav {
     padding-right: 20px; }
 
 .map {
-  width: 95%;
+  width: 80%;
   margin: auto;
   margin-top: 2em; }
   .map .map-container .lost-map {
@@ -8570,10 +8554,9 @@ nav {
     float: left; }
     .map .map-container .lost-map .angular-google-map-container {
       height: 34.375em;
-      width: 50em;
+      width: 34.375em;
       vertical-align: top;
-      border-radius: .25em;
-      margin-left: 1.3em; }
+      border-radius: .25em; }
   .map .map-container .lost {
     display: inline;
     float: left;
@@ -8584,12 +8567,10 @@ nav {
     overflow-y: scroll; }
     .map .map-container .lost ul {
       overflow: hidden;
-      width: 83%;
+      width: 70%;
       margin-top: .27em; }
-      .map .map-container .lost ul li {
-        color: #666670; }
-        .map .map-container .lost ul li img {
-          width: 60%;
-          height: 60%; }
+      .map .map-container .lost ul li img {
+        width: 65%;
+        height: 65%; }
 
 /*# sourceMappingURL=main.css.map */
