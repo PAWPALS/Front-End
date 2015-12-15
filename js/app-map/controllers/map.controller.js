@@ -12,13 +12,16 @@ let MapController = function($scope, LostService, MapService, uiGmapGoogleMapApi
     LostService.getPets().then( (res) => {
       console.log(res);
       vm.pets = res.data.pets;
+      $scope.getPets = function(pets.present) {
+    if (vm.pets.present === "no" || false) {
+       } else {true;
+
     });
   }
 
-  // Show pets with present = no
-  $scope.isLost = function() {
-    if (vm.pets.present === "no")
-      return false;
+  
+  
+    }
   };
 
   // Get coordinates of pets for markers

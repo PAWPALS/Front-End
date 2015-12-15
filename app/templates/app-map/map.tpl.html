@@ -10,7 +10,7 @@
     </div>
 
     <div class="lost">
-      <ul ng-repeat="pet in vm.pets" ng-show="isLost()">
+      <ul ng-repeat="pet in vm.pets" ng-show="getPets(pet.present)">
         <li><img ng-src="{{ pet.picture }}"></li>
         <li>{{ pet.name }}</li>
         <li>age {{ pet.age }}</li>
