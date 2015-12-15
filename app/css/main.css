@@ -8490,7 +8490,7 @@ nav {
           width: 100%;
           margin: auto;
           border-radius: .25em;
-          margin-bottom: 2em; }
+          margin-bottom: 1.5em; }
         .profile .profile-list ul li a {
           text-decoration: none;
           color: white; }
@@ -8562,7 +8562,7 @@ nav {
     padding-right: 20px; }
 
 .map {
-  width: 95%;
+  width: 82%;
   margin: auto;
   margin-top: 2em; }
   .map .map-container .lost-map {
@@ -8573,7 +8573,7 @@ nav {
       width: 50em;
       vertical-align: top;
       border-radius: .25em;
-      margin-left: 1.3em; }
+      margin-left: 1em; }
   .map .map-container .lost {
     display: inline;
     float: left;

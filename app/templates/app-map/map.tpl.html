@@ -11,7 +11,7 @@
 
     <div class="lost">
       <ul ng-repeat="pet in vm.petsNotPresent">
-        <li ng-if="pet.picture"><img ng-src="{{ pet.picture }}"></li>
+        <li><img ng-src="{{ pet.picture }}"></li>
         <li>Name: {{ pet.name }}</li>
         <li>Age: {{ pet.age }}</li>
         <li>Breed: {{ pet.breed }}</li>
