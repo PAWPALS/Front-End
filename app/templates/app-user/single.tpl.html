@@ -5,20 +5,16 @@
     <ul>
       <li><img ng-src="{{ pet.picture }}"></li>
       <li>{{ pet.name }}</li>
-      <li>Age - {{ pet.age }}</li>
-      <li>Breed - {{ pet.breed }}</li>      
-      <li>Desc - {{ pet.description }}</li>
-      <li>Status - {{ pet.present }}</li>
+      <li>Age: {{ pet.age }}</li>
+      <li>Breed: {{ pet.breed }}</li>      
+      <li>Desc: {{ pet.description }}</li>
+      <li>Status: {{ pet.present }}</li>
     </ul>
 
   </div>
 
   <div class="buttons-single">
     <button class="edit-btn" ng-click="editPet(petId)"><a href="#/edit/{{ pet.pet_id }}">Edit</a></button>
-    <button class="delete-btn" ng-click="deletePet(petId)"><a href="#/" >Delete</a></button>
+    <button class="delete-btn"><a href="#/" ng-click="deletePet(pet.pet_id)">Delete</a></button>
   </div>
- <!--  <div class="button-lost">
-    <button ng-click="lostPet(petId)">Lost</button>
-  </div> -->
-
 </div>

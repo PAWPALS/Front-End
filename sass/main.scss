@@ -89,10 +89,12 @@ nav {
 
     input {
       border-radius: .25em;
+      color: #666670;
     }
 
     textarea {
       border-radius: .25em;
+      color: #666670;
     }
   }
 
@@ -122,18 +124,39 @@ nav {
 
       li {
         width: 100%;
+        color: #666670;
+
+        button {
+          border-radius: .25em;
+          background-color: #DCDCDC;
+          margin-bottom: .4em;
+          padding: .8em 1.6em;
+        }
+
         img {
         width: 100%;
         margin: auto;
         // height: 70%;
         border-radius: .25em;
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
         }
 
         a {
           text-decoration: none;
-          color: grey;
+        
+          color: white;
         }
+
+        
+      }
+
+      .pet-name {
+          border-radius: .25em;
+          width: 3em;
+          height: 1.5em;
+          background-color: #DCDCDC;
+
+
       }
 
     }
@@ -173,6 +196,7 @@ nav {
 
     li {
       width: 100%;
+      color: #666670;
 
       img {
       width: 100%;
@@ -235,10 +259,12 @@ nav {
 
     input {
       border-radius: .25em;
+      color: #666670;
     }
 
     textarea {
       border-radius: .25em;
+      color: #666670;
     }
   }
 
@@ -272,12 +298,12 @@ nav {
 // }
 
 .map {
-  width: 80%;
+  width: 82%;
   margin: auto;
   margin-top: 2em;
 
   .map-container {
-    width: 100%;
+    // width: 100%;
 
   .lost-map {
     display: inline;
@@ -285,16 +311,17 @@ nav {
 
     .angular-google-map-container { 
       height: 34.375em;
-      width: 34.375em; 
+      width: 50em; 
       vertical-align: top;
       border-radius: .25em;
+      margin-left: 1em;
     }
   }
 
   .lost {
     display: inline;
     float: left;
-    width: 30%;
+    width: 20%;
     height: 34.375em;
     border: .1em solid #EDEEEE;
     border-radius: .25em;
@@ -302,14 +329,15 @@ nav {
 
     ul {
       overflow: hidden;
-      width: 100%;
-
+      width: 83%;
+      margin-top: .27em;
 
       li {
+        color: #666670;
 
         img {
-          width: 40%;
-          height: 40%;
+          width: 60%;
+          height: 60%;
         }
       }
     }
