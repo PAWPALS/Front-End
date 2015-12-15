@@ -38,8 +38,9 @@ let HomeController = function($scope, HomeService, $cookies, $state) {
   // Logout
   $scope.logmeout = function() {
     HomeService.logout();
-  };  
+  }; 
 
+  
 };
 
 HomeController.$inject = ['$scope', 'HomeService', '$cookies', '$state'];

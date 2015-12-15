@@ -35,11 +35,13 @@ var config = function config($stateProvider, $urlRouterProvider, uiGmapGoogleMap
     url: '/edit/:id',
     controller: 'EditController as vm',
     templateUrl: 'templates/app-user/edit.tpl.html'
-  }).state('root.delete', {
-    url: '/delete/:id',
-    controller: 'SingleController as vm',
-    templateUrl: 'templates/app-user/single.tpl.html'
-  }).state('root.lost', {
+  })
+  // .state('root.delete', {
+  //   url: '/single/:id',
+  //   controller: 'SingleController as vm',
+  //   templateUrl: 'templates/app-user/single.tpl.html'
+  // })
+  .state('root.lost', {
     url: '/lost/:id',
     controller: 'LostController as vm',
     templateUrl: 'templates/app-user/lost.tpl.html'
@@ -238,9 +240,9 @@ exports['default'] = HomeService;
 module.exports = exports['default'];
 
 },{}],6:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var MapController = function MapController($scope, LostService, MapService, uiGmapGoogleMapApi, $state) {
@@ -248,21 +250,39 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
   var vm = this;
 
   vm.pets = [];
+
   vm.lostPets = [];
+
+  // vm.allLostPets = [];
 
   // Show all lost pets in sidebar
   getPets();
 
-  function getPets() {
-    LostService.getPets().then(function (res) {
-      console.log(res);
-      vm.pets = res.data.pets;
+  function getPets(pet, data) {
+    LostService.getPets(pet, data).then(function (res) {
+
+      // Map array to create a new array with only present = no
+      vm.petsNotPresent = res.data.pets.filter(function (pet, data) {
+        return pet.present === "no";
+      });
+
+      console.log("This is the filtered vm.pets array ", vm.petsNotPresent);
+      // vm.pets = allLostPets;
     });
   }
 
-  // Show pets with present = no
-  $scope.isLost = function () {
-    if (vm.pets.present === "no") return false;
+  // Define map
+  $scope.map = {
+    center: {
+      latitude: 33.7490000,
+      longitude: -84.3879800
+    },
+    zoom: 14,
+    markers: [],
+    events: {}
+  };
+  $scope.options = {
+    scrollwheel: true
   };
 
   // Get coordinates of pets for markers
@@ -270,7 +290,7 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
 
   function lostPets() {
     MapService.lostPets().then(function (res) {
-      console.log(res);
+      console.log("This is lost pet coordinates ", res);
 
       var lost = [];
       res.data.lost_pets_coordinates.forEach(function (pet, i) {
@@ -288,26 +308,12 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
       vm.pets = res.data.lost_pets_coordinates;
     });
   }
-
-  // Define map
-  $scope.map = {
-    center: {
-      latitude: 33.7490000,
-      longitude: -84.3879800
-    },
-    zoom: 14,
-    markers: [],
-    events: {}
-  };
-  $scope.options = {
-    scrollwheel: true
-  };
 };
 
 MapController.$inject = ['$scope', 'LostService', 'MapService', 'uiGmapGoogleMapApi', '$state'];
 
-exports['default'] = MapController;
-module.exports = exports['default'];
+exports["default"] = MapController;
+module.exports = exports["default"];
 
 },{}],7:[function(require,module,exports){
 'use strict';
@@ -374,7 +380,7 @@ var MapService = function MapService($http, SERVER, $cookies, $state) {
   this.lostPets = lostPets;
 
   function lostPets(obj) {
-    console.log(obj);
+    // console.log(obj);
     return $http.get(url, SERVER.CONFIG);
   }
 };

@@ -10,12 +10,13 @@
     </div>
 
     <div class="lost">
-      <ul ng-repeat="pet in vm.pets" ng-show="getPets(pet.present)">
-        <li><img ng-src="{{ pet.picture }}"></li>
+      <ul ng-repeat="pet in vm.petsNotPresent">
+        <li ng-if="pet.picture"><img ng-src="{{ pet.picture }}"></li>
         <li>{{ pet.name }}</li>
         <li>age {{ pet.age }}</li>
         <li>{{ pet.breed }}</li>
         <li>{{ pet.description }}</li>
+        <li>{{ pet.present }}</li>
         <hr>
       </ul>
     </div>
