@@ -3,45 +3,26 @@ let MapController = function($scope, LostService, MapService, uiGmapGoogleMapApi
   let vm = this;
 
   vm.pets = [];
+  
   vm.lostPets = [];
+
+
+  // vm.allLostPets = [];
 
   // Show all lost pets in sidebar 
   getPets();
 
-  function getPets () {
-    LostService.getPets().then( (res) => {
-      console.log(res);
-      vm.pets = res.data.pets;
-    });
-  }
+  function getPets(pet, data) {
+    LostService.getPets(pet, data).then( (res) => {
 
-  // Show pets with present = no
-  $scope.isLost = function() {
-    if (vm.pets.present === "no")
-      return false;
-  };
-
-  // Get coordinates of pets for markers
-  lostPets();
-
-  function lostPets () {
-    MapService.lostPets().then( (res) => {
-      console.log(res);
-
-      var lost = [];
-      res.data.lost_pets_coordinates.forEach( function (pet, i) {
-        lost.push({
-          id: i,
-          coords: {
-            latitude: pet.latitude,
-            longitude: pet.longitude
-          }
-        });
+      // Map array to create a new array with only present = no
+      vm.petsNotPresent = res.data.pets.filter( function(pet, data) {
+        return pet.present === "no";  
       });
 
-      vm.lostPets = lost;
+      console.log("This is the filtered vm.pets array ", vm.petsNotPresent);
+      // vm.pets = allLostPets;
 
-      vm.pets = res.data.lost_pets_coordinates;
     });
   }
 
@@ -61,6 +42,29 @@ let MapController = function($scope, LostService, MapService, uiGmapGoogleMapApi
     scrollwheel: true
   };
 
+  // Get coordinates of pets for markers
+  lostPets();
+
+  function lostPets () {
+    MapService.lostPets().then( (res) => {
+      console.log("This is lost pet coordinates ", res);
+
+      var lost = [];
+      res.data.lost_pets_coordinates.forEach( function (pet, i) {
+        lost.push({
+          id: i,
+          coords: {
+            latitude: pet.latitude,
+            longitude: pet.longitude
+          }
+        });
+      });
+
+      vm.lostPets = lost;
+
+      vm.pets = res.data.lost_pets_coordinates;
+    });
+  }
 
 };
 

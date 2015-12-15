@@ -37,11 +37,11 @@ let config = function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProv
       controller: 'EditController as vm',
       templateUrl: 'templates/app-user/edit.tpl.html'
     })
-    .state('root.delete', {
-      url: '/delete/:id',
-      controller: 'SingleController as vm',
-      templateUrl: 'templates/app-user/single.tpl.html'
-    })
+    // .state('root.delete', {
+    //   url: '/single/:id',
+    //   controller: 'SingleController as vm',
+    //   templateUrl: 'templates/app-user/single.tpl.html'
+    // })
     .state('root.lost', {
       url: '/lost/:id',
       controller: 'LostController as vm',

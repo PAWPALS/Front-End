@@ -8465,7 +8465,7 @@ nav {
     background-color: #DCDCDC; }
 
 .profile {
-  width: 40%;
+  width: 30%;
   margin: auto; }
   .profile h5 {
     color: #666670; }
@@ -8476,24 +8476,28 @@ nav {
     .profile .profile-list ul {
       margin: 2em;
       overflow: hidden; }
-      .profile .profile-list ul li img {
-        width: 50%;
-        height: 50%;
-        border-radius: .25em;
-        margin-bottom: 2em; }
-      .profile .profile-list ul li a {
-        text-decoration: none;
-        color: grey; }
+      .profile .profile-list ul li {
+        width: 100%; }
+        .profile .profile-list ul li img {
+          width: 100%;
+          margin: auto;
+          border-radius: .25em;
+          margin-bottom: 2em; }
+        .profile .profile-list ul li a {
+          text-decoration: none;
+          color: grey; }
   .profile .buttons {
-    width: 62%;
+    width: 40%;
     margin: auto;
     margin-top: 1em; }
     .profile .buttons button {
       border-radius: .25em;
-      background-color: #DCDCDC; }
+      background-color: #DCDCDC;
+      padding-left: 22px;
+      padding-right: 22px; }
 
 .single {
-  width: 40%;
+  width: 30%;
   margin: auto; }
   .single h5 {
     color: #666670; }
@@ -8502,25 +8506,29 @@ nav {
     border-radius: .25em; }
   .single ul {
     margin: 2em; }
-    .single ul li img {
-      width: 15em;
-      height: 15em;
-      border-radius: .25em;
-      margin-bottom: 2em; }
+    .single ul li {
+      width: 100%; }
+      .single ul li img {
+        width: 100%;
+        margin: auto;
+        border-radius: .25em;
+        margin-bottom: 2em; }
   .single .buttons-single {
     width: 42%;
     margin: auto;
     margin-top: 1em; }
-    .single .buttons-single button {
+    .single .buttons-single .edit-btn {
       border-radius: .25em;
       background-color: #DCDCDC; }
-  .single .button-lost {
-    width: 20%;
-    margin-top: auto;
-    margin-top: 1em; }
-    .single .button-lost button {
+      .single .buttons-single .edit-btn a {
+        color: white; }
+    .single .buttons-single .delete-btn {
       border-radius: .25em;
-      background-color: #E42102; }
+      background-color: #DCDCDC;
+      padding-left: 23px;
+      padding-right: 23px; }
+      .single .buttons-single .delete-btn a {
+        color: white; }
 
 .edit {
   width: 30%;
@@ -8533,31 +8541,37 @@ nav {
     border-radius: .25em; }
   .edit button {
     border-radius: .25em;
-    background-color: #DCDCDC; }
+    background-color: #DCDCDC;
+    padding-left: 20px;
+    padding-right: 20px; }
 
 .map {
   width: 80%;
   margin: auto;
-  border: .1em solid #EDEEEE;
-  border-radius: .25em;
   margin-top: 2em; }
-  .map .lost-map {
-    display: inline;
-    float: left; }
-    .map .lost-map .angular-google-map-container {
+  .map .map-container {
+    width: 100%; }
+    .map .map-container .lost-map {
+      display: inline;
+      float: left; }
+      .map .map-container .lost-map .angular-google-map-container {
+        height: 34.375em;
+        width: 34.375em;
+        vertical-align: top;
+        border-radius: .25em; }
+    .map .map-container .lost {
+      display: inline;
+      float: left;
+      width: 30%;
       height: 34.375em;
-      width: 34.375em;
-      vertical-align: top; }
-  .map .lost {
-    display: inline;
-    float: left;
-    width: 30%;
-    height: 34.375em;
-    overflow-y: scroll; }
-    .map .lost ul {
-      overflow: hidden; }
-      .map .lost ul li img {
-        width: 40%;
-        height: 40%; }
+      border: .1em solid #EDEEEE;
+      border-radius: .25em;
+      overflow-y: scroll; }
+      .map .map-container .lost ul {
+        overflow: hidden;
+        width: 100%; }
+        .map .map-container .lost ul li img {
+          width: 40%;
+          height: 40%; }
 
 /*# sourceMappingURL=main.css.map */
