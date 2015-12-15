@@ -103,7 +103,7 @@ nav {
 }
 
 .profile {
-  width: 40%;
+  width: 30%;
   margin: auto;
 
   h5 {
@@ -116,13 +116,16 @@ nav {
     overflow-y: scroll;
 
     ul {
+      // width: 100%;
       margin: 2em;
       overflow: hidden;
 
       li {
+        width: 100%;
         img {
-        width: 50%;
-        height: 50%;
+        width: 100%;
+        margin: auto;
+        // height: 70%;
         border-radius: .25em;
         margin-bottom: 2em;
         }
@@ -137,20 +140,22 @@ nav {
   }
 
   .buttons {
-    width: 62%;
+    width: 40%;
     margin: auto;
     margin-top: 1em;
 
     button {
     border-radius: .25em;
     background-color: #DCDCDC;
+    padding-left: 22px;
+    padding-right: 22px;
     }
   }
 
 }
 
 .single {
-  width: 40%;
+  width: 30%;
   margin: auto;
 
 
@@ -166,11 +171,15 @@ nav {
   ul {
     margin: 2em;
 
-    li img {
-      width: 15em;
-        height: 15em;
+    li {
+      width: 100%;
+
+      img {
+      width: 100%;
+      margin: auto;
       border-radius: .25em;
       margin-bottom: 2em;
+      }
     }
   }
 
@@ -179,22 +188,37 @@ nav {
     margin: auto;
     margin-top: 1em;
 
-    button {
+    .edit-btn {
     border-radius: .25em;
     background-color: #DCDCDC;
+
+      a {
+        color: white;
+      }
+    }
+
+    .delete-btn {
+    border-radius: .25em;
+    background-color: #DCDCDC;
+    padding-left: 23px;
+    padding-right: 23px;
+
+      a {
+        color: white;
+      }
     }
   }
 
-  .button-lost {
-    width: 20%;
-    margin-top: auto;
-    margin-top: 1em;
+  // .button-lost {
+  //   width: 20%;
+  //   margin-top: auto;
+  //   margin-top: 1em;
 
-    button {
-      border-radius: .25em;
-      background-color: #E42102;
-    }
-  }
+  //   button {
+  //     border-radius: .25em;
+  //     background-color: #E42102;
+  //   }
+  // }
 
 
 }
@@ -221,6 +245,8 @@ nav {
   button {
     border-radius: .25em;
     background-color: #DCDCDC;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -248,17 +274,20 @@ nav {
 .map {
   width: 80%;
   margin: auto;
-  border: .1em solid #EDEEEE;
-  border-radius: .25em;
   margin-top: 2em;
+
+  .map-container {
+    width: 100%;
 
   .lost-map {
     display: inline;
     float: left;
+
     .angular-google-map-container { 
       height: 34.375em;
       width: 34.375em; 
       vertical-align: top;
+      border-radius: .25em;
     }
   }
 
@@ -267,10 +296,14 @@ nav {
     float: left;
     width: 30%;
     height: 34.375em;
+    border: .1em solid #EDEEEE;
+    border-radius: .25em;
     overflow-y: scroll;
 
     ul {
       overflow: hidden;
+      width: 100%;
+
 
       li {
 
@@ -281,5 +314,5 @@ nav {
       }
     }
   }
-  
+  }
 }
