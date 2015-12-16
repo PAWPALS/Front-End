@@ -1,12 +1,16 @@
-## Welcome to My Project
+## PawPals
 
-> I am your Readme.md file, you should probably update me.
+> A crowdsourced pet rescued app
 
 
 ## Usage
 
 - Clone this repo
 - Run `npm install` to install all necessary dependencies
+- Run `npm install angular angular-ui-router` to install AngularJS and 
+- Run `npm install angular-google-maps` to install Angular Google Maps
+- Run `npm install angular-simple-logger`
+- Run `npm install lodash`
 - Run `gulp start` to start the server and a handful of other tasks
 
 
@@ -44,3 +48,5 @@ At the top of your `main.scss` file, just import any of the following:
 - [SASS](http://sass-lang.com/)
 - [Mocha](https://mochajs.org/)
 - [Chai](http://chaijs.com/)
+- [Angular Google Maps](https://angular-ui.github.io/angular-google-maps/#!/)
+
