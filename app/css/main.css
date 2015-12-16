@@ -8606,7 +8606,8 @@ nav {
     padding-right: 20px; }
 
 .map {
-  width: 80%;
+  width: 85%;
+  height: 800px;
   margin: auto;
   margin-top: 2em; }
   .map .map-container {
@@ -8622,7 +8623,7 @@ nav {
     .map .map-container .lost {
       display: inline;
       float: left;
-      width: 30%;
+      width: 20%;
       height: 34.375em;
       border: .1em solid #EDEEEE;
       border-radius: .25em;
