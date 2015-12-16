@@ -8414,14 +8414,14 @@ ul {
   background: #FFFFFF;
   height: 3rem; }
   .top-bar .name {
-    margin-left: .2em;
-    margin-top: .3em; }
+    margin-left: .3em;
+    margin-top: .5em; }
     .top-bar .name a {
       color: #666670;
       font-size: 1.2rem;
       font-family: 'Roboto', sans-serif; }
       .top-bar .name a img {
-        width: 2.2em; }
+        width: 1.4em; }
 
 nav {
   border-bottom: 1px solid #EDEEEE; }
@@ -8537,7 +8537,7 @@ nav {
         border-radius: .25em;
         margin-bottom: 2em; }
   .single .buttons-single {
-    width: 42%;
+    width: 50%;
     margin: auto;
     margin-top: 1em; }
     .single .buttons-single .edit-btn {
@@ -8602,6 +8602,7 @@ nav {
         .map .map-container .lost ul li img {
           width: 8em;
           height: 8em;
-          margin-bottom: .5em; }
+          margin-bottom: .5em;
+          object-fit: cover; }
 
 /*# sourceMappingURL=main.css.map */

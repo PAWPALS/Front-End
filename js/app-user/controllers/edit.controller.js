@@ -11,6 +11,7 @@ let EditController = function($scope, SingleService, $state, $stateParams) {
   });
   
   $scope.editPet = function (petId) {
+    console.log('petId', petId);
     SingleService.editPet(petId).then( (res) => {
       console.log(res);
       $state.go('root.profile');

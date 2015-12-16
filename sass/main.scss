@@ -15,8 +15,8 @@ ul {
   height: 3rem;
 
   .name {
-    margin-left: .2em;
-    margin-top: .3em;
+    margin-left: .3em;
+    margin-top: .5em;
      
     a {
       color: #666670;
@@ -24,7 +24,7 @@ ul {
       font-family: 'Roboto', sans-serif;
 
       img {
-        width: 2.2em;
+        width: 1.4em;
       }
     }
   }
@@ -221,7 +221,7 @@ nav {
   }
 
   .buttons-single {
-    width: 42%;
+    width: 50%;
     margin: auto;
     margin-top: 1em;
 
@@ -356,6 +356,7 @@ nav {
           width: 8em;
           height: 8em;
           margin-bottom: .5em;
+          object-fit: cover;
         }
       }
     }
