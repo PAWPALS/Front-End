@@ -1,5 +1,7 @@
 <div class="map">
   <div class="map-container">
+
+    <h5>Locate Lost Pets In Your Area</h5>
   
     <div class="lost-map">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" bounds="map.bounds">
@@ -11,12 +13,11 @@
 
     <div class="lost">
       <ul ng-repeat="pet in vm.petsNotPresent">
-        <li ng-if="pet.picture"><img ng-src="{{ pet.picture }}"></li>
-        <li>{{ pet.name }}</li>
-        <li>age {{ pet.age }}</li>
-        <li>{{ pet.breed }}</li>
-        <li>{{ pet.description }}</li>
-        <li>{{ pet.present }}</li>
+        <li><img ng-src="{{ pet.picture }}"></li>
+        <li>Name: {{ pet.name }}</li>
+        <li>Age: {{ pet.age }}</li>
+        <li>Breed: {{ pet.breed }}</li>
+        <li>Desc: {{ pet.description }}</li>
         <hr>
       </ul>
     </div>

@@ -253,21 +253,17 @@ var MapController = function MapController($scope, LostService, MapService, uiGm
 
   vm.lostPets = [];
 
-  // vm.allLostPets = [];
-
   // Show all lost pets in sidebar
   getPets();
 
   function getPets(pet, data) {
     LostService.getPets(pet, data).then(function (res) {
-
       // Map array to create a new array with only present = no
       vm.petsNotPresent = res.data.pets.filter(function (pet, data) {
         return pet.present === "no";
       });
 
       console.log("This is the filtered vm.pets array ", vm.petsNotPresent);
-      // vm.pets = allLostPets;
     });
   }
 
@@ -410,6 +406,7 @@ var EditController = function EditController($scope, SingleService, $state, $sta
   });
 
   $scope.editPet = function (petId) {
+    console.log('petId', petId);
     SingleService.editPet(petId).then(function (res) {
       console.log(res);
       $state.go('root.profile');
@@ -508,8 +505,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 var SingleController = function SingleController($scope, SingleService, $state, $stateParams) {
 
-  // let vm = this;
-
   var petId = $stateParams.id;
 
   // Get a single pet by id
@@ -520,6 +515,7 @@ var SingleController = function SingleController($scope, SingleService, $state, 
 
   // Delete pet
   $scope.deletePet = function (petId) {
+    console.log('did i get it ', petId);
     SingleService.deletePet(petId).then(function (res) {
       console.log(res);
       $state.go('root.profile');

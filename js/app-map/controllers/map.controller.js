@@ -6,23 +6,17 @@ let MapController = function($scope, LostService, MapService, uiGmapGoogleMapApi
   
   vm.lostPets = [];
 
-
-  // vm.allLostPets = [];
-
   // Show all lost pets in sidebar 
   getPets();
 
   function getPets(pet, data) {
     LostService.getPets(pet, data).then( (res) => {
-
       // Map array to create a new array with only present = no
       vm.petsNotPresent = res.data.pets.filter( function(pet, data) {
         return pet.present === "no";  
       });
 
       console.log("This is the filtered vm.pets array ", vm.petsNotPresent);
-      // vm.pets = allLostPets;
-
     });
   }
 

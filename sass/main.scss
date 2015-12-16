@@ -14,10 +14,19 @@ ul {
   background: #FFFFFF;
   height: 3rem;
 
-  .title-area .name a {
-    color: #E42102;
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
+  .name {
+    margin-left: .3em;
+    margin-top: .5em;
+     
+    a {
+      color: #666670;
+      font-size: 1.2rem;
+      font-family: 'Roboto', sans-serif;
+
+      img {
+        width: 1.4em;
+      }
+    }
   }
 }
 
@@ -57,6 +66,7 @@ nav {
 .home {
   width: 30%;
   margin: auto;
+  margin-top: 2.5em;
 
   .login form {
     margin: 2em;
@@ -81,6 +91,7 @@ nav {
 .pet-reg {
   width: 30%;
   margin: auto;
+  margin-top: 2em;
 
   h5 {
     color: #666670;
@@ -90,10 +101,12 @@ nav {
 
     input {
       border-radius: .25em;
+      color: #666670;
     }
 
     textarea {
       border-radius: .25em;
+      color: #666670;
     }
   }
 
@@ -108,6 +121,7 @@ nav {
 .profile {
   width: 30%;
   margin: auto;
+  margin-top: 1em;
 
   h5 {
     color: #666670;
@@ -125,18 +139,39 @@ nav {
 
       li {
         width: 100%;
+        color: #666670;
+
+        button {
+          border-radius: .25em;
+          background-color: #DCDCDC;
+          margin-bottom: .4em;
+          padding: .8em 1.6em;
+        }
+
         img {
         width: 100%;
         margin: auto;
         // height: 70%;
         border-radius: .25em;
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
         }
 
         a {
           text-decoration: none;
-          color: grey;
+        
+          color: white;
         }
+
+        
+      }
+
+      .pet-name {
+          border-radius: .25em;
+          width: 3em;
+          height: 1.5em;
+          background-color: #DCDCDC;
+
+
       }
 
     }
@@ -158,6 +193,7 @@ nav {
 }
 
 .single {
+  margin-top: 1em;
   width: 30%;
   margin: auto;
 
@@ -176,6 +212,7 @@ nav {
 
     li {
       width: 100%;
+      color: #666670;
 
       img {
       width: 100%;
@@ -187,7 +224,7 @@ nav {
   }
 
   .buttons-single {
-    width: 42%;
+    width: 50%;
     margin: auto;
     margin-top: 1em;
 
@@ -212,23 +249,12 @@ nav {
     }
   }
 
-  // .button-lost {
-  //   width: 20%;
-  //   margin-top: auto;
-  //   margin-top: 1em;
-
-  //   button {
-  //     border-radius: .25em;
-  //     background-color: #E42102;
-  //   }
-  // }
-
-
 }
 
 .edit {
   width: 30%;
   margin: auto;
+  margin-top: 1em;
 
   h5 {
     color: #666670;
@@ -238,10 +264,12 @@ nav {
 
     input {
       border-radius: .25em;
+      color: #666670;
     }
 
     textarea {
       border-radius: .25em;
+      color: #666670;
     }
   }
 
@@ -253,36 +281,18 @@ nav {
   }
 }
 
-// .lost {
-//   width: 30%;
-//   margin: auto;
-
-//   h5 {
-//     color: #666670;
-//   }
-
-//   form {
-
-//     input {
-//       border-radius: .25em;
-//     }
-//   }
-
-//   button {
-//     border-radius: .25em;
-//     background-color: #E42102;
-//   }
-// }
-
-//Map View 
 .map {
-  width: 85%;
-  height: 800px;
+
+  width: 82%;
   margin: auto;
-  margin-top: 2em;
+  margin-top: 1em;
+
+  h5 {
+    color: #666670;
+  }
 
   .map-container {
-    width: 100%;
+    // width: 100%;
 
   .lost-map {
     display: inline;
@@ -290,7 +300,7 @@ nav {
 
     .angular-google-map-container { 
       height: 34.375em;
-      width: 34.375em; 
+      width: 50em; 
       vertical-align: top;
       border-radius: .25em;
     }
@@ -307,14 +317,17 @@ nav {
 
     ul {
       overflow: hidden;
-      width: 100%;
-
+      width: 83%;
+      margin-top: .27em;
 
       li {
+        color: #666670;
 
         img {
-          width: 40%;
-          height: 40%;
+          width: 8em;
+          height: 8em;
+          margin-bottom: .5em;
+          object-fit: cover;
         }
       }
     }
