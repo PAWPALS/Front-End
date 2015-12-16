@@ -14,10 +14,19 @@ ul {
   background: #FFFFFF;
   height: 3rem;
 
-  .title-area .name a {
-    color: #E42102;
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
+  .name {
+    margin-left: .2em;
+    margin-top: .3em;
+     
+    a {
+      color: #666670;
+      font-size: 1.2rem;
+      font-family: 'Roboto', sans-serif;
+
+      img {
+        width: 2.2em;
+      }
+    }
   }
 }
 
@@ -57,6 +66,7 @@ nav {
 .home {
   width: 30%;
   margin: auto;
+  margin-top: 2.5em;
 
   .login form {
     margin: 2em;
@@ -80,6 +90,7 @@ nav {
 .pet-reg {
   width: 30%;
   margin: auto;
+  margin-top: 2em;
 
   h5 {
     color: #666670;
@@ -107,6 +118,7 @@ nav {
 .profile {
   width: 30%;
   margin: auto;
+  margin-top: 1em;
 
   h5 {
     color: #666670;
@@ -178,6 +190,7 @@ nav {
 }
 
 .single {
+  margin-top: 1em;
   width: 30%;
   margin: auto;
 
@@ -250,6 +263,7 @@ nav {
 .edit {
   width: 30%;
   margin: auto;
+  margin-top: 1em;
 
   h5 {
     color: #666670;
@@ -300,7 +314,11 @@ nav {
 .map {
   width: 82%;
   margin: auto;
-  margin-top: 2em;
+  margin-top: 1em;
+
+  h5 {
+    color: #666670;
+  }
 
   .map-container {
     // width: 100%;
@@ -314,7 +332,6 @@ nav {
       width: 50em; 
       vertical-align: top;
       border-radius: .25em;
-      margin-left: 1em;
     }
   }
 
@@ -336,8 +353,9 @@ nav {
         color: #666670;
 
         img {
-          width: 60%;
-          height: 60%;
+          width: 8em;
+          height: 8em;
+          margin-bottom: .5em;
         }
       }
     }
