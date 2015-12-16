@@ -8602,6 +8602,7 @@ nav {
         .map .map-container .lost ul li img {
           width: 8em;
           height: 8em;
-          margin-bottom: .5em; }
+          margin-bottom: .5em;
+          object-fit: cover; }
 
 /*# sourceMappingURL=main.css.map */

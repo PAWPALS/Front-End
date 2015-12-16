@@ -1,13 +1,7 @@
 let SingleController = function($scope, SingleService, $state, $stateParams) {
   
-  // let vm = this;
-
-  //this.deletePet = deletePet;
-
   let petId = $stateParams.id;
-  console.log('petId', petId);
   
-
   // Get a single pet by id
   SingleService.getPet(petId).then( (res) => {
     console.log(res);

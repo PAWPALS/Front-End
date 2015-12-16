@@ -400,6 +400,7 @@ var EditController = function EditController($scope, SingleService, $state, $sta
   });
 
   $scope.editPet = function (petId) {
+    console.log('petId', petId);
     SingleService.editPet(petId).then(function (res) {
       console.log(res);
       $state.go('root.profile');
@@ -498,12 +499,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 var SingleController = function SingleController($scope, SingleService, $state, $stateParams) {
 
-  // let vm = this;
-
-  //this.deletePet = deletePet;
-
   var petId = $stateParams.id;
-  console.log('petId', petId);
 
   // Get a single pet by id
   SingleService.getPet(petId).then(function (res) {
