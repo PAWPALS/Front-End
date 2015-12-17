@@ -8632,26 +8632,6 @@ nav {
     padding-right: 20px; }
 
 .map {
-<<<<<<< HEAD
-  width: 85%;
-  height: 800px;
-  margin: auto;
-  margin-top: 2em; }
-  .map .map-container {
-    width: 100%; }
-    .map .map-container .lost-map {
-      display: inline;
-      float: left; }
-      .map .map-container .lost-map .angular-google-map-container {
-        height: 34.375em;
-        width: 34.375em;
-        vertical-align: top;
-        border-radius: .25em; }
-    .map .map-container .lost {
-      display: inline;
-      float: left;
-      width: 20%;
-=======
   width: 82%;
   margin: auto;
   margin-top: 1em; }
@@ -8661,7 +8641,6 @@ nav {
     display: inline;
     float: left; }
     .map .map-container .lost-map .angular-google-map-container {
->>>>>>> 690eea69d3287127223aed00c87a044be728b2bf
       height: 34.375em;
       width: 50em;
       vertical-align: top;

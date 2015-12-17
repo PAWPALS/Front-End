@@ -1,6 +1,12 @@
 ## PawPals
 
-> A crowdsourced pet rescued app
+This app was conceptualized and created by a team of four students at The Iron Yard in Atlanta.  The team members share a common interest and passion for pets and their comfort and security.  The PawPals app is a crowd-sourced pet rescue app with a unique feature that no other social network pet app has - livetime geolocation for a lost pet. 
+
+The development of this app entailed a very strong collabrative effort utilizing pair-programming from the initial stages through the completed project.  It should be noted that though this app is fully functional, there are plans to make future enhancements to increase the user experience and also to increase the capability of what this app has to offer. 
+
+To view this mobile/desktop friendly app on the web, please visit: https://faint.record-surge.sh 
+
+Thank you. 
 
 
 ## Usage
