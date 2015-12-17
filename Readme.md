@@ -4,7 +4,7 @@ This app was conceptualized and created by a team of four students at The Iron Y
 
 The development of this app entailed a very strong collabrative effort utilizing pair-programming from the initial stages through the completed project.  It should be noted that though this app is fully functional, there are plans to make future enhancements to increase the user experience and also to increase the capability of what this app has to offer. 
 
-To view this mobile/desktop friendly app on the web, please visit: https://faint.record-surge.sh 
+To view this mobile/desktop friendly app on the web, please visit: https://pawpals-surge.sh 
 
 Thank you. 
 
