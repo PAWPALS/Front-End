@@ -8421,7 +8421,8 @@ ul {
       font-size: 1.2rem;
       font-family: 'Roboto', sans-serif; }
       .top-bar .name a img {
-        width: 1.4em; }
+        width: 1.4em;
+        margin-right: .2em; }
 
 nav {
   border-bottom: 1px solid #EDEEEE; }

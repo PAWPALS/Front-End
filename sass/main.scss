@@ -2,9 +2,6 @@
 @import "foundation";
 @import "font-awesome";
 
-body {
-  // background: #E5E5E5;
-}
 
 ul {
   list-style: none;
@@ -25,6 +22,7 @@ ul {
 
       img {
         width: 1.4em;
+        margin-right: .2em;
       }
     }
   }
@@ -34,7 +32,6 @@ nav {
   border-bottom: 1px solid #EDEEEE;
 
   .top-bar-section .right {
-    // border-bottom: 1px solid #cccccc;
     height: 25px;
 
     li {
@@ -67,7 +64,7 @@ nav {
   width: 30%;
   margin: auto;
   margin-top: 2.5em;
-
+  
   .login form {
     margin: 2em;
 
@@ -130,7 +127,6 @@ nav {
     overflow-y: scroll;
 
     ul {
-      // width: 100%;
       margin: 2em;
       overflow: hidden;
 
@@ -148,17 +144,14 @@ nav {
         img {
         width: 100%;
         margin: auto;
-        // height: 70%;
         border-radius: .25em;
         margin-bottom: 1.5em;
         }
 
         a {
           text-decoration: none;
-        
           color: white;
         }
-
         
       }
 
@@ -167,8 +160,6 @@ nav {
           width: 3em;
           height: 1.5em;
           background-color: #DCDCDC;
-
-
       }
 
     }
@@ -180,10 +171,10 @@ nav {
     margin-top: 1em;
 
     button {
-    border-radius: .25em;
-    background-color: #DCDCDC;
-    padding-left: 22px;
-    padding-right: 22px;
+      border-radius: .25em;
+      background-color: #DCDCDC;
+      padding-left: 22px;
+      padding-right: 22px;
     }
   }
 
@@ -193,7 +184,6 @@ nav {
   margin-top: 1em;
   width: 30%;
   margin: auto;
-
 
   h5 {
     color: #666670;
@@ -212,10 +202,10 @@ nav {
       color: #666670;
 
       img {
-      width: 100%;
-      margin: auto;
-      border-radius: .25em;
-      margin-bottom: 2em;
+        width: 100%;
+        margin: auto;
+        border-radius: .25em;
+        margin-bottom: 2em;
       }
     }
   }
